@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma de estudio oficial para 1.º DAW - Asignatura Sistemas Informáticos. Temas completos de Hardware y Redes con transcripción 100% literal, autoevaluaciones interactivas y esquemas técnicos.">
+  <title>Portal de Estudio | Sistemas Informáticos · 1.º DAW</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos central -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Barra de progreso superior -->
+  <div class="reading-progress-container" aria-hidden="true">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+  </div>
+
+  <!-- Cabecera fija de la aplicación -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <div class="header-brand">
+        <a href="index.html" class="header-logo" aria-label="Volver al portal de estudio">
+          <div class="header-logo__icon-box" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <div class="header-logo__text-group">
+            <span class="header-logo__text">DAW StudyHub</span>
+            <span class="header-logo__subtext">Plataforma Técnica Oficial</span>
+          </div>
+        </a>
+        <div class="header-status-pill" title="Curso 2024-2025 · Plan de estudios verificado">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>1.º DAW · Sistemas Informáticos</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Controles de tamaño de fuente -->
+        <div class="font-controls" role="group" aria-label="Ajustar tamaño de fuente">
+          <button type="button" class="btn-font-size" id="fontDecrease" title="Disminuir texto" aria-label="Disminuir tamaño de texto">A-</button>
+          <button type="button" class="btn-font-size" id="fontIncrease" title="Aumentar texto" aria-label="Aumentar tamaño de texto">A+</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor principal del portal -->
+  <main id="portal-main" role="main">
+
+    <!-- Hero / Portada de la plataforma a pantalla completa (Full-Width Hero) con imagen de fondo -->
+    <header class="portal-hero fade-in-on-scroll">
+      <div class="portal-hero__glow" aria-hidden="true"></div>
+      <div class="portal-hero__inner">
+        <div class="portal-hero__grid">
+          <div class="portal-hero__content">
+            <div class="portal-hero__badge">
+              <svg class="portal-hero__badge-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              <span>Desarrollo de Aplicaciones Web (1.º DAW)</span>
+            </div>
+            <h1 class="portal-hero__title">
+              Plataforma de <span class="portal-hero__title-gradient">Estudio Técnico</span>
+            </h1>
+            <p class="portal-hero__subtitle">
+              Accede al material curricular íntegro y oficial de <strong>Sistemas Informáticos</strong> y <strong>Bases de Datos</strong>. Documentos oficiales con transcripción literal 100% fiel, diagramas técnicos vectoriales en alta definición y autoevaluaciones interactivas para preparar tus exámenes con total garantía.
+            </p>
+
+            <div class="portal-hero__ctas">
+              <a href="#directorio-asignaturas" class="btn-hero-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                <span>Explorar Directorio</span>
+              </a>
+              <a href="tema1.html" class="btn-hero-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                <span>Sistemas: Hardware</span>
+              </a>
+              <a href="tema2.html" class="btn-hero-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                <span>Sistemas: Redes</span>
+              </a>
+              <a href="bbdd-tema1.html" class="btn-hero-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                <span>Bases de Datos</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Tarjeta de composición visual técnica / Showcase Glassmorphism -->
+          <div class="hero-visual-card">
+            <div class="hero-visual-card__header">
+              <div class="hero-visual-dots">
+                <span class="hero-visual-dot hero-visual-dot--red"></span>
+                <span class="hero-visual-dot hero-visual-dot--yellow"></span>
+                <span class="hero-visual-dot hero-visual-dot--green"></span>
+              </div>
+              <span class="hero-visual-title">Arquitectura, Redes y Bases de Datos</span>
+            </div>
+
+            <div class="hero-visual-content">
+              <!-- Badges flotantes superpuestos -->
+              <div class="hero-floating-badge hero-floating-badge--top">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <span>Hardware &amp; Redes</span>
+              </div>
+              <div class="hero-floating-badge hero-floating-badge--bottom">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                <span>BBDD: Modelo E-R</span>
+              </div>
+
+              <!-- Ilustración Técnica SVG de Alta Calidad -->
+              <svg class="hero-illustration-svg" viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama esquemático de arquitectura de hardware, topología de red y motor de bases de datos">
+                <defs>
+                  <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0284c7" />
+                    <stop offset="100%" stop-color="#0369a1" />
+                  </linearGradient>
+                  <linearGradient id="glowLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2" />
+                    <stop offset="50%" stop-color="#0284c7" />
+                    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.2" />
+                  </linearGradient>
+                  <filter id="shadowBox" x="-10%" y="-10%" width="120%" height="130%" filterUnits="userSpaceOnUse">
+                    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.35" />
+                  </filter>
+                  <filter id="nodeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <pattern id="techGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.75" />
+                  </pattern>
+                </defs>
+
+                <!-- Grid de fondo tecnológico sutil -->
+                <rect width="420" height="280" rx="8" fill="url(#techGrid)" opacity="0.6" />
+
+                <!-- Líneas de Bus de Datos y Enlaces de Red -->
+                <path d="M 125 90 L 210 90 L 210 140 L 295 100" stroke="url(#glowLine)" stroke-width="2.5" stroke-dasharray="6 4" />
+                <path d="M 210 140 L 210 205 L 295 205" stroke="url(#glowLine)" stroke-width="2.5" stroke-dasharray="6 4" />
+                <path d="M 125 190 L 210 190" stroke="url(#glowLine)" stroke-width="2.5" stroke-dasharray="6 4" />
+
+                <!-- Pulsos luminosos en los buses -->
+                <circle cx="165" cy="90" r="3.5" fill="#38bdf8" filter="url(#nodeGlow)" />
+                <circle cx="210" cy="140" r="3.5" fill="#0284c7" filter="url(#nodeGlow)" />
+                <circle cx="250" cy="100" r="3.5" fill="#38bdf8" filter="url(#nodeGlow)" />
+                <circle cx="250" cy="205" r="3.5" fill="#38bdf8" filter="url(#nodeGlow)" />
+
+                <!-- Módulo 1: Unidad de Procesamiento (Tema 1 Hardware) -->
+                <g filter="url(#shadowBox)">
+                  <rect x="35" y="45" width="90" height="74" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" />
+                  <rect x="42" y="52" width="76" height="60" rx="5" fill="#f0f9ff" />
+                  <rect x="58" y="62" width="44" height="38" rx="4" fill="url(#cardGrad1)" />
+                  <line x1="65" y1="58" x2="65" y2="62" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <line x1="73" y1="58" x2="73" y2="62" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <line x1="81" y1="58" x2="81" y2="62" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <line x1="89" y1="58" x2="89" y2="62" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <line x1="65" y1="100" x2="65" y2="104" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <line x1="73" y1="100" x2="73" y2="104" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <line x1="81" y1="100" x2="81" y2="104" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <line x1="89" y1="100" x2="89" y2="104" stroke="#0284c7" stroke-width="2" stroke-linecap="round" />
+                  <rect x="67" y="70" width="26" height="22" rx="2" fill="#ffffff" fill-opacity="0.9" />
+                  <text x="80" y="85" font-family="Inter, sans-serif" font-size="8.5" font-weight="800" fill="#0369a1" text-anchor="middle">CPU</text>
+                  <text x="80" y="105" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#075985" text-anchor="middle">T1: HARDWARE</text>
+                </g>
+
+                <!-- Módulo 2: Memoria RAM & Almacenamiento SSD -->
+                <g filter="url(#shadowBox)">
+                  <rect x="35" y="155" width="90" height="65" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" />
+                  <rect x="42" y="162" width="76" height="51" rx="5" fill="#f0f9ff" />
+                  <rect x="50" y="172" width="60" height="8" rx="2" fill="#0284c7" />
+                  <circle cx="56" cy="176" r="1.5" fill="#ffffff" />
+                  <circle cx="64" cy="176" r="1.5" fill="#ffffff" />
+                  <circle cx="72" cy="176" r="1.5" fill="#ffffff" />
+                  <rect x="50" y="184" width="60" height="8" rx="2" fill="#0284c7" opacity="0.8" />
+                  <circle cx="56" cy="188" r="1.5" fill="#ffffff" />
+                  <circle cx="64" cy="188" r="1.5" fill="#ffffff" />
+                  <circle cx="72" cy="188" r="1.5" fill="#ffffff" />
+                  <text x="80" y="206" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#0369a1" text-anchor="middle">DDR5 &amp; PCIe 4.0</text>
+                </g>
+
+                <!-- Nodo Central de Distribución / Switch & Router -->
+                <g filter="url(#shadowBox)">
+                  <circle cx="210" cy="140" r="22" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <circle cx="210" cy="140" r="16" fill="url(#cardGrad1)" />
+                  <path d="M 203 137 L 217 137 M 217 137 L 213 133 M 217 137 L 213 141" stroke="#ffffff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 217 143 L 203 143 M 203 143 L 207 139 M 203 143 L 207 147" stroke="#ffffff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+
+                <!-- Módulo 3: Nodo Red LAN / WAN (Tema 2 Redes) -->
+                <g filter="url(#shadowBox)">
+                  <rect x="295" y="65" width="92" height="68" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" />
+                  <rect x="302" y="72" width="78" height="54" rx="5" fill="#f0f9ff" />
+                  <circle cx="341" cy="88" r="5" fill="url(#cardGrad1)" />
+                  <circle cx="323" cy="106" r="4" fill="#0284c7" />
+                  <circle cx="359" cy="106" r="4" fill="#0284c7" />
+                  <line x1="337" y1="91" x2="326" y2="103" stroke="#0284c7" stroke-width="1.5" />
+                  <line x1="345" y1="91" x2="356" y2="103" stroke="#0284c7" stroke-width="1.5" />
+                  <text x="341" y="120" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#075985" text-anchor="middle">T2: REDES LAN</text>
+                </g>
+
+                <!-- Módulo 4: Bases de Datos (Tema 1 BBDD) -->
+                <g filter="url(#shadowBox)">
+                  <rect x="295" y="170" width="92" height="68" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" />
+                  <rect x="302" y="177" width="78" height="54" rx="5" fill="#f0f9ff" />
+                  <ellipse cx="341" cy="189" rx="14" ry="4" fill="#0284c7" />
+                  <path d="M 327 189 v 8 c 0 2.2 6.2 4 14 4 s 14 -1.8 14 -4 v -8" fill="#0284c7" opacity="0.85" />
+                  <path d="M 327 197 v 8 c 0 2.2 6.2 4 14 4 s 14 -1.8 14 -4 v -8" fill="#0369a1" />
+                  <text x="341" y="224" font-family="Inter, sans-serif" font-size="7.5" font-weight="700" fill="#075985" text-anchor="middle">BBDD: E-R EXT.</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de estadísticas del portal -->
+        <div class="portal-stats-bar">
+          <div class="portal-stat-card">
+            <span class="portal-stat-card__number">2</span>
+            <span class="portal-stat-card__label">Asignaturas Activas</span>
+          </div>
+          <div class="portal-stat-card">
+            <span class="portal-stat-card__number">3</span>
+            <span class="portal-stat-card__label">Temas Completos</span>
+          </div>
+          <div class="portal-stat-card">
+            <span class="portal-stat-card__number">31</span>
+            <span class="portal-stat-card__label">Autoevaluaciones</span>
+          </div>
+          <div class="portal-stat-card">
+            <span class="portal-stat-card__number">100%</span>
+            <span class="portal-stat-card__label">Contenido Literal</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenedor del Directorio Curricular (Ancho acotado para lectura óptima) -->
+    <div class="portal-container">
+
+    <!-- Directorio Curricular en Formato Índice (Sin tarjetas) -->
+    <section class="curriculum-section fade-in-on-scroll" id="directorio-asignaturas" aria-labelledby="sec-curriculum-title">
+      <div class="curriculum-section__header">
+        <h2 class="curriculum-section__title" id="sec-curriculum-title">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--azul-principal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          <span>Directorio de Asignaturas y Temarios</span>
+        </h2>
+        <p class="curriculum-section__subtitle">
+          Plan de estudios oficial de 1.º DAW organizado en formato de índice curricular. Accede a cada unidad temática con desglose de apartados, esquemas técnicos vectoriales y autoevaluaciones interactivas.
+        </p>
+      </div>
+
+      <!-- Asignatura 1: Sistemas Informáticos -->
+      <article class="syllabus-subject">
+        <header class="syllabus-subject__header">
+          <div class="syllabus-subject__title-group">
+            <div class="syllabus-subject__icon-box" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="syllabus-subject__name">Sistemas Informáticos</h3>
+            </div>
+          </div>
+          <div class="syllabus-subject__meta">
+            <span class="syllabus-subject__code">MP-0483 · 1.º DAW</span>
+            <span class="syllabus-subject__count">2 Unidades Didácticas Completas</span>
+          </div>
+        </header>
+
+        <ol class="syllabus-list">
+          <!-- Tema 1: Hardware -->
+          <li class="syllabus-item">
+            <div class="syllabus-num-box">
+              <span class="syllabus-num-box__unit">Tema</span>
+              <span class="syllabus-num-box__val">01</span>
+            </div>
+            <div class="syllabus-content">
+              <div class="syllabus-item__title-row">
+                <h4 class="syllabus-item__title">
+                  <a href="tema1.html" class="syllabus-item__link">Componentes físicos de un ordenador actual (Hardware)</a>
+                </h4>
+                <div class="syllabus-item__tags">
+                  <span class="syllabus-tag syllabus-tag--accent">39 páginas</span>
+                  <span class="syllabus-tag">13 apartados</span>
+                  <span class="syllabus-tag">11 autoevaluaciones</span>
+                  <span class="syllabus-tag">25 fotos reales HD</span>
+                </div>
+              </div>
+              <div class="syllabus-subindex">
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">1.1</span> Chasis, factores de forma y fuentes con PFC</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">1.2</span> Placas base, chipsets y zócalos LGA/PGA</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">1.3</span> Procesadores, memoria DDR y bus PCIe</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">1.4</span> Almacenamiento HDD/SSD y periféricos</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">1.5</span> Guía de compra y montaje</span>
+              </div>
+            </div>
+            <a href="tema1.html" class="syllabus-action-btn" aria-label="Estudiar Tema 1: Hardware">
+              <span>Estudiar Tema 1</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </li>
+
+          <!-- Tema 2: Redes -->
+          <li class="syllabus-item">
+            <div class="syllabus-num-box">
+              <span class="syllabus-num-box__unit">Tema</span>
+              <span class="syllabus-num-box__val">02</span>
+            </div>
+            <div class="syllabus-content">
+              <div class="syllabus-item__title-row">
+                <h4 class="syllabus-item__title">
+                  <a href="tema2.html" class="syllabus-item__link">Redes informáticas / Explotación de sistemas</a>
+                </h4>
+                <div class="syllabus-item__tags">
+                  <span class="syllabus-tag syllabus-tag--accent">80 páginas</span>
+                  <span class="syllabus-tag">6 apartados</span>
+                  <span class="syllabus-tag">13 autoevaluaciones</span>
+                  <span class="syllabus-tag">54 diagramas HD</span>
+                  <span class="syllabus-tag">Solucionario</span>
+                </div>
+              </div>
+              <div class="syllabus-subindex">
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">2.1</span> Sistemas informáticos y arquitectura Von Neumann</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">2.2</span> Clasificación de redes (PAN a WAN) y topologías</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">2.3</span> Medios de transmisión guiados y no guiados</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">2.4</span> Dispositivos de red (Hub, Switch, Router, AP)</span>
+                <span class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">2.5</span> Cableado estructurado 568A/B y Packet Tracer</span>
+              </div>
+            </div>
+            <a href="tema2.html" class="syllabus-action-btn" aria-label="Estudiar Tema 2: Redes">
+              <span>Estudiar Tema 2</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </li>
+        </ol>
+      </article>
+
+      <!-- Asignatura 2: Bases de Datos -->
+      <article class="syllabus-subject">
+        <header class="syllabus-subject__header">
+          <div class="syllabus-subject__title-group">
+            <div class="syllabus-subject__icon-box" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="syllabus-subject__name">Bases de Datos</h3>
+            </div>
+          </div>
+          <div class="syllabus-subject__meta">
+            <span class="syllabus-subject__code">MP-0484 · 1.º DAW</span>
+            <span class="syllabus-subject__count">1 Unidad Didáctica Disponible</span>
+          </div>
+        </header>
+
+        <ol class="syllabus-list">
+          <!-- Tema 1: Modelo E-R Extendido -->
+          <li class="syllabus-item">
+            <div class="syllabus-num-box">
+              <span class="syllabus-num-box__unit">Tema</span>
+              <span class="syllabus-num-box__val">01</span>
+            </div>
+            <div class="syllabus-content">
+              <div class="syllabus-item__title-row">
+                <h4 class="syllabus-item__title">
+                  <a href="bbdd-tema1.html" class="syllabus-item__link">Modelo Entidad-Relación Extendido (Entidades Débiles, Restricciones y Jerarquías)</a>
+                </h4>
+                <div class="syllabus-item__tags">
+                  <span class="syllabus-tag syllabus-tag--accent">Diseño Conceptual</span>
+                  <span class="syllabus-tag">Entidades Débiles (E/I)</span>
+                  <span class="syllabus-tag">Restricciones (Inc/Exc)</span>
+                  <span class="syllabus-tag">Jerarquías (Herencia)</span>
+                  <span class="syllabus-tag">Relaciones Reflexivas</span>
+                  <span class="syllabus-tag">8 Autoevaluaciones</span>
+                </div>
+              </div>
+              <div class="syllabus-subindex syllabus-subindex--vertical">
+                <a href="bbdd-tema1.html#entidades-debiles" class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">01</span> <span><strong>Entidades Débiles (E/I):</strong> Dependencia en Existencia e Identificación, Fuerte vs. Débil y Multiplicidad</span></a>
+                <a href="bbdd-tema1.html#restricciones-adicionales" class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">02</span> <span><strong>Restricciones Adicionales:</strong> Exclusividad, Exclusión, Inclusividad e Inclusión</span></a>
+                <a href="bbdd-tema1.html#jerarquias-subclases" class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">03</span> <span><strong>Jerarquías y Subclases:</strong> Regla ES-UN, Tipos Total/Parcial/Solapada/Exclusiva y Relaciones Propias</span></a>
+                <a href="bbdd-tema1.html#relaciones-reflexivas" class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">04</span> <span><strong>Relaciones Reflexivas:</strong> Detección en enunciado, Representación E/R y Cardinalidad por Roles</span></a>
+                <a href="bbdd-tema1.html#mapeo-relacional-resumen" class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">05</span> <span><strong>El Modelo Relacional y Transformación:</strong> Claves (PK/FK), Entidades, Relaciones y Atributos</span></a>
+                <a href="bbdd-tema1.html#autoevaluacion" class="syllabus-subindex__item"><span class="syllabus-subindex__bullet">06</span> <span><strong>Autoevaluación Interactiva:</strong> 8 preguntas tipo test con corrección técnica al instante</span></a>
+              </div>
+            </div>
+            <a href="bbdd-tema1.html" class="syllabus-action-btn" aria-label="Estudiar Bases de Datos Tema 1">
+              <span>Estudiar Bases de Datos</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </li>
+        </ol>
+      </article>
+
+      <!-- Asignatura 3: Próximos Módulos del Ciclo -->
+      <article class="syllabus-subject syllabus-subject--upcoming">
+        <header class="syllabus-subject__header">
+          <div class="syllabus-subject__title-group">
+            <div class="syllabus-subject__icon-box" style="background:linear-gradient(135deg, #64748b 0%, #475569 100%);" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h3 class="syllabus-subject__name">Otras Asignaturas de 1.º DAW</h3>
+            </div>
+          </div>
+          <div class="syllabus-subject__meta">
+            <span class="syllabus-subject__code" style="color:var(--texto-muted);">Currículo Oficial</span>
+            <span class="syllabus-subject__count">En fase de preparación</span>
+          </div>
+        </header>
+
+        <ol class="syllabus-list">
+          <li class="syllabus-item syllabus-item--disabled">
+            <div class="syllabus-num-box">
+              <span class="syllabus-num-box__unit">Módulo</span>
+              <span class="syllabus-num-box__val">PRG</span>
+            </div>
+            <div class="syllabus-content">
+              <div class="syllabus-item__title-row">
+                <h4 class="syllabus-item__title">Programación (Java / POO)</h4>
+                <div class="syllabus-item__tags">
+                  <span class="syllabus-tag">Sintaxis</span>
+                  <span class="syllabus-tag">POO</span>
+                  <span class="syllabus-tag">Estructuras</span>
+                  <span class="syllabus-tag">Colecciones</span>
+                </div>
+              </div>
+              <div class="syllabus-subindex">
+                <span class="syllabus-subindex__item">Estructuras de control, herencia, polimorfismo, interfaces y excepciones</span>
+              </div>
+            </div>
+            <button type="button" class="syllabus-action-btn syllabus-action-btn--disabled" disabled>
+              <span>Próximamente</span>
+            </button>
+          </li>
+
+          <li class="syllabus-item syllabus-item--disabled">
+            <div class="syllabus-num-box">
+              <span class="syllabus-num-box__unit">Módulo</span>
+              <span class="syllabus-num-box__val">LMSGI</span>
+            </div>
+            <div class="syllabus-content">
+              <div class="syllabus-item__title-row">
+                <h4 class="syllabus-item__title">Lenguajes de Marcas y Sistemas de Gestión de Información</h4>
+                <div class="syllabus-item__tags">
+                  <span class="syllabus-tag">HTML5</span>
+                  <span class="syllabus-tag">CSS3</span>
+                  <span class="syllabus-tag">XML / XSD</span>
+                  <span class="syllabus-tag">XPath</span>
+                </div>
+              </div>
+              <div class="syllabus-subindex">
+                <span class="syllabus-subindex__item">Validación de documentos XML, DTD, Schemas, selectores CSS avanzados y transformación XSLT</span>
+              </div>
+            </div>
+            <button type="button" class="syllabus-action-btn syllabus-action-btn--disabled" disabled>
+              <span>Próximamente</span>
+            </button>
+          </li>
+
+          <li class="syllabus-item syllabus-item--disabled">
+            <div class="syllabus-num-box">
+              <span class="syllabus-num-box__unit">Módulo</span>
+              <span class="syllabus-num-box__val">ED</span>
+            </div>
+            <div class="syllabus-content">
+              <div class="syllabus-item__title-row">
+                <h4 class="syllabus-item__title">Entornos de Desarrollo</h4>
+                <div class="syllabus-item__tags">
+                  <span class="syllabus-tag">Git / GitHub</span>
+                  <span class="syllabus-tag">JUnit</span>
+                  <span class="syllabus-tag">Refactorización</span>
+                  <span class="syllabus-tag">UML</span>
+                </div>
+              </div>
+              <div class="syllabus-subindex">
+                <span class="syllabus-subindex__item">Diagramas de clases, depuración, optimización de código y flujos de trabajo colaborativos</span>
+              </div>
+            </div>
+            <button type="button" class="syllabus-action-btn syllabus-action-btn--disabled" disabled>
+              <span>Próximamente</span>
+            </button>
+          </li>
+        </ol>
+      </article>
+    </section>
+
+    <!-- Sección de Funcionalidades y Metodología de Estudio -->
+    <section class="portal-features fade-in-on-scroll">
+      <h2 class="portal-features__title">Herramientas diseñadas para maximizar tu rendimiento</h2>
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h3 class="feature-box__title">Transcripción 100% Literal</h3>
+          <p class="feature-box__desc">Cero resúmenes ni simplificaciones. Todo el texto original de los documentos curriculares transcrito palabra por palabra para no perder ningún concepto de examen.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          </div>
+          <h3 class="feature-box__title">Autoevaluación Interactiva</h3>
+          <p class="feature-box__desc">Pon a prueba tus conocimientos en cada sección con cuestionarios tipo test interactivos, corrección instantánea y argumentación de las soluciones correctas.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <h3 class="feature-box__title">Búsqueda Rápida Instantánea</h3>
+          <p class="feature-box__desc">Busca cualquier término técnico, estándar o acrónimo al instante mediante el modal de búsqueda con atajo rápido <kbd>Ctrl</kbd> + <kbd>K</kbd>.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          </div>
+          <h3 class="feature-box__title">100% Responsive & Lightbox HD</h3>
+          <p class="feature-box__desc">Diseño mobile-first optimizado para estudiar en smartphone, tablet o escritorio, con menú lateral colapsable y visor ampliado de esquemas a pantalla completa.</p>
+        </div>
+      </div>
+    </section>
+
+  </div> <!-- .portal-container -->
+
+  </main>
+
+  <!-- Pie de página institucional profesional (Multi-columna) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-columns-grid">
+        <!-- Columna 1: Marca y Acreditación -->
+        <div class="footer-col__brand">
+          <div class="footer-brand-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--azul-principal)" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span>DAW StudyHub</span>
+          </div>
+          <p class="footer-brand-desc">
+            Plataforma académica integral para el ciclo formativo de Grado Superior en Desarrollo de Aplicaciones Web. Transcripción curricular fidedigna, esquemas técnicos vectoriales en alta definición y autoevaluaciones interactivas.
+          </p>
+          <div class="footer-badges-row">
+            <span class="footer-badge">1.º DAW</span>
+            <span class="footer-badge">Sistemas &amp; BBDD</span>
+            <span class="footer-badge">100% Literal</span>
+            <span class="footer-badge">Curso 2024-2025</span>
+          </div>
+        </div>
+
+        <!-- Columna 2: Temario del Módulo -->
+        <div class="footer-col">
+          <h3 class="footer-col__title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            <span>Temario Oficial</span>
+          </h3>
+          <ul class="footer-nav-list">
+            <li><a href="tema1.html" class="footer-nav-link">Sistemas: Tema 1 (Hardware)</a></li>
+            <li><a href="tema2.html" class="footer-nav-link">Sistemas: Tema 2 (Redes)</a></li>
+            <li><a href="bbdd-tema1.html" class="footer-nav-link">Bases de Datos: Tema 1 (Modelo E-R)</a></li>
+            <li><a href="index.html#directorio-asignaturas" class="footer-nav-link">Directorio de Asignaturas</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Herramientas y Exámenes -->
+        <div class="footer-col">
+          <h3 class="footer-col__title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            <span>Herramientas de Estudio</span>
+          </h3>
+          <ul class="footer-nav-list">
+            <li><a href="tema1.html#anexo1" class="footer-nav-link">Guía Técnica de Compra PC</a></li>
+            <li><a href="tema2.html#sec-6" class="footer-nav-link">Solucionario Oficial de Redes</a></li>
+            <li><a href="index.html" class="footer-nav-link">Portal Principal de Asignaturas</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Barra inferior con copyright y botón scroll top -->
+      <div class="footer-bottom-bar">
+        <span>&copy; 2024-2025 DAW StudyHub · Departamento de Informática. Todos los derechos reservados conforme a la programación docente oficial.</span>
+        <div class="footer-bottom-links">
+          <button type="button" class="footer-scroll-top-btn" id="footerScrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Volver arriba">
+            <span>Volver arriba</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts funcionales -->
+  <script src="js/main.js"></script>
+</body>
+</html>

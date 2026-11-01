@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bases de Datos - 1.º DAW. Tema 1: Modelo Entidad-Relación Extendido. Entidades Débiles, Restricciones Adicionales y Jerarquías en Subclases. Transcripción literal 100%, diagramas vectoriales E-R, tablas comparativas y autoevaluación interactiva.">
+  <title>Bases de Datos · Tema 1: Modelo E-R Extendido | 1.º DAW</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos central -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Barra de progreso superior -->
+  <div class="reading-progress-container" aria-hidden="true">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+  </div>
+
+  <!-- Cabecera fija de navegación -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <div class="header-brand">
+        <a href="#inicio" class="site-brand" aria-label="Ir al inicio del documento">
+          <div class="site-brand__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+          </div>
+          <div class="site-brand__text">
+            <span class="site-brand__title">Bases de Datos</span>
+            <span class="site-brand__subtitle">Tema 1: Modelo E-R Extendido</span>
+          </div>
+        </a>
+        <div class="header-status-pill" title="Curso 2024-2025 · Plan de estudios verificado">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>1.º DAW · Bases de Datos</span>
+        </div>
+      </div>
+
+      <div class="site-header__actions">
+        <!-- Enlace de vuelta al portal -->
+        <a href="index.html" class="btn-portal-back" title="Volver al portal principal" aria-label="Volver al Portal de asignaturas">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span>Inicio</span>
+        </a>
+
+        <!-- Buscador rápido -->
+        <button type="button" class="btn-search-trigger" id="searchTrigger" aria-label="Buscar en el documento (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Buscar...</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <!-- Control de tamaño de fuente -->
+        <div class="font-controls" role="group" aria-label="Controles de tamaño de texto">
+          <button type="button" class="btn-font-size" id="fontDecrease" title="Disminuir texto" aria-label="Disminuir tamaño de texto">A-</button>
+          <button type="button" class="btn-font-size" id="fontReset" title="Restablecer texto" aria-label="Restablecer tamaño de texto">A</button>
+          <button type="button" class="btn-font-size" id="fontIncrease" title="Aumentar texto" aria-label="Aumentar tamaño de texto">A+</button>
+        </div>
+
+        <!-- Botón toggle de índice en desktop -->
+        <button type="button" class="btn-sidebar-desktop-toggle" id="sidebarToggleDesktop" title="Ocultar o mostrar índice lateral (Ctrl+B / Alt+S)" aria-label="Alternar índice lateral" aria-expanded="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg>
+          <span class="btn-sidebar-desktop-toggle__text">Índice</span>
+        </button>
+
+        <!-- Botón menú móvil -->
+        <button type="button" class="btn-menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="sidebarNav" aria-label="Abrir menú de navegación">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overlay para cierre en dispositivos táctiles -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+  <!-- Botón flotante para reabrir el menú en escritorio cuando está oculto -->
+  <button type="button" class="desktop-floating-toc-btn" id="desktopFloatingTocBtn" title="Mostrar índice lateral (Ctrl+B)" aria-label="Mostrar índice lateral">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+    <span>Índice</span>
+  </button>
+
+  <!-- Botón flotante accesible para móvil (alcance de pulgar) -->
+  <button type="button" class="mobile-floating-toc-btn" id="mobileFloatingTocBtn" aria-label="Abrir tabla de contenidos">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+    <span>Índice</span>
+  </button>
+
+    <!-- Contenedor general en dos columnas -->
+  <div class="app-container" id="inicio">
+
+    <!-- Barra lateral fija / Índice navegable -->
+    <aside class="sidebar-nav" id="sidebarNav" aria-label="Tabla de contenidos de Bases de Datos">
+      <div class="sidebar-nav__header">
+        <span class="sidebar-nav__title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Índice del tema
+        </span>
+        <div class="sidebar-nav__actions">
+          <button type="button" class="btn-sidebar-collapse" id="sidebarCollapseBtn" title="Ocultar índice hacia la izquierda" aria-label="Ocultar índice lateral">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="sidebar-close-mobile-btn" id="sidebarCloseMobile" aria-label="Cerrar índice">✕</button>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav__content">
+        <div class="nav-group-title">Secciones Principales</div>
+        <ul class="nav-toc-list">
+          <li class="nav-toc-item"><a href="#introduccion" class="nav-toc-link">0. Introducción e Índice</a></li>
+          <li class="nav-toc-item">
+            <a href="#entidades-debiles" class="nav-toc-link">1. Entidades Débiles</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#dep-existencia" class="nav-toc-link">1.1. Dependencia en Existencia (E)</a></li>
+              <li><a href="#dep-identificacion" class="nav-toc-link">1.2. Dependencia en Identificación (I)</a></li>
+              <li><a href="#tabla-comparativa-debiles" class="nav-toc-link">1.3. Tabla Comparativa (E vs. I)</a></li>
+              <li><a href="#fuerte-vs-debil" class="nav-toc-link">1.4. Entidad Fuerte vs. Débil (Identificación)</a></li>
+              <li><a href="#atributo-vs-entidad" class="nav-toc-link">1.5. Atributo vs. Entidad (Multiplicidad)</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item">
+            <a href="#restricciones-adicionales" class="nav-toc-link">2. Restricciones Adicionales</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#restr-exclusividad" class="nav-toc-link">2.1. Restricción de Exclusividad</a></li>
+              <li><a href="#restr-exclusion" class="nav-toc-link">2.2. Restricción de Exclusión</a></li>
+              <li><a href="#restr-inclusividad" class="nav-toc-link">2.3. Restricción de Inclusividad</a></li>
+              <li><a href="#restr-inclusion" class="nav-toc-link">2.4. Restricción de Inclusión</a></li>
+              <li><a href="#tabla-resumen-restricciones" class="nav-toc-link">2.5. Tabla Comparativa Resumen</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item">
+            <a href="#jerarquias-subclases" class="nav-toc-link">3. Jerarquías y Subclases</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#concepto-jerarquia" class="nav-toc-link">3.1. Concepto, Regla ES UN y Validación</a></li>
+              <li><a href="#reglas-configuracion" class="nav-toc-link">3.2. Tipos de Jerarquía (Total, Parcial, Solapada, Exclusiva)</a></li>
+              <li><a href="#relaciones-subclase" class="nav-toc-link">3.3. Relaciones Propias Subclase</a></li>
+              <li><a href="#deduccion-cardinalidad" class="nav-toc-link">3.4. Deducción de Cardinalidad</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item">
+            <a href="#relaciones-reflexivas" class="nav-toc-link">4. Relaciones Reflexivas</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#def-relaciones-reflexivas" class="nav-toc-link">4.1. Definición y Detección</a></li>
+              <li><a href="#er-cardinalidad-reflexiva" class="nav-toc-link">4.2. Notación E/R y Cardinalidad Cruzada</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item">
+            <a href="#mapeo-relacional-resumen" class="nav-toc-link">5. Paso al Modelo Relacional</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#relacional-conceptos" class="nav-toc-link">9.1. El Modelo Relacional (Conceptos básicos)</a></li>
+              <li><a href="#transformacion-entidades" class="nav-toc-link">9.2. Transformación de Entidades</a></li>
+              <li><a href="#transformacion-relaciones" class="nav-toc-link">9.3. Transformación de Relaciones</a></li>
+              <li><a href="#transformacion-atributos" class="nav-toc-link">9.4. Transformación de Atributos</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item"><a href="#autoevaluacion" class="nav-toc-link">6. Autoevaluación Interactiva</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content" role="main">
+
+            <!-- Portada y título del tema -->
+      <header class="hero-banner fade-in-on-scroll" id="introduccion">
+        <span class="hero-banner__badge">1.º DAW · Bases de Datos · Módulo Profesional 0484</span>
+        <h1 class="main-title">Modelo Entidad-Relación Extendido</h1>
+        <p class="main-subtitle">Diseño conceptual avanzado: <strong>Entidades Débiles</strong> (Existencia e Identificación), <strong>Restricciones Adicionales</strong> (Inclusión, Exclusión y Semánticas), <strong>Jerarquías en Subclases</strong> (Herencia y Relaciones Propias) y <strong>Relaciones Reflexivas</strong> (Recursivas y Roles de Cardinalidad).</p>
+
+        <!-- Bloque visual del índice estructurado verticalmente hacia abajo -->
+        <div class="topic-index-panel">
+          <div class="topic-index-panel__header">
+            <h2 class="topic-index-panel__title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Índice General del Tema</span>
+            </h2>
+            <span class="topic-index-panel__badge">6 Bloques Didácticos · Navegación Directa</span>
+          </div>
+
+          <ol class="topic-index-list">
+            <!-- Bloque 1 -->
+            <li class="topic-index-item">
+              <a href="#entidades-debiles" class="topic-index-item__main">
+                <span class="topic-index-item__main-left">
+                  <span class="topic-index-item__num">01</span>
+                  <span>Entidades Débiles y Normalización de Atributos</span>
+                </span>
+                <svg class="topic-index-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <ul class="topic-index-sublist">
+                <li class="topic-index-subitem"><a href="#dep-existencia"><span class="topic-index-subitem__code">1.1</span><span>Dependencia en Existencia (E)</span></a></li>
+                <li class="topic-index-subitem"><a href="#dep-identificacion"><span class="topic-index-subitem__code">1.2</span><span>Dependencia en Identificación (I)</span></a></li>
+                <li class="topic-index-subitem"><a href="#tabla-comparativa-debiles"><span class="topic-index-subitem__code">1.3</span><span>Tabla Comparativa (Existencia vs. Identificación)</span></a></li>
+                <li class="topic-index-subitem"><a href="#fuerte-vs-debil"><span class="topic-index-subitem__code">1.4</span><span>Entidad Fuerte vs. Entidad Débil (por Identificación)</span></a></li>
+                <li class="topic-index-subitem"><a href="#atributo-vs-entidad"><span class="topic-index-subitem__code">1.5</span><span>Atributo vs. Entidad (Manejo de la multiplicidad)</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Bloque 2 -->
+            <li class="topic-index-item">
+              <a href="#restricciones-adicionales" class="topic-index-item__main">
+                <span class="topic-index-item__main-left">
+                  <span class="topic-index-item__num">02</span>
+                  <span>Restricciones Adicionales en Relaciones</span>
+                </span>
+                <svg class="topic-index-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <ul class="topic-index-sublist">
+                <li class="topic-index-subitem"><a href="#restr-exclusividad"><span class="topic-index-subitem__code">2.1</span><span>Restricción de Exclusividad (Elegir un único camino)</span></a></li>
+                <li class="topic-index-subitem"><a href="#restr-exclusion"><span class="topic-index-subitem__code">2.2</span><span>Restricción de Exclusión (Incompatibilidad de la misma pareja)</span></a></li>
+                <li class="topic-index-subitem"><a href="#restr-inclusividad"><span class="topic-index-subitem__code">2.3</span><span>Restricción de Inclusividad (Requisito de cantidad mínima)</span></a></li>
+                <li class="topic-index-subitem"><a href="#restr-inclusion"><span class="topic-index-subitem__code">2.4</span><span>Restricción de Inclusión (Requisito de pareja previa)</span></a></li>
+                <li class="topic-index-subitem"><a href="#tabla-resumen-restricciones"><span class="topic-index-subitem__code">2.5</span><span>Tabla Comparativa de las 4 Restricciones</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Bloque 3 -->
+            <li class="topic-index-item">
+              <a href="#jerarquias-subclases" class="topic-index-item__main">
+                <span class="topic-index-item__main-left">
+                  <span class="topic-index-item__num">03</span>
+                  <span>Modelo E/R Extendido: Jerarquías y Relaciones en Subclases</span>
+                </span>
+                <svg class="topic-index-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <ul class="topic-index-sublist">
+                <li class="topic-index-subitem"><a href="#concepto-jerarquia"><span class="topic-index-subitem__code">3.1</span><span>Concepto de Jerarquía (Regla ES-UN y Contraste de Validación)</span></a></li>
+                <li class="topic-index-subitem"><a href="#reglas-configuracion"><span class="topic-index-subitem__code">3.2</span><span>Tipos de Jerarquía (Total, Parcial, Solapada y Exclusiva)</span></a></li>
+                <li class="topic-index-subitem"><a href="#relaciones-subclase"><span class="topic-index-subitem__code">3.3</span><span>Relaciones Propias de una Subclase (Caso Trabajador - Empresa)</span></a></li>
+                <li class="topic-index-subitem"><a href="#deduccion-cardinalidad"><span class="topic-index-subitem__code">3.4</span><span>Deducción de Cardinalidad por el Enunciado</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Bloque 4 -->
+            <li class="topic-index-item">
+              <a href="#relaciones-reflexivas" class="topic-index-item__main">
+                <span class="topic-index-item__main-left">
+                  <span class="topic-index-item__num">04</span>
+                  <span>Relaciones Reflexivas (Recursivas)</span>
+                </span>
+                <svg class="topic-index-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <ul class="topic-index-sublist">
+                <li class="topic-index-subitem"><a href="#def-relaciones-reflexivas"><span class="topic-index-subitem__code">4.1</span><span>Definición y Detección en el Enunciado</span></a></li>
+                <li class="topic-index-subitem"><a href="#er-cardinalidad-reflexiva"><span class="topic-index-subitem__code">4.2</span><span>Representación E/R y Extracción de Cardinalidad por Roles</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Bloque 5 -->
+            <li class="topic-index-item">
+              <a href="#mapeo-relacional-resumen" class="topic-index-item__main">
+                <span class="topic-index-item__main-left">
+                  <span class="topic-index-item__num">05</span>
+                  <span>El Modelo Relacional y Reglas de Transformación (E/R a Tablas)</span>
+                </span>
+                <svg class="topic-index-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <ul class="topic-index-sublist">
+                <li class="topic-index-subitem"><a href="#relacional-conceptos"><span class="topic-index-subitem__code">9.1</span><span>El Modelo Relacional (Conceptos básicos y Tipos de Claves)</span></a></li>
+                <li class="topic-index-subitem"><a href="#transformacion-entidades"><span class="topic-index-subitem__code">9.2</span><span>Transformación de Entidades (De cajas a tablas: Débiles y Jerarquías)</span></a></li>
+                <li class="topic-index-subitem"><a href="#transformacion-relaciones"><span class="topic-index-subitem__code">9.3</span><span>Transformación de Relaciones (N:M, 1:N, 1:1 y Reflexivas)</span></a></li>
+                <li class="topic-index-subitem"><a href="#transformacion-atributos"><span class="topic-index-subitem__code">9.4</span><span>Transformación de Atributos (Normales, Compuestos, Calculados y Multivaluados)</span></a></li>
+              </ul>
+            </li>
+
+            <!-- Bloque 6 -->
+            <li class="topic-index-item">
+              <a href="#autoevaluacion" class="topic-index-item__main">
+                <span class="topic-index-item__main-left">
+                  <span class="topic-index-item__num">06</span>
+                  <span>Autoevaluación Interactiva (8 Preguntas Tipo Test)</span>
+                </span>
+                <svg class="topic-index-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </li>
+          </ol>
+        </div>
+      </header>
+
+      <!-- ====================================================================
+           BLOQUE 1: ENTIDADES DÉBILES
+           ==================================================================== -->
+      <section class="study-section fade-in-on-scroll" id="entidades-debiles" aria-labelledby="title-entidades-debiles">
+        <h2 class="section-title"><span>1. Entidades Débiles</span><a href="#entidades-debiles" class="anchor-link" title="Enlace permanente">#</a></h2>
+
+        <div class="text-block lead-text">
+          <p>
+            <strong>Una entidad débil es aquella que no puede existir en la base de datos sin estar vinculada a una entidad fuerte. Se dividen en dos tipos:</strong>
+          </p>
+        </div>
+
+        <!-- 1.1 Dependencia en Existencia -->
+        <div class="subsection-block" id="dep-existencia">
+          <h3 class="subsection-title">1. Dependencia en Existencia (E)</h3>
+
+          <div class="explicacion-box">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Explicación</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                La entidad débil tiene su propia clave primaria completa y única. Sin embargo, por reglas de negocio, si se elimina la entidad fuerte, la entidad débil también debe borrarse del sistema.
+              </p>
+            </div>
+          </div>
+
+          <div class="ejemplo-box">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Ejemplo</span>
+              </div>
+              <span class="ejemplo-box__badge">Caso Canónico</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                Entidades EMPLEADO (fuerte) y FAMILIAR (débil). El familiar tiene su propio DNI (clave principal), pero si el empleado es despedido y borrado del sistema, los datos de su familiar también se eliminan obligatoriamente.
+              </p>
+            </div>
+          </div>
+
+          <!-- Diagrama Vectorial SVG: Existencia (E) -->
+          <div class="er-diagram-card">
+            <div class="er-diagram-card__header">
+              <span class="er-diagram-card__title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azul-principal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>
+                <span>Diagrama E-R: Dependencia en Existencia (E)</span>
+              </span>
+              <span class="table-badge table-badge--amber">Borrado en Cascada</span>
+            </div>
+
+            <div class="er-diagram-canvas">
+              <svg class="er-vector-box" viewBox="0 0 540 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama Entidad-Relación de dependencia en existencia entre Empleado y Familiar">
+                <defs>
+                  <filter id="erShadow1" x="-10%" y="-10%" width="120%" height="130%" filterUnits="userSpaceOnUse">
+                    <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0c4a6e" flood-opacity="0.1" />
+                  </filter>
+                </defs>
+
+                <!-- Entidad Fuerte: EMPLEADO -->
+                <g filter="url(#erShadow1)">
+                  <rect x="25" y="25" width="135" height="85" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="25" y="25" width="135" height="28" rx="6" fill="#f0f9ff" />
+                  <text x="92" y="44" font-family="Inter, sans-serif" font-size="12" font-weight="800" fill="#0369a1" text-anchor="middle">EMPLEADO</text>
+                  <text x="35" y="70" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0c4a6e" text-decoration="underline">DNI_emp (PK)</text>
+                  <text x="35" y="86" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Nombre</text>
+                  <text x="35" y="100" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Salario</text>
+                </g>
+
+                <!-- Línea y Cardinalidad izquierda -->
+                <line x1="160" y1="67" x2="225" y2="67" stroke="#0284c7" stroke-width="2" />
+                <rect x="175" y="51" width="34" height="16" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="192" y="63" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0369a1" text-anchor="middle">(1,1)</text>
+
+                <!-- Relación: TIENE (E) -->
+                <g filter="url(#erShadow1)">
+                  <polygon points="280,35 335,67 280,99 225,67" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+                  <text x="280" y="65" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#0369a1" text-anchor="middle">Tiene</text>
+                  <text x="280" y="79" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#0284c7" text-anchor="middle">(E)</text>
+                </g>
+
+                <!-- Línea y Cardinalidad derecha -->
+                <line x1="335" y1="67" x2="380" y2="67" stroke="#0284c7" stroke-width="2" />
+                <rect x="345" y="51" width="34" height="16" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="362" y="63" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0369a1" text-anchor="middle">(0,N)</text>
+
+                <!-- Entidad Débil en Existencia: FAMILIAR -->
+                <g filter="url(#erShadow1)">
+                  <rect x="380" y="25" width="135" height="85" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="380" y="25" width="135" height="28" rx="6" fill="#f0f9ff" />
+                  <text x="447" y="44" font-family="Inter, sans-serif" font-size="12" font-weight="800" fill="#0369a1" text-anchor="middle">FAMILIAR (Débil E)</text>
+                  <text x="390" y="70" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0c4a6e" text-decoration="underline">DNI_fam (PK)</text>
+                  <text x="390" y="86" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Parentesco</text>
+                  <text x="390" y="100" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Fecha_nac</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Paso al modelo relacional (Tablas SQL) -->
+            <div class="relational-mapping-box">
+              <div class="relational-mapping-box__header">
+                <span>Traducción a Modelo Relacional (Tablas SQL)</span>
+                <span>ON DELETE CASCADE</span>
+              </div>
+              <span class="kw">CREATE TABLE</span> <span class="tbl">EMPLEADO</span> (<br>
+              &nbsp;&nbsp;<span class="pk">DNI_emp</span> <span class="kw">VARCHAR(9) PRIMARY KEY</span>,<br>
+              &nbsp;&nbsp;Nombre <span class="kw">VARCHAR(50)</span>,<br>
+              &nbsp;&nbsp;Salario <span class="kw">DECIMAL(10,2)</span><br>
+              );<br><br>
+              <span class="kw">CREATE TABLE</span> <span class="tbl">FAMILIAR</span> (<br>
+              &nbsp;&nbsp;<span class="pk">DNI_fam</span> <span class="kw">VARCHAR(9) PRIMARY KEY</span>, <span class="comm">-- Clave primaria propia y completa</span><br>
+              &nbsp;&nbsp;Parentesco <span class="kw">VARCHAR(30)</span>,<br>
+              &nbsp;&nbsp;Fecha_nac <span class="kw">DATE</span>,<br>
+              &nbsp;&nbsp;<span class="fk">DNI_emp</span> <span class="kw">VARCHAR(9) NOT NULL</span>,<br>
+              &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="fk">DNI_emp</span>) <span class="kw">REFERENCES</span> <span class="tbl">EMPLEADO</span>(<span class="pk">DNI_emp</span>) <span class="kw" style="color:#f59e0b;">ON DELETE CASCADE</span><br>
+              );
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.2 Dependencia en Identificación -->
+        <div class="subsection-block" id="dep-identificacion" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">2. Dependencia en Identificación (I)</h3>
+
+          <div class="explicacion-box">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Explicación</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                La entidad débil no tiene una clave primaria completa. Para ser identificada de forma única en el sistema, necesita unir su atributo clave (clave parcial) con la clave primaria de la entidad fuerte de la que depende.
+              </p>
+            </div>
+          </div>
+
+          <div class="ejemplo-box">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Ejemplo</span>
+              </div>
+              <span class="ejemplo-box__badge">Clave Compuesta</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                Entidades SALA (fuerte) y MESA (débil). El atributo Num_mesa (ej. Mesa 1) se repite en varias salas. Para identificar una mesa exacta, necesita heredar el código de la sala (ej. Sala A - Mesa 1).
+              </p>
+            </div>
+          </div>
+
+          <!-- Diagrama Vectorial SVG: Identificación (I) con doble marco -->
+          <div class="er-diagram-card">
+            <div class="er-diagram-card__header">
+              <span class="er-diagram-card__title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azul-principal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><rect x="6" y="6" width="12" height="12" rx="1"></rect></svg>
+                <span>Diagrama E-R: Dependencia en Identificación (I)</span>
+              </span>
+              <span class="table-badge table-badge--primary">Doble Rectángulo + Doble Rombo</span>
+            </div>
+
+            <div class="er-diagram-canvas">
+              <svg class="er-vector-box" viewBox="0 0 550 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama Entidad-Relación de dependencia en identificación entre Sala y Mesa">
+                <defs>
+                  <filter id="erShadow2" x="-10%" y="-10%" width="120%" height="130%" filterUnits="userSpaceOnUse">
+                    <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0c4a6e" flood-opacity="0.1" />
+                  </filter>
+                </defs>
+
+                <!-- Entidad Fuerte: SALA -->
+                <g filter="url(#erShadow2)">
+                  <rect x="25" y="25" width="135" height="85" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="25" y="25" width="135" height="28" rx="6" fill="#f0f9ff" />
+                  <text x="92" y="44" font-family="Inter, sans-serif" font-size="12" font-weight="800" fill="#0369a1" text-anchor="middle">SALA</text>
+                  <text x="35" y="70" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0c4a6e" text-decoration="underline">Cod_sala (PK)</text>
+                  <text x="35" y="88" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Capacidad</text>
+                </g>
+
+                <!-- Línea y Cardinalidad izquierda -->
+                <line x1="160" y1="67" x2="222" y2="67" stroke="#0284c7" stroke-width="2" />
+                <rect x="175" y="51" width="34" height="16" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="192" y="63" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0369a1" text-anchor="middle">(1,1)</text>
+
+                <!-- Relación Débil: TIENE (DOBLE ROMBO) -->
+                <g filter="url(#erShadow2)">
+                  <polygon points="280,31 339,67 280,103 221,67" fill="none" stroke="#0284c7" stroke-width="2" />
+                  <polygon points="280,36 333,67 280,98 227,67" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" />
+                  <text x="280" y="65" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#0369a1" text-anchor="middle">Tiene</text>
+                  <text x="280" y="79" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#0284c7" text-anchor="middle">(I)</text>
+                </g>
+
+                <!-- Línea y Cardinalidad derecha -->
+                <line x1="339" y1="67" x2="380" y2="67" stroke="#0284c7" stroke-width="2" />
+                <rect x="345" y="51" width="34" height="16" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="362" y="63" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0369a1" text-anchor="middle">(1,N)</text>
+
+                <!-- Entidad Débil: MESA (DOBLE RECTÁNGULO) -->
+                <g filter="url(#erShadow2)">
+                  <rect x="376" y="21" width="143" height="93" rx="8" fill="none" stroke="#0284c7" stroke-width="2" />
+                  <rect x="380" y="25" width="135" height="85" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="380" y="25" width="135" height="28" rx="6" fill="#e0f2fe" />
+                  <text x="447" y="44" font-family="Inter, sans-serif" font-size="12" font-weight="800" fill="#075985" text-anchor="middle">MESA (Débil I)</text>
+                  <text x="390" y="70" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0c4a6e">Num_mesa (Parcial)</text>
+                  <line x1="390" y1="73" x2="505" y2="73" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3 2" />
+                  <text x="390" y="88" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Comensales</text>
+                  <text x="390" y="102" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Ubicación</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Paso al modelo relacional (Tablas SQL) -->
+            <div class="relational-mapping-box">
+              <div class="relational-mapping-box__header">
+                <span>Traducción a Modelo Relacional (Tablas SQL)</span>
+                <span>CLAVE COMPUESTA HEREDADA</span>
+              </div>
+              <span class="kw">CREATE TABLE</span> <span class="tbl">SALA</span> (<br>
+              &nbsp;&nbsp;<span class="pk">Cod_sala</span> <span class="kw">VARCHAR(10) PRIMARY KEY</span>,<br>
+              &nbsp;&nbsp;Capacidad <span class="kw">INT</span><br>
+              );<br><br>
+              <span class="kw">CREATE TABLE</span> <span class="tbl">MESA</span> (<br>
+              &nbsp;&nbsp;<span class="pk">Cod_sala</span> <span class="kw">VARCHAR(10)</span>, <span class="comm">-- Clave foránea del fuerte</span><br>
+              &nbsp;&nbsp;<span class="pk">Num_mesa</span> <span class="kw">INT</span>,        <span class="comm">-- Clave parcial o discriminante</span><br>
+              &nbsp;&nbsp;Comensales <span class="kw">INT</span>,<br>
+              &nbsp;&nbsp;<span class="kw" style="color:#4ade80;">PRIMARY KEY</span> (<span class="pk">Cod_sala</span>, <span class="pk">Num_mesa</span>), <span class="comm">-- PK obligatoriamente compuesta</span><br>
+              &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="fk">Cod_sala</span>) <span class="kw">REFERENCES</span> <span class="tbl">SALA</span>(<span class="pk">Cod_sala</span>) <span class="kw">ON DELETE CASCADE</span><br>
+              );
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.3 Tabla Comparativa -->
+        <div class="subsection-block" id="tabla-comparativa-debiles" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">1.3 Tabla Comparativa: Dependencia en Existencia (E) vs. Identificación (I)</h3>
+          
+          <div class="table-wrapper">
+            <table class="minimal-table">
+              <thead>
+                <tr>
+                  <th scope="col">Criterio de Diseño</th>
+                  <th scope="col">Dependencia en Existencia (E)</th>
+                  <th scope="col">Dependencia en Identificación (I)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Clave propia</strong></td>
+                  <td><span class="table-badge table-badge--success">Sí posee</span> Clave primaria completa y única (ej. DNI del familiar).</td>
+                  <td><span class="table-badge table-badge--danger">No posee</span> Clave completa; solo dispone de una clave parcial o discriminante.</td>
+                </tr>
+                <tr>
+                  <td><strong>Origen de la debilidad</strong></td>
+                  <td>Regla de negocio: si se borra el titular fuerte, la débil carece de sentido operativo.</td>
+                  <td>Imposibilidad matemática de identificación unívoca sin el identificador de la entidad fuerte.</td>
+                </tr>
+                <tr>
+                  <td><strong>Clave Primaria Relacional (PK)</strong></td>
+                  <td><code>PK = (DNI_fam)</code><br><small style="color:var(--texto-muted);">FK a Empleado con cláusula ON DELETE CASCADE</small></td>
+                  <td><code>PK = (Cod_sala, Num_mesa)</code><br><small style="color:var(--texto-muted);">Clave compuesta formada por la PK fuerte + clave parcial</small></td>
+                </tr>
+                <tr>
+                  <td><strong>Simbología gráfica E-R</strong></td>
+                  <td>Rectángulo simple estándar + etiqueta <code>(E)</code> en el rombo de relación.</td>
+                  <td><strong>Doble rectángulo</strong> en la entidad débil + <strong>Doble rombo</strong> en la relación <code>(I)</code>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Subrayado de atributo clave</strong></td>
+                  <td>Subrayado <u>continuo y sólido</u> (clave primaria normal).</td>
+                  <td>Subrayado <span style="border-bottom:1.5px dashed var(--azul-principal);">discontinuo o a trazos</span> (clave parcial).</td>
+                </tr>
+                <tr>
+                  <td><strong>Ejemplo de examen</strong></td>
+                  <td><code>EMPLEADO</code> (DNI) y <code>FAMILIAR</code> (DNI_fam).</td>
+                  <td><code>SALA</code> (Cod_sala) y <code>MESA</code> (Num_mesa).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 1.4 Entidad Fuerte vs. Entidad Débil (por Identificación) -->
+        <div class="subsection-block" id="fuerte-vs-debil" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">1.4 Entidad Fuerte vs. Entidad Débil (por Identificación)</h3>
+
+          <div class="note-box" style="margin-bottom:var(--espacio-5); background:linear-gradient(135deg, rgba(2,132,199,0.06) 0%, rgba(14,165,233,0.02) 100%); border-left:4px solid var(--azul-principal);">
+            <div style="font-weight:700; color:var(--azul-oscuro); margin-bottom:var(--espacio-2); display:flex; align-items:center; gap:8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Criterio de diferenciación</span>
+            </div>
+            <p style="margin:0; font-size:1.02rem; color:var(--texto-principal); font-weight:600;">
+              La existencia semántica independiente y la capacidad de identificación unívoca.
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:var(--espacio-5); margin-bottom:var(--espacio-6);">
+            <!-- Entidad Fuerte -->
+            <div class="explicacion-box" style="margin-top:0;">
+              <div class="explicacion-box__header" style="background:#f0f9ff; color:var(--azul-oscuro);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg>
+                <span>Entidad Fuerte</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p>
+                  Posee atributos suficientes para formar una Clave Primaria (PK) propia. Tiene significado independiente en el modelo (ej. AUTOR). Se representa con un rectángulo simple.
+                </p>
+              </div>
+            </div>
+
+            <!-- Entidad Débil por Identificación -->
+            <div class="explicacion-box" style="margin-top:0;">
+              <div class="explicacion-box__header" style="background:#e0f2fe; color:var(--azul-marino);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><rect x="6" y="6" width="12" height="12" rx="1"></rect></svg>
+                <span>Entidad Débil por Identificación</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p>
+                  Carece de atributos suficientes para formar una PK propia. Depende estructural y semánticamente de una entidad fuerte para ser identificada y tener sentido (ej. ESTANTERÍA carece de contexto sin un ALMACÉN).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Representación E/R de la Entidad Débil -->
+          <div class="ejemplo-box">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Representación E/R de la Entidad Débil:</span>
+              </div>
+              <span class="ejemplo-box__badge">Normativa Gráfica</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <ul style="list-style:disc; margin-left:var(--espacio-5); display:flex; flex-direction:column; gap:var(--espacio-2); color:var(--texto-principal);">
+                <li>Se dibuja con un <strong>rectángulo de doble línea</strong>.</li>
+                <li>Se une a su entidad fuerte mediante un <strong>rombo de doble línea</strong>.</li>
+                <li>Su cardinalidad hacia la entidad fuerte es <strong>estrictamente (1,1)</strong>.</li>
+                <li>Aporta un <strong>atributo discriminador (clave parcial)</strong> que se subraya con <strong>línea discontinua</strong> y se concatena con la PK de la fuerte para formar su identificador único.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.5 Atributo vs. Entidad (Manejo de la multiplicidad) -->
+        <div class="subsection-block" id="atributo-vs-entidad" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">1.5 Atributo vs. Entidad (Manejo de la multiplicidad)</h3>
+
+          <div class="note-box" style="margin-bottom:var(--espacio-5); background:linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(5,150,105,0.02) 100%); border-left:4px solid #10b981;">
+            <div style="font-weight:700; color:#065f46; margin-bottom:var(--espacio-2); display:flex; align-items:center; gap:8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Criterio de diferenciación</span>
+            </div>
+            <p style="margin:0; font-size:1.02rem; color:var(--texto-principal); font-weight:600;">
+              La atomicidad del dato frente a la necesidad de almacenar listas o estructuras compuestas.
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:var(--espacio-5); margin-bottom:var(--espacio-6);">
+            <!-- Atributo -->
+            <div class="explicacion-box" style="margin-top:0;">
+              <div class="explicacion-box__header" style="background:#f0fdf4; color:#065f46;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle></svg>
+                <span>Atributo</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p>
+                  Representa un valor atómico, único y singular para cada instancia de la entidad (ej. el año de fundación, el nombre).
+                </p>
+              </div>
+            </div>
+
+            <!-- Entidad (Extracción de datos) -->
+            <div class="explicacion-box" style="margin-top:0;">
+              <div class="explicacion-box__header" style="background:#ecfdf5; color:#047857;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg>
+                <span>Entidad (Extracción de datos)</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p>
+                  Representa datos multivaluados (colecciones de valores para una misma instancia) o datos con estructura interna.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Regla de diseño (Normalización) -->
+          <div class="ejemplo-box">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Regla de diseño (Normalización)</span>
+              </div>
+              <span class="ejemplo-box__badge" style="background:#dcfce7; color:#15803d; border-color:#86efac;">1.ª Forma Normal (1FN)</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                El modelo relacional no admite almacenar múltiples valores (listas) en un único campo. Todo dato definido en plural en el enunciado para una misma entidad (ej. "teléfonos de contacto", "histórico de periodos") debe extraerse obligatoriamente como una nueva entidad (habitualmente débil) conectada mediante una relación 1:N.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           BLOQUE 2: RESTRICCIONES ADICIONALES
+           ==================================================================== -->
+      <section class="study-section fade-in-on-scroll" id="restricciones-adicionales" aria-labelledby="title-restricciones-adicionales">
+        <div class="section-header">
+          <span class="section-number">Apartado 2</span>
+          <h2 class="section-title" id="title-restricciones-adicionales">Restricciones Adicionales</h2>
+        </div>
+
+        <div class="text-block lead-text">
+          <p>
+            <strong>Son reglas de negocio que limitan cómo las entidades participan en las relaciones y que no se pueden expresar solo con las cardinalidades numéricas.</strong>
+          </p>
+        </div>
+
+        <!-- 2.1 Restricción de exclusividad -->
+        <div class="subsection-block" id="restr-exclusividad">
+          <h3 class="subsection-title">1. Restricción de exclusividad (Elegir un único camino)</h3>
+
+          <div class="explicacion-box">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Explicación</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                Tienes una entidad conectada a dos relaciones diferentes. La regla dicta que un registro concreto solo tiene permiso para existir en una de esas dos relaciones. Si metes el dato en la primera, el sistema bloquea su entrada en la segunda para siempre.
+              </p>
+            </div>
+          </div>
+
+          <div class="ejemplo-box" style="margin-top:var(--espacio-5);">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Ejemplo</span>
+              </div>
+              <span class="ejemplo-box__badge">1 Entidad · 2 Relaciones</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                Entidad EMPLEADO unida a las relaciones DISEÑA y FABRICA. Si guardas al empleado "Carlos" en la relación que diseña, la base de datos te dará error si intentas registrar a "Carlos" en la relación que fabrica. O es uno, o es otro.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.2 Restricción de exclusión -->
+        <div class="subsection-block" id="restr-exclusion" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">2. Restricción de exclusión (Incompatibilidad de la misma pareja)</h3>
+
+          <div class="explicacion-box">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Explicación</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                Tienes dos entidades conectadas por dos relaciones distintas. La regla dice que la misma pareja exacta de datos no puede guardarse en ambas relaciones a la vez. Los datos pueden participar en ambas relaciones por separado con otras combinaciones, pero nunca haciendo la misma pareja.
+              </p>
+            </div>
+          </div>
+
+          <div class="ejemplo-box" style="margin-top:var(--espacio-5);">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Ejemplo</span>
+              </div>
+              <span class="ejemplo-box__badge">2 Entidades · Misma Pareja Prohibida</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                Entidades PROFESOR y CURSO unidas por las relaciones IMPARTE y RECIBE. El profesor "Paco" y el curso "Bases de Datos". Paco no puede estar guardado impartiendo y recibiendo ese mismo curso a la vez. O lo imparte, o lo recibe.
+              </p>
+            </div>
+          </div>
+
+          <!-- Imagen oficial de Exclusión -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/restriccion_exclusion.png" alt="Diagrama E-R oficial: Restricción de Exclusión entre Profesor, Imparte, Recibe y Curso" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial E-R</span>
+              <figcaption class="figure-card__caption">Diagrama oficial de <strong>Restricción de Exclusión</strong>: línea discontinua entre las relaciones <em>IMPARTE</em> y <em>RECIBE</em> conectando las entidades <em>PROFESOR</em> y <em>CURSO</em> (incompatibilidad de la misma pareja).</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 2.3 Restricción de inclusividad -->
+        <div class="subsection-block" id="restr-inclusividad" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">3. Restricción de inclusividad (Requisito de cantidad mínima)</h3>
+
+          <div class="explicacion-box">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Explicación</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                Es un condicional basado en un contador. Para que el sistema te deje guardar un dato en la "Relación B", primero va a contar cuántas veces aparece ese mismo dato en la "Relación A". Si no llega al mínimo exigido, no te deja guardarlo.
+              </p>
+            </div>
+          </div>
+
+          <div class="ejemplo-box" style="margin-top:var(--espacio-5);">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Ejemplo</span>
+              </div>
+              <span class="ejemplo-box__badge">Condicional por Contador (≥ N)</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                Entidad EMPLEADO unida a las relaciones ASISTE (a cursos) y DISEÑA (productos). Para que el sistema te deje registrar que un empleado diseña un producto, exige comprobar que ese empleado tiene al menos 2 registros previos en la relación de asistir a cursos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Imagen oficial de Inclusividad -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/restriccion_inclusividad.png" alt="Diagrama E-R oficial: Restricción de Inclusividad con arco condicional (2:n) entre Asiste y Diseña" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial E-R</span>
+              <figcaption class="figure-card__caption">Diagrama oficial de <strong>Restricción de Inclusividad</strong>: arco orientado con cardinalidad condicional <em>(2:n)</em> desde la relación <em>ASISTE</em> hacia <em>DISEÑA</em> para la entidad <em>EMPLEADO</em> (requisito de cantidad mínima previa).</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 2.4 Restricción de inclusión -->
+        <div class="subsection-block" id="restr-inclusion" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">4. Restricción de inclusión (Requisito de pareja previa)</h3>
+
+          <div class="explicacion-box">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Explicación</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                Es un condicional de historial. Para que el sistema te deje unir a dos datos concretos en la "Relación B", te exige obligatoriamente que esos dos mismos datos exactos ya estén guardados y unidos previamente en la "Relación A".
+              </p>
+            </div>
+          </div>
+
+          <div class="ejemplo-box" style="margin-top:var(--espacio-5);">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Ejemplo</span>
+              </div>
+              <span class="ejemplo-box__badge">Condicional de Pareja Previa</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                Entidades HOMBRE y MUJER unidas por las relaciones SE_CASA y SE_DIVORCIA. Para poder meter a "Juan" y "Ana" en la relación de divorcio, el sistema comprueba primero que existe un registro previo de "Juan" y "Ana" juntos en la relación de casados. Si no existen ahí, da error.
+              </p>
+            </div>
+          </div>
+
+          <!-- Imagen oficial de Inclusión -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/restriccion_inclusion.png" alt="Diagrama E-R oficial: Restricción de Inclusión con flecha discontinua desde Se Casa hacia Se Divorcia" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial E-R</span>
+              <figcaption class="figure-card__caption">Diagrama oficial de <strong>Restricción de Inclusión</strong>: flecha discontinua dirigida desde <em>SE CASA</em> hacia <em>SE DIVORCIA</em> conectando <em>HOMBRE</em> y <em>MUJER</em> (requisito de pareja previa obligatoria).</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 2.5 Tabla Comparativa de las 4 Restricciones Adicionales -->
+        <div class="subsection-block" id="tabla-resumen-restricciones" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">2.5 Tabla Comparativa: Las 4 Restricciones Adicionales</h3>
+          
+          <div class="table-wrapper">
+            <table class="minimal-table">
+              <thead>
+                <tr>
+                  <th scope="col">Restricción</th>
+                  <th scope="col">Estructura</th>
+                  <th scope="col">Regla Clave</th>
+                  <th scope="col">Ejemplo Práctico</th>
+                  <th scope="col">Notación Gráfica E-R</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Exclusividad</strong></td>
+                  <td>1 entidad, 2 relaciones</td>
+                  <td>Un registro concreto solo puede existir en una de las dos relaciones (bloqueo permanente en la otra).</td>
+                  <td><code>EMPLEADO</code>: O <em>DISEÑA</em> o <em>FABRICA</em> (o uno u otro).</td>
+                  <td><span class="table-badge table-badge--primary">Camino Único</span> Restricción exclusiva en la entidad.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Exclusión</strong></td>
+                  <td>2 entidades, 2 relaciones</td>
+                  <td>La misma pareja exacta no puede estar en ambas relaciones a la vez (incompatibilidad de la misma pareja).</td>
+                  <td><code>PROFESOR</code> y <code>CURSO</code>: Paco no puede <em>IMPARTIR</em> y <em>RECIBIR</em> el mismo curso a la vez.</td>
+                  <td><span class="table-badge table-badge--danger">Línea discontinua</span> Entre rombos de relación.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Inclusividad</strong></td>
+                  <td>1 entidad hacia 2 relaciones</td>
+                  <td>Condicional por contador: exige un mínimo de apariciones en la relación A para acceder a la B.</td>
+                  <td><code>EMPLEADO</code>: Al menos 2 cursos en <em>ASISTE</em> para poder estar en <em>DISEÑA</em>.</td>
+                  <td><span class="table-badge table-badge--amber">Arco con (m:n)</span> Flecha con rango mínimo de contador.</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Inclusión</strong></td>
+                  <td>2 entidades, 2 relaciones</td>
+                  <td>Condicional de historial: exige que la misma pareja exacta esté previamente unida en la relación A.</td>
+                  <td><code>HOMBRE</code> y <code>MUJER</code>: Deben estar unidos en <em>SE_CASA</em> para poder figurar en <em>SE_DIVORCIA</em>.</td>
+                  <td><span class="table-badge table-badge--primary">Flecha discontinua</span> Desde relación previa hacia la dependiente.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           BLOQUE 3: JERARQUÍAS Y RELACIONES EN SUBCLASES (NUEVO CONTENIDO)
+           ==================================================================== -->
+      <section class="study-section fade-in-on-scroll" id="jerarquias-subclases" aria-labelledby="title-jerarquias-subclases">
+        <div class="section-header">
+          <span class="section-number">Apartado 3</span>
+          <h2 class="section-title" id="title-jerarquias-subclases">Modelo E/R Extendido: Jerarquías y Relaciones en Subclases</h2>
+        </div>
+
+        <!-- Concepto de Jerarquía (Herencia) -->
+        <div class="subsection-block" id="concepto-jerarquia">
+          <h3 class="subsection-title">Concepto de Jerarquía (Herencia):</h3>
+          
+          <div class="text-block lead-text">
+            <p>
+              Se utiliza cuando una entidad general (Padre/Superclase) se divide en entidades más específicas (Hijos/Subclases). Se rige por la regla lógica de "ES UN" (ej. un Trabajador es un Alumno). Los hijos heredan los atributos del padre.
+            </p>
+          </div>
+
+          <!-- 4. Jerarquía (Relación de Especialización) -->
+          <div class="note-box" style="margin-top:var(--espacio-6); background:linear-gradient(135deg, rgba(2,132,199,0.06) 0%, rgba(14,165,233,0.02) 100%); border-left:4px solid var(--azul-principal);">
+            <div style="font-weight:800; color:var(--azul-marino); font-size:1.05rem; margin-bottom:var(--espacio-3); display:flex; align-items:center; gap:8px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 22 22 22"></polygon></svg>
+              <span>Jerarquía (Relación de Especialización)</span>
+            </div>
+
+            <p style="margin-bottom:var(--espacio-3);">
+              <strong>Definición:</strong> Estructura donde una entidad genérica (superclase) se divide en subentidades específicas (subclases) que heredan sus atributos.
+            </p>
+
+            <p style="margin-bottom:var(--espacio-3);">
+              <strong>Detección (Regla "Es-Un"):</strong> La relación entre los conceptos debe cumplir estrictamente la premisa lógica de que la subclase es un tipo de superclase (ej. "Un Libro es un tipo de Artículo").
+            </p>
+
+            <p style="margin-bottom:var(--espacio-4);">
+              <strong>Representación E/R:</strong> Se dibuja mediante un <strong>triángulo invertido</strong>, no mediante un rombo.
+            </p>
+
+            <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:var(--radio-md); padding:var(--espacio-4); color:#92400e;">
+              <div style="font-weight:800; display:flex; align-items:center; gap:6px; margin-bottom:var(--espacio-2); font-size:0.95rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <span>Contraste de validación:</span>
+              </div>
+              <p style="margin:0; font-size:0.95rem; line-height:1.6;">
+                Si la conexión lógica entre ambos conceptos denota pertenencia, ubicación o interacción (ej. "Una Estantería está en un Almacén", o "Un Motor pertenece a un Avión"), debe modelarse mediante una <strong>relación estándar (rombo N:M, 1:N, etc.)</strong>, <strong>nunca como una jerarquía</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. Reglas de Configuración de Jerarquías: Tipos de Relaciones -->
+        <div class="subsection-block" id="reglas-configuracion" style="margin-top:var(--espacio-8);">
+          <h3 class="subsection-title">1. Reglas de Configuración de Jerarquías</h3>
+          <p class="lead-text">
+            Toda jerarquía se define cruzando dos normas obligatorias: la regla de <strong>cobertura</strong> (Total vs. Parcial) y la regla de <strong>solapamiento</strong> (Solapada vs. Exclusiva).
+          </p>
+
+          <div class="types-hierarchy-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:var(--espacio-5); margin-top:var(--espacio-6);">
+            
+            <!-- 1. Total -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid var(--azul-principal); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="explicacion-box__header" style="background:#f0f9ff; color:var(--azul-oscuro); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                    <span style="font-size:1.05rem; font-weight:800;">1. Total</span>
+                  </div>
+                  <span class="table-badge table-badge--primary" style="font-size:0.75rem;">Círculo en el vértice superior</span>
+                </div>
+                <div class="explicacion-box__body" style="padding:var(--espacio-4);">
+                  <div style="margin-bottom:var(--espacio-3);">
+                    <strong style="color:var(--azul-marino); display:block; margin-bottom:4px; font-size:0.95rem;">Regla general:</strong>
+                    <p style="margin:0; line-height:1.6; color:var(--texto-principal);">
+                      Obliga a que absolutamente todos los registros de la entidad padre pertenezcan a alguna de las entidades hijas. Es imposible guardar un registro genérico que no baje a una de las subcategorías.
+                    </p>
+                  </div>
+                  <div style="background:#f8fafc; border-left:3px solid var(--azul-principal); padding:var(--espacio-3); border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                    <strong style="color:var(--texto-principal); display:block; margin-bottom:4px; font-size:0.9rem;">Ejemplo práctico:</strong>
+                    <p style="margin:0; font-size:0.92rem; line-height:1.55; color:var(--texto-secundario);">
+                      Si la entidad padre es Empleado y las hijas son Ingeniero, Secretario y Técnico, en la base de datos no hay ningún otro empleado que no pertenezca obligatoriamente a uno de estos tres tipos.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Parcial -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid #64748b; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="explicacion-box__header" style="background:#f8fafc; color:#334155; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+                    <span style="font-size:1.05rem; font-weight:800;">2. Parcial</span>
+                  </div>
+                  <span class="table-badge table-badge--info" style="font-size:0.75rem; background:#f1f5f9; color:#475569; border-color:#cbd5e1;">Sin círculo en el vértice superior</span>
+                </div>
+                <div class="explicacion-box__body" style="padding:var(--espacio-4);">
+                  <div style="margin-bottom:var(--espacio-3);">
+                    <strong style="color:#1e293b; display:block; margin-bottom:4px; font-size:0.95rem;">Regla general:</strong>
+                    <p style="margin:0; line-height:1.6; color:var(--texto-principal);">
+                      Permite que existan registros en la entidad padre que NO pertenezcan a ninguna de las entidades hijas. El sistema acepta guardar datos genéricos sin tener que categorizarlos forzosamente.
+                    </p>
+                  </div>
+                  <div style="background:#f8fafc; border-left:3px solid #64748b; padding:var(--espacio-3); border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                    <strong style="color:var(--texto-principal); display:block; margin-bottom:4px; font-size:0.9rem;">Ejemplo práctico:</strong>
+                    <p style="margin:0; font-size:0.92rem; line-height:1.55; color:var(--texto-secundario);">
+                      En nuestra base de datos puede haber Empleados que no pertenezcan a ninguno de esos tres tipos (Ingeniero, Secretario o Técnico), quedándose simplemente almacenados en la caja principal de Empleado.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Solapada -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid #f59e0b; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="explicacion-box__header" style="background:#fffbeb; color:#b45309; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"></circle><circle cx="15" cy="12" r="6"></circle></svg>
+                    <span style="font-size:1.05rem; font-weight:800;">3. Solapada</span>
+                  </div>
+                  <span class="table-badge table-badge--amber" style="font-size:0.75rem;">Sin arco inferior</span>
+                </div>
+                <div class="explicacion-box__body" style="padding:var(--espacio-4);">
+                  <div style="margin-bottom:var(--espacio-3);">
+                    <strong style="color:#92400e; display:block; margin-bottom:4px; font-size:0.95rem;">Regla general:</strong>
+                    <p style="margin:0; line-height:1.6; color:var(--texto-principal);">
+                      Permite la simultaneidad o intersección. Un mismo registro de la entidad padre tiene total libertad para pertenecer a múltiples entidades hijas al mismo tiempo.
+                    </p>
+                  </div>
+                  <div style="background:#fefce8; border-left:3px solid #f59e0b; padding:var(--espacio-3); border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                    <strong style="color:var(--texto-principal); display:block; margin-bottom:4px; font-size:0.9rem;">Ejemplo práctico:</strong>
+                    <p style="margin:0; font-size:0.92rem; line-height:1.55; color:var(--texto-secundario);">
+                      La base de datos permite que haya Empleados que sean a la vez Ingenieros y Secretarios, o Secretarios y Técnicos, etc.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Exclusiva -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid #ef4444; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="explicacion-box__header" style="background:#fef2f2; color:#b91c1c; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                    <span style="font-size:1.05rem; font-weight:800;">4. Exclusiva</span>
+                  </div>
+                  <span class="table-badge table-badge--danger" style="font-size:0.75rem;">Con arco inferior</span>
+                </div>
+                <div class="explicacion-box__body" style="padding:var(--espacio-4);">
+                  <div style="margin-bottom:var(--espacio-3);">
+                    <strong style="color:#991b1b; display:block; margin-bottom:4px; font-size:0.95rem;">Regla general:</strong>
+                    <p style="margin:0; line-height:1.6; color:var(--texto-principal);">
+                      Impone una restricción de incompatibilidad. Un registro de la entidad padre solo puede pertenecer a UNA de las entidades hijas de forma estricta. Son caminos mutuamente excluyentes.
+                    </p>
+                  </div>
+                  <div style="background:#fef2f2; border-left:3px solid #ef4444; padding:var(--espacio-3); border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                    <strong style="color:var(--texto-principal); display:block; margin-bottom:4px; font-size:0.9rem;">Ejemplo práctico:</strong>
+                    <p style="margin:0; font-size:0.92rem; line-height:1.55; color:var(--texto-secundario);">
+                      Ningún Empleado de nuestra base de datos puede pertenecer a más de una subentidad o entidad hijo a la vez (si se le registra como Ingeniero, es imposible que el sistema le deje ser también Secretario).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Imagen única oficial al final del apartado -->
+          <figure class="figure-card" style="margin-top:var(--espacio-8);">
+            <div class="figure-card__img-container">
+              <img src="img/tipos_relaciones_jerarquia.png" alt="Tipos de relaciones de jerarquía: Solapada y parcial, Exclusiva y parcial, Solapada y total, Exclusiva y total" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial E-R</span>
+              <figcaption class="figure-card__caption">Tipos de relaciones de jerarquía existentes según su regla de cobertura (círculo en el vértice superior para Total, sin círculo para Parcial) y solapamiento (arco inferior para Exclusiva, sin arco para Solapada): <strong>Solapada y parcial</strong>, <strong>Exclusiva y parcial</strong>, <strong>Solapada y total</strong> y <strong>Exclusiva y total</strong>.</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 2. Relaciones Propias de una Subclase -->
+        <div class="subsection-block" id="relaciones-subclase" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">2. Relaciones Propias de una Subclase (Caso Trabajador - Empresa)</h3>
+
+          <div class="text-block lead-text">
+            <p>
+              Cuando un enunciado indica que una entidad Hija (ej. Trabajador) tiene datos asociados que conforman un bloque propio con su propio identificador (ej. CIF, nombre, dirección de la empresa), no se añaden como atributos sueltos al Hijo.
+            </p>
+          </div>
+
+          <div class="explicacion-box" style="margin-top:var(--espacio-4);">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Normas de Modelado Conceptual</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p style="margin-bottom:var(--espacio-2);">
+                <strong>Creación:</strong> Se crea una nueva entidad externa (ej. EMPRESA).
+              </p>
+              <p>
+                <strong>Conexión:</strong> Se dibuja una relación (rombo) que conecte únicamente al Hijo correspondiente (TRABAJADOR) con la nueva entidad (EMPRESA). El resto de hijos (ej. DESEMPLEADO) no participan en esta relación.
+              </p>
+            </div>
+          </div>
+
+          <!-- Diagrama Vectorial SVG: Relación Propia de Subclase (Trabajador - Empresa) -->
+          <div class="er-diagram-card">
+            <div class="er-diagram-card__header">
+              <span class="er-diagram-card__title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azul-principal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M15 3v18"></path></svg>
+                <span>Diagrama E-R: Relación Exclusiva de una Subclase con una Entidad Externa</span>
+              </span>
+              <span class="table-badge table-badge--success">Aislamiento de Relación</span>
+            </div>
+
+            <div class="er-diagram-canvas">
+              <svg class="er-vector-box" viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama E-R mostrando la jerarquía Alumno y la relación propia de Trabajador con Empresa">
+                <defs>
+                  <filter id="erShadowSub" x="-10%" y="-10%" width="120%" height="130%" filterUnits="userSpaceOnUse">
+                    <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0c4a6e" flood-opacity="0.1" />
+                  </filter>
+                </defs>
+
+                <!-- Superclase ALUMNO -->
+                <g filter="url(#erShadowSub)">
+                  <rect x="80" y="15" width="140" height="50" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="80" y="15" width="140" height="22" rx="6" fill="#f0f9ff" />
+                  <text x="150" y="31" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#0369a1" text-anchor="middle">ALUMNO</text>
+                  <text x="90" y="52" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#0c4a6e" text-decoration="underline">Id_alumno (PK)</text>
+                </g>
+
+                <!-- Triángulo de jerarquía -->
+                <line x1="148" y1="65" x2="148" y2="90" stroke="#0284c7" stroke-width="2" />
+                <line x1="152" y1="65" x2="152" y2="90" stroke="#0284c7" stroke-width="2" />
+                <polygon points="150,90 170,120 130,120" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" />
+                <text x="150" y="113" font-family="Inter, sans-serif" font-size="12" font-weight="900" fill="#0369a1" text-anchor="middle">d</text>
+
+                <!-- Líneas a los hijos -->
+                <line x1="70" y1="128" x2="230" y2="128" stroke="#0284c7" stroke-width="1.75" />
+                <line x1="150" y1="120" x2="150" y2="128" stroke="#0284c7" stroke-width="1.75" />
+                <line x1="70" y1="128" x2="70" y2="140" stroke="#0284c7" stroke-width="1.75" />
+                <line x1="230" y1="128" x2="230" y2="140" stroke="#0284c7" stroke-width="1.75" />
+
+                <!-- Subclase 1: DESEMPLEADO (Sin relaciones externas) -->
+                <g filter="url(#erShadowSub)">
+                  <rect x="15" y="140" width="110" height="50" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" />
+                  <rect x="15" y="140" width="110" height="20" rx="6" fill="#f8fafc" />
+                  <text x="70" y="154" font-family="Inter, sans-serif" font-size="10" font-weight="800" fill="#64748b" text-anchor="middle">DESEMPLEADO</text>
+                  <text x="70" y="175" font-family="Inter, sans-serif" font-size="8.5" fill="#94a3b8" text-anchor="middle">No participa en Empresa</text>
+                </g>
+
+                <!-- Subclase 2: TRABAJADOR (Participa en la relación) -->
+                <g filter="url(#erShadowSub)">
+                  <rect x="175" y="140" width="120" height="50" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="175" y="140" width="120" height="20" rx="6" fill="#f0f9ff" />
+                  <text x="235" y="154" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#0369a1" text-anchor="middle">TRABAJADOR</text>
+                  <text x="185" y="175" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0c4a6e">Puesto_laboral</text>
+                </g>
+
+                <!-- Relación exclusiva: TRABAJA_EN (rombo) -->
+                <line x1="295" y1="165" x2="355" y2="165" stroke="#0284c7" stroke-width="2" />
+                <rect x="305" y="148" width="34" height="16" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="322" y="160" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0369a1" text-anchor="middle">(1,1)</text>
+
+                <g filter="url(#erShadowSub)">
+                  <polygon points="390,140 435,165 390,190 345,165" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+                  <text x="390" y="169" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#0369a1" text-anchor="middle">Trabaja</text>
+                </g>
+
+                <line x1="435" y1="165" x2="480" y2="165" stroke="#0284c7" stroke-width="2" />
+                <rect x="442" y="148" width="34" height="16" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="459" y="160" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#0369a1" text-anchor="middle">(1,N)</text>
+
+                <!-- Entidad Externa: EMPRESA -->
+                <g filter="url(#erShadowSub)">
+                  <rect x="480" y="130" width="110" height="70" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="480" y="130" width="110" height="22" rx="6" fill="#f0f9ff" />
+                  <text x="535" y="146" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#0369a1" text-anchor="middle">EMPRESA</text>
+                  <text x="490" y="168" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#0c4a6e" text-decoration="underline">CIF (PK)</text>
+                  <text x="490" y="182" font-family="Inter, sans-serif" font-size="9" fill="#475569">Nombre, Dir</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Deducción de Cardinalidad por el Enunciado -->
+        <div class="subsection-block" id="deduccion-cardinalidad" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">3. Deducción de Cardinalidad por el Enunciado</h3>
+
+          <div class="text-block lead-text">
+            <p>
+              Para definir si un trabajador puede pertenecer a varias empresas, hay que ceñirse a la redacción literal del problema:
+            </p>
+          </div>
+
+          <div class="ejemplo-box" style="margin-top:var(--espacio-4);">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <span>Criterio Lingüístico de Examen</span>
+              </div>
+              <span class="ejemplo-box__badge">Regla de Oro</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p style="margin-bottom:var(--espacio-3);">
+                <strong>Enunciado singular:</strong> Si el texto dice "la empresa en la que trabajan", asume una relación 1:N. Un trabajador está en 1 única empresa, y la empresa tiene a N trabajadores. Es la opción más segura en un examen.
+              </p>
+              <p>
+                <strong>Enunciado plural / Mundo real:</strong> Si el texto planteara el pluriempleo ("las empresas para las que trabajan"), la relación sería N:M (varios trabajadores en varias empresas).
+              </p>
+            </div>
+          </div>
+
+          <!-- Mapeo SQL de la jerarquía y su relación -->
+          <div class="relational-mapping-box" style="margin-top:var(--espacio-5);">
+            <div class="relational-mapping-box__header">
+              <span>Traducción a Modelo Relacional (Tablas SQL)</span>
+              <span>HERENCIA CON CLAVE COMPARTIDA</span>
+            </div>
+            <span class="comm">-- 1. Tabla Padre (Superclase):</span><br>
+            <span class="kw">CREATE TABLE</span> <span class="tbl">ALUMNO</span> (<br>
+            &nbsp;&nbsp;<span class="pk">Id_alumno</span> <span class="kw">INT PRIMARY KEY</span>,<br>
+            &nbsp;&nbsp;Nombre <span class="kw">VARCHAR(100) NOT NULL</span>,<br>
+            &nbsp;&nbsp;DNI <span class="kw">VARCHAR(9) UNIQUE NOT NULL</span><br>
+            );<br><br>
+            <span class="comm">-- 2. Entidad Externa (EMPRESA):</span><br>
+            <span class="kw">CREATE TABLE</span> <span class="tbl">EMPRESA</span> (<br>
+            &nbsp;&nbsp;<span class="pk">CIF</span> <span class="kw">VARCHAR(9) PRIMARY KEY</span>,<br>
+            &nbsp;&nbsp;Nombre <span class="kw">VARCHAR(100) NOT NULL</span>,<br>
+            &nbsp;&nbsp;Direccion <span class="kw">VARCHAR(150)</span><br>
+            );<br><br>
+            <span class="comm">-- 3. Tabla Hija TRABAJADOR (Relación 1:N singular -> CIF foráneo en TRABAJADOR):</span><br>
+            <span class="kw">CREATE TABLE</span> <span class="tbl">TRABAJADOR</span> (<br>
+            &nbsp;&nbsp;<span class="pk">Id_alumno</span> <span class="kw">INT PRIMARY KEY</span>, <span class="comm">-- PK compartida con el Padre</span><br>
+            &nbsp;&nbsp;Puesto <span class="kw">VARCHAR(50)</span>,<br>
+            &nbsp;&nbsp;<span class="fk">CIF_empresa</span> <span class="kw">VARCHAR(9) NOT NULL</span>, <span class="comm">-- FK a Empresa singular (1:N)</span><br>
+            &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="pk">Id_alumno</span>) <span class="kw">REFERENCES</span> <span class="tbl">ALUMNO</span>(<span class="pk">Id_alumno</span>) <span class="kw">ON DELETE CASCADE</span>,<br>
+            &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="fk">CIF_empresa</span>) <span class="kw">REFERENCES</span> <span class="tbl">EMPRESA</span>(<span class="pk">CIF</span>)<br>
+            );<br><br>
+            <span class="comm">-- 4. Tabla Hija DESEMPLEADO (No participa en relación con Empresa):</span><br>
+            <span class="kw">CREATE TABLE</span> <span class="tbl">DESEMPLEADO</span> (<br>
+            &nbsp;&nbsp;<span class="pk">Id_alumno</span> <span class="kw">INT PRIMARY KEY</span>, <span class="comm">-- PK y FK al Padre</span><br>
+            &nbsp;&nbsp;Subsidio <span class="kw">DECIMAL(10,2)</span>,<br>
+            &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="pk">Id_alumno</span>) <span class="kw">REFERENCES</span> <span class="tbl">ALUMNO</span>(<span class="pk">Id_alumno</span>) <span class="kw">ON DELETE CASCADE</span><br>
+            );
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           BLOQUE 4: RELACIONES REFLEXIVAS
+           ==================================================================== -->
+      <section class="study-section fade-in-on-scroll" id="relaciones-reflexivas" aria-labelledby="title-relaciones-reflexivas">
+        <div class="section-header">
+          <span class="section-number">Apartado 4</span>
+          <h2 class="section-title" id="title-relaciones-reflexivas">Relaciones Reflexivas</h2>
+        </div>
+
+        <!-- 4.1 Definición y Detección -->
+        <div class="subsection-block" id="def-relaciones-reflexivas">
+          <div class="explicacion-box">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              <span>Definición</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                Relación en la que una entidad se asocia consigo misma.
+              </p>
+            </div>
+          </div>
+
+          <div class="ejemplo-box" style="margin-top:var(--espacio-5);">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Detección</span>
+              </div>
+              <span class="ejemplo-box__badge">Mismo Conjunto de Datos</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <p>
+                El sujeto y el objeto de la acción descrita en el enunciado pertenecen al mismo conjunto de datos (ej. "Un empleado supervisa a otro empleado"; "Una pieza contiene otras piezas").
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.2 Representación E/R y Extracción de Cardinalidad -->
+        <div class="subsection-block" id="er-cardinalidad-reflexiva" style="margin-top:var(--espacio-8);">
+          <div class="note-box" style="background:linear-gradient(135deg, rgba(2,132,199,0.06) 0%, rgba(14,165,233,0.02) 100%); border-left:4px solid var(--azul-principal); margin-bottom:var(--espacio-5);">
+            <div style="font-weight:800; color:var(--azul-marino); font-size:1.05rem; margin-bottom:var(--espacio-2); display:flex; align-items:center; gap:8px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+              <span>Representación E/R</span>
+            </div>
+            <p style="margin:0; font-size:1rem; color:var(--texto-principal);">
+              Una única entidad conectada mediante dos líneas distintas a una misma relación (rombo).
+            </p>
+          </div>
+
+          <div class="explicacion-box" style="margin-top:var(--espacio-5);">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              <span>Extracción de cardinalidad</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p>
+                Para determinar la cardinalidad, se debe analizar la participación de la entidad bajo dos "roles" lógicos distintos y complementarios (ej. rol "supervisor" y rol "subordinado"; rol "compuesto" y rol "componente"). La cardinalidad global se obtiene cruzando los máximos de ambos roles.
+              </p>
+            </div>
+          </div>
+
+          <!-- Diagrama Vectorial SVG: Relación Reflexiva -->
+          <div class="er-diagram-card" style="margin-top:var(--espacio-6);">
+            <div class="er-diagram-card__header">
+              <span class="er-diagram-card__title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--azul-principal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+                <span>Diagrama E-R: Relación Reflexiva (Recursiva) con Roles Lógicos</span>
+              </span>
+              <span class="table-badge table-badge--primary">Doble Conexión + Roles</span>
+            </div>
+
+            <div class="er-diagram-canvas">
+              <svg class="er-vector-box" viewBox="0 0 580 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama Entidad-Relación de una relación reflexiva entre Empleado y Supervisa con roles lógicos">
+                <defs>
+                  <filter id="erShadowReflex" x="-10%" y="-10%" width="120%" height="130%" filterUnits="userSpaceOnUse">
+                    <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0c4a6e" flood-opacity="0.1" />
+                  </filter>
+                </defs>
+
+                <!-- Entidad Única: EMPLEADO -->
+                <g filter="url(#erShadowReflex)">
+                  <rect x="30" y="50" width="160" height="90" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                  <rect x="30" y="50" width="160" height="28" rx="6" fill="#f0f9ff" />
+                  <text x="110" y="69" font-family="Inter, sans-serif" font-size="12.5" font-weight="800" fill="#0369a1" text-anchor="middle">EMPLEADO</text>
+                  <text x="42" y="96" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0c4a6e" text-decoration="underline">DNI_emp (PK)</text>
+                  <text x="42" y="113" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Nombre</text>
+                  <text x="42" y="128" font-family="Inter, sans-serif" font-size="10.5" fill="#475569">Puesto</text>
+                </g>
+
+                <!-- Línea Superior: Rol Supervisor -->
+                <path d="M 190 70 L 330 70 L 380 90" stroke="#0284c7" stroke-width="2" fill="none" />
+                <!-- Badge de Rol Supervisor -->
+                <rect x="215" y="48" width="95" height="18" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1" />
+                <text x="262" y="61" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#166534" text-anchor="middle">Rol: Supervisor</text>
+                <!-- Cardinalidad Supervisor: un empleado supervisa a (0,N) -->
+                <rect x="315" y="58" width="36" height="18" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="333" y="71" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#0369a1" text-anchor="middle">(0,N)</text>
+
+                <!-- Relación: SUPERVISA (Rombo) -->
+                <g filter="url(#erShadowReflex)">
+                  <polygon points="420,60 480,95 420,130 360,95" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+                  <text x="420" y="93" font-family="Inter, sans-serif" font-size="12" font-weight="800" fill="#0369a1" text-anchor="middle">Supervisa</text>
+                  <text x="420" y="108" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#0284c7" text-anchor="middle">1:N Reflexiva</text>
+                </g>
+
+                <!-- Línea Inferior: Rol Subordinado -->
+                <path d="M 190 120 L 330 120 L 380 100" stroke="#0284c7" stroke-width="2" fill="none" />
+                <!-- Badge de Rol Subordinado -->
+                <rect x="215" y="124" width="105" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" />
+                <text x="267" y="137" font-family="Inter, sans-serif" font-size="9" font-weight="800" fill="#1e40af" text-anchor="middle">Rol: Subordinado</text>
+                <!-- Cardinalidad Subordinado: un empleado es supervisado por (0,1) -->
+                <rect x="315" y="112" width="36" height="18" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+                <text x="333" y="125" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="#0369a1" text-anchor="middle">(0,1)</text>
+              </svg>
+            </div>
+
+            <!-- Paso a SQL -->
+            <div class="relational-mapping-box">
+              <div class="relational-mapping-box__header">
+                <span>Traducción a Modelo Relacional (Tablas SQL)</span>
+                <span>FK AUTORREFERENCIAL</span>
+              </div>
+              <span class="comm">-- Caso 1:N (Supervisor - Subordinado): La clave foránea se añade en la propia tabla:</span><br>
+              <span class="kw">CREATE TABLE</span> <span class="tbl">EMPLEADO</span> (<br>
+              &nbsp;&nbsp;<span class="pk">DNI_emp</span> <span class="kw">VARCHAR(9) PRIMARY KEY</span>,<br>
+              &nbsp;&nbsp;Nombre <span class="kw">VARCHAR(50) NOT NULL</span>,<br>
+              &nbsp;&nbsp;Puesto <span class="kw">VARCHAR(50)</span>,<br>
+              &nbsp;&nbsp;<span class="fk">DNI_supervisor</span> <span class="kw">VARCHAR(9) NULL</span>, <span class="comm">-- Clave foránea recursiva (admite NULL para el director general)</span><br>
+              &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="fk">DNI_supervisor</span>) <span class="kw">REFERENCES</span> <span class="tbl">EMPLEADO</span>(<span class="pk">DNI_emp</span>)<br>
+              );<br><br>
+              <span class="comm">-- Caso N:M (Pieza contiene Piezas / Estructura BOM): Requiere tabla intermedia con dos FKs al mismo origen:</span><br>
+              <span class="kw">CREATE TABLE</span> <span class="tbl">ESTRUCTURA_PIEZA</span> (<br>
+              &nbsp;&nbsp;<span class="pk">Cod_pieza_compuesta</span> <span class="kw">VARCHAR(10)</span>,<br>
+              &nbsp;&nbsp;<span class="pk">Cod_pieza_componente</span> <span class="kw">VARCHAR(10)</span>,<br>
+              &nbsp;&nbsp;Cantidad <span class="kw">INT NOT NULL DEFAULT 1</span>,<br>
+              &nbsp;&nbsp;<span class="kw">PRIMARY KEY</span> (<span class="pk">Cod_pieza_compuesta</span>, <span class="pk">Cod_pieza_componente</span>),<br>
+              &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="pk">Cod_pieza_compuesta</span>) <span class="kw">REFERENCES</span> <span class="tbl">PIEZA</span>(Cod_pieza),<br>
+              &nbsp;&nbsp;<span class="kw">FOREIGN KEY</span> (<span class="pk">Cod_pieza_componente</span>) <span class="kw">REFERENCES</span> <span class="tbl">PIEZA</span>(Cod_pieza)<br>
+              );
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           BLOQUE 5: PASO AL MODELO RELACIONAL
+           ==================================================================== -->
+      <section class="study-section fade-in-on-scroll" id="mapeo-relacional-resumen" aria-labelledby="title-mapeo-relacional">
+        <div class="section-header">
+          <span class="section-number">Apartado 5</span>
+          <h2 class="section-title" id="title-mapeo-relacional">Paso al Modelo Relacional</h2>
+        </div>
+
+        <!-- 9.1. El Modelo Relacional (Conceptos básicos) -->
+        <div class="subsection-block" id="relacional-conceptos">
+          <h3 class="subsection-title">9.1. El Modelo Relacional (Conceptos básicos)</h3>
+
+          <div class="text-block lead-text">
+            <p>
+              Una base de datos relacional almacena la información en tablas (relaciones). Cada tabla tiene columnas (atributos) y filas (tuplas o registros). No puede haber filas repetidas.
+            </p>
+          </div>
+
+          <div class="explicacion-box" style="margin-top:var(--espacio-5);">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+              <span>Tipos de Claves:</span>
+            </div>
+            <div class="explicacion-box__body">
+              <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:var(--espacio-3);">
+                <li style="padding:var(--espacio-3); background:#f8fafc; border-left:3px solid #64748b; border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                  <strong>Clave candidata:</strong> Cualquier columna o grupo de columnas que sirve para identificar una fila de forma única (Ej: DNI, Email, Matrícula).
+                </li>
+                <li style="padding:var(--espacio-3); background:#f0f9ff; border-left:3px solid var(--azul-principal); border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                  <strong>Clave primaria (PK):</strong> La clave candidata que elegimos finalmente como identificador principal. Solo hay una por tabla.
+                </li>
+                <li style="padding:var(--espacio-3); background:#f8fafc; border-left:3px solid #94a3b8; border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                  <strong>Clave alternativa:</strong> Las claves candidatas que descartamos (las que no son la primaria).
+                </li>
+                <li style="padding:var(--espacio-3); background:#fffbeb; border-left:3px solid #f59e0b; border-radius:0 var(--radio-sm) var(--radio-sm) 0;">
+                  <strong>Clave ajena (FK):</strong> Es una clave primaria de una tabla que metemos en otra tabla para conectarlas.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ejemplo-box" style="margin-top:var(--espacio-5);">
+            <div class="ejemplo-box__header">
+              <div class="ejemplo-box__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Ejemplo de representación:</span>
+              </div>
+              <span class="ejemplo-box__badge">Esquema Relacional</span>
+            </div>
+            <div class="ejemplo-box__body">
+              <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:1rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-4); border-radius:var(--radio-md); margin-bottom:var(--espacio-3); border:1px solid #334155; overflow-x:auto; max-width:100%;">
+                ALUMNO ( <strong style="color:#38bdf8; text-decoration:underline;">DNI</strong>, Nombre, Apellidos, <span style="color:#fbbf24;">#Codigo_Curso</span> )
+              </div>
+              <p style="margin:0;">
+                (Aquí el DNI es la primaria, y Codigo_Curso es la ajena que lo relaciona con la tabla CURSO).
+              </p>
+            </div>
+          </div>
+
+          <!-- 1ª Imagen: Representación de claves primarias y ajenas -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/relacional_claves_ejemplo.png" alt="Esquema relacional mostrando tablas CURSO, ALUMNO, LIBRO y PRESTAMO con claves primarias subrayadas y claves ajenas conectadas mediante flechas" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial · Claves PK y FK</span>
+              <figcaption class="figure-card__caption">Representación gráfica de claves primarias (subrayado continuo) y claves ajenas (subrayado discontinuo y flechas de referencia) entre las relaciones <strong>CURSO</strong>, <strong>ALUMNO</strong>, <strong>LIBRO</strong> y <strong>PRESTAMO</strong>.</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 9.2. Transformación de Entidades (De cajas a tablas) -->
+        <div class="subsection-block" id="transformacion-entidades" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">9.2. Transformación de Entidades (De cajas a tablas)</h3>
+
+          <div class="note-box" style="margin-bottom:var(--espacio-6); background:linear-gradient(135deg, rgba(2,132,199,0.08) 0%, rgba(14,165,233,0.03) 100%); border-left:4px solid var(--azul-principal);">
+            <p style="margin:0; font-size:1.05rem; font-weight:800; color:var(--azul-marino);">
+              Por norma general: 1 Entidad = 1 Tabla.
+            </p>
+          </div>
+
+          <p class="lead-text" style="font-weight:700; color:var(--texto-principal); margin-bottom:var(--espacio-4);">
+            Casos especiales:
+          </p>
+
+          <!-- Caso especial 1: Entidad Débil -->
+          <div class="explicacion-box" style="margin-top:var(--espacio-4);">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><rect x="6" y="6" width="12" height="12" rx="1"></rect></svg>
+              <span>1. Entidad Débil (Dependencia en identificación):</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p style="margin-bottom:var(--espacio-4);">
+                Es una entidad que no tiene sentido por sí sola. Para existir, coge la clave primaria de la entidad fuerte y la une a la suya.
+              </p>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid var(--azul-principal); padding:var(--espacio-4); border-radius:var(--radio-md);">
+                <strong style="display:block; margin-bottom:var(--espacio-2); color:var(--azul-marino);">Ejemplo: Un empleado y sus familiares.</strong>
+                <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.95rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3) var(--espacio-4); border-radius:var(--radio-sm); margin-bottom:var(--espacio-2); line-height:1.7; overflow-x:auto; max-width:100%;">
+                  EMPLEADO ( <strong style="color:#38bdf8; text-decoration:underline;">DNI</strong>, Nombre )<br>
+                  FAMILIAR ( <strong style="color:#fbbf24; text-decoration:underline;">#DNI_Empleado</strong>, <strong style="color:#38bdf8; text-decoration:underline;">Nombre_Familiar</strong>, Parentesco )
+                </div>
+                <span style="font-size:0.9rem; color:var(--texto-secundario);">(La primaria de familiar está compuesta por ambas).</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2ª Imagen: Transformación de dependencia en identificación -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/relacional_entidad_debil.png" alt="Transformación de dependencia en identificación entre HOTEL y HABITACION del modelo E/R al modelo relacional" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial · Entidad Débil</span>
+              <figcaption class="figure-card__caption">Transformación de dependencia en identificación: la entidad débil <strong>HABITACION</strong> incorpora la clave primaria <code>cod</code> de <strong>HOTEL</strong> junto a su discriminador <code>numhab</code> para formar su clave primaria compuesta.</figcaption>
+            </div>
+          </figure>
+
+          <!-- Caso especial 2: Jerarquías -->
+          <div class="explicacion-box" style="margin-top:var(--espacio-8);">
+            <div class="explicacion-box__header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 22 22 22"></polygon></svg>
+              <span>2. Jerarquías (Padre e hijos):</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p style="margin-bottom:var(--espacio-4);">
+                Si tienes una entidad padre (Vehículo) y entidades hijas (Coche, Barco), tienes 3 opciones:
+              </p>
+
+              <div style="display:flex; flex-direction:column; gap:var(--espacio-4);">
+                <!-- Opción A -->
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid var(--azul-principal); padding:var(--espacio-4); border-radius:var(--radio-md);">
+                  <p style="margin:0 0 var(--espacio-2) 0;">
+                    <strong>A) Todo en una tabla:</strong> Mezclas todo y pones una columna "Tipo".
+                  </p>
+                  <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.92rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3); border-radius:var(--radio-sm); overflow-x:auto; max-width:100%;">
+                    <span style="color:#94a3b8;">Ejemplo:</span> VEHICULO ( <strong style="color:#38bdf8; text-decoration:underline;">Matricula</strong>, Tipo, Num_Ruedas, Altura_Velas )
+                  </div>
+                </div>
+
+                <!-- Opción B -->
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #10b981; padding:var(--espacio-4); border-radius:var(--radio-md);">
+                  <p style="margin:0 0 var(--espacio-2) 0;">
+                    <strong>B) Una tabla padre y tablas hijas separadas:</strong> Lo común va al padre, lo específico al hijo.
+                  </p>
+                  <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.92rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3); border-radius:var(--radio-sm); overflow-x:auto; max-width:100%;">
+                    <span style="color:#94a3b8;">Ejemplo:</span> VEHICULO ( <strong style="color:#38bdf8; text-decoration:underline;">Matricula</strong>, Color ) // COCHE ( <strong style="color:#fbbf24; text-decoration:underline;">#Matricula</strong>, Num_Ruedas ) // BARCO ( <strong style="color:#fbbf24; text-decoration:underline;">#Matricula</strong>, Altura_Velas )
+                  </div>
+                </div>
+
+                <!-- Opción C -->
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #f59e0b; padding:var(--espacio-4); border-radius:var(--radio-md);">
+                  <p style="margin:0 0 var(--espacio-2) 0;">
+                    <strong>C) Solo tablas hijas:</strong> El padre desaparece y sus datos se copian en los hijos.
+                  </p>
+                  <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.92rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3); border-radius:var(--radio-sm); overflow-x:auto; max-width:100%;">
+                    <span style="color:#94a3b8;">Ejemplo:</span> COCHE ( <strong style="color:#38bdf8; text-decoration:underline;">Matricula</strong>, Color, Num_Ruedas ) // BARCO ( <strong style="color:#38bdf8; text-decoration:underline;">Matricula</strong>, Color, Altura_Velas )
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3ª Imagen: Transformación de Supertipos y Subtipos -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/relacional_jerarquias.png" alt="Transformación de Supertipos y Subtipos con las 3 opciones A, B y C aplicadas a PUERTO, COMERCIAL y DEPORTIVO" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial · Jerarquías (Opciones A, B y C)</span>
+              <figcaption class="figure-card__caption">Transformación de Supertipos y Subtipos (<strong>PUERTO</strong> → <strong>COMERCIAL</strong> / <strong>DEPORTIVO</strong>) mostrando las tres alternativas de diseño relacional: Opción A (tabla única), Opción B (padre e hijas) y Opción C (solo tablas hijas).</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 9.3. Transformación de Relaciones (Los rombos) -->
+        <div class="subsection-block" id="transformacion-relaciones" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">9.3. Transformación de Relaciones (Los rombos)</h3>
+
+          <div class="text-block lead-text">
+            <p>
+              Esto depende de la cardinalidad máxima de las entidades que se relacionan.
+            </p>
+          </div>
+
+          <!-- 1. Cardinalidad Muchos a Muchos (N:M) -->
+          <div class="explicacion-box" style="margin-top:var(--espacio-5);">
+            <div class="explicacion-box__header" style="background:#fef2f2; color:#b91c1c;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              <span>1. Cardinalidad Muchos a Muchos (N:M) -&gt; SIEMPRE CREA TABLA NUEVA</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p style="margin-bottom:var(--espacio-4);">
+                La tabla nueva tendrá como Clave Primaria la suma de las claves de las dos tablas originales (ambas serán también claves ajenas).
+              </p>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #ef4444; padding:var(--espacio-4); border-radius:var(--radio-md);">
+                <p style="margin:0 0 var(--espacio-2) 0;">
+                  <strong>Ejemplo:</strong> Alumnos y Asignaturas. (Un alumno tiene varias asignaturas, y una asignatura muchos alumnos).<br>
+                  Se crea la tabla intermedia:
+                </p>
+                <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.95rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3) var(--espacio-4); border-radius:var(--radio-sm); overflow-x:auto; max-width:100%;">
+                  MATRICULA ( <strong style="color:#fbbf24; text-decoration:underline;">#DNI_Alumno</strong>, <strong style="color:#fbbf24; text-decoration:underline;">#Codigo_Asignatura</strong>, Fecha_Matricula )
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Cardinalidad Uno a Muchos (1:N) -->
+          <div class="explicacion-box" style="margin-top:var(--espacio-6);">
+            <div class="explicacion-box__header" style="background:#f0f9ff; color:var(--azul-oscuro);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span>2. Cardinalidad Uno a Muchos (1:N) -&gt; SE PROPAGA LA CLAVE (Regla general)</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p style="margin-bottom:var(--espacio-4);">
+                La clave primaria de la tabla que tiene el "1" viaja como Clave Ajena a la tabla que tiene la "N".
+              </p>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid var(--azul-principal); padding:var(--espacio-4); border-radius:var(--radio-md);">
+                <p style="margin:0 0 var(--espacio-2) 0;">
+                  <strong>Ejemplo:</strong> 1 Profesor da N Asignaturas.<br>
+                  El DNI del profesor viaja a la asignatura:
+                </p>
+                <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.95rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3) var(--espacio-4); border-radius:var(--radio-sm); overflow-x:auto; max-width:100%;">
+                  ASIGNATURA ( <strong style="color:#38bdf8; text-decoration:underline;">Codigo</strong>, Nombre, <span style="color:#fbbf24;">#DNI_Profesor</span> )
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4ª Imagen: Transformación 1:N (Propagación de clave) -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/relacional_1_n.png" alt="Transformación de relación 1:N entre EMPLEADO y DEPARTAMENTO propagando NumDep hacia EMPLEADO" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial · Relación 1:N</span>
+              <figcaption class="figure-card__caption">Propagación de clave en relación 1:N (N:1): la clave primaria <code>NumDep</code> del lado "1" (<strong>DEPARTAMENTO</strong>) se propaga como clave ajena hacia el lado "N" (<strong>EMPLEADO</strong>) junto con el atributo de la relación (<code>Fechalta</code>).</figcaption>
+            </div>
+          </figure>
+
+          <!-- 3. Cardinalidad Uno a Uno (1:1) -->
+          <div class="explicacion-box" style="margin-top:var(--espacio-6);">
+            <div class="explicacion-box__header" style="background:#f0fdf4; color:#065f46;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+              <span>3. Cardinalidad Uno a Uno (1:1) -&gt; SE PROPAGA LA CLAVE AL LADO OBLIGATORIO</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p style="margin-bottom:var(--espacio-4);">
+                La clave de una tabla viaja a la otra como Clave Ajena. Se suele mandar a la tabla que tenga cardinalidad mínima 1, es decir (1,1), para evitar que queden campos vacíos (NULL).
+              </p>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #10b981; padding:var(--espacio-4); border-radius:var(--radio-md);">
+                <p style="margin:0 0 var(--espacio-2) 0;">
+                  <strong>Ejemplo:</strong> 1 Profesor es Tutor de 1 Grupo. (Todo grupo tiene tutor, pero no todo profesor es tutor).<br>
+                  El DNI del profesor viaja al grupo:
+                </p>
+                <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.95rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3) var(--espacio-4); border-radius:var(--radio-sm); overflow-x:auto; max-width:100%;">
+                  GRUPO ( <strong style="color:#38bdf8; text-decoration:underline;">Codigo_Grupo</strong>, Aula, <span style="color:#fbbf24;">#DNI_Profesor_Tutor</span> )
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Relaciones Reflexivas (Consigo misma) -->
+          <div class="explicacion-box" style="margin-top:var(--espacio-6);">
+            <div class="explicacion-box__header" style="background:#fffbeb; color:#b45309;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+              <span>4. Relaciones Reflexivas (Consigo misma)</span>
+            </div>
+            <div class="explicacion-box__body">
+              <p style="margin-bottom:var(--espacio-4);">
+                Se aplican las mismas reglas, pero la clave ajena viene de la propia tabla.
+              </p>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-left:4px solid #f59e0b; padding:var(--espacio-4); border-radius:var(--radio-md);">
+                <p style="margin:0 0 var(--espacio-2) 0;">
+                  <strong>Ejemplo:</strong> Un Empleado es supervisor de otros Empleados (1:N).
+                </p>
+                <div style="font-family:'JetBrains Mono', 'Fira Code', monospace; font-size:0.95rem; background:#0f172a; color:#f8fafc; padding:var(--espacio-3) var(--espacio-4); border-radius:var(--radio-sm); overflow-x:auto; max-width:100%;">
+                  EMPLEADO ( <strong style="color:#38bdf8; text-decoration:underline;">DNI</strong>, Nombre, <span style="color:#fbbf24;">#DNI_Supervisor</span> )
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5ª Imagen: Transformación de relación de grado 1 o reflexiva -->
+          <figure class="figure-card" style="margin-top:var(--espacio-6);">
+            <div class="figure-card__img-container" style="background:#ffffff;">
+              <img src="img/relacional_reflexiva.png" alt="Transformación de relación de grado 1 o reflexiva en DEPARTAMENTO mostrando Solución A y Solución B" class="figure-card__img" loading="lazy">
+              <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11.01" y2="8"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              </button>
+            </div>
+            <div class="figure-card__meta">
+              <span class="figure-card__badge">Esquema Oficial · Relación Reflexiva</span>
+              <figcaption class="figure-card__caption">Transformación de relación de grado 1 o reflexiva (<strong>DEPARTAMENTO</strong> <em>depende de</em> <strong>DEPARTAMENTO</strong>): comparativa entre Solución A (tabla adicional sin nulos) y Solución B (propagación de clave ajena <code>numdepto_sup</code> en la misma tabla).</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- 9.4. Transformación de Atributos -->
+        <div class="subsection-block" id="transformacion-atributos" style="margin-top:var(--espacio-10);">
+          <h3 class="subsection-title">9.4. Transformación de Atributos</h3>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:var(--espacio-5); margin-top:var(--espacio-5);">
+            
+            <!-- Normales -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid var(--azul-principal);">
+              <div class="explicacion-box__header" style="background:#f0f9ff; color:var(--azul-oscuro);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle></svg>
+                <span>Normales</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p style="margin:0;">
+                  Pasan a ser columnas normales.
+                </p>
+              </div>
+            </div>
+
+            <!-- Compuestos -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid #10b981;">
+              <div class="explicacion-box__header" style="background:#f0fdf4; color:#065f46;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line><line x1="12" y1="8" x2="12" y2="16"></line></svg>
+                <span>Compuestos</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p style="margin-bottom:var(--espacio-3);">
+                  Se dividen en varias columnas simples.
+                </p>
+                <div style="background:#f8fafc; border-left:3px solid #10b981; padding:var(--espacio-3); border-radius:0 var(--radio-sm) var(--radio-sm) 0; font-size:0.92rem;">
+                  <strong>Ejemplo:</strong> El atributo "Dirección" se transforma en las columnas: <code>Calle, Ciudad, Codigo_Postal</code>.
+                </div>
+              </div>
+            </div>
+
+            <!-- Calculados -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid #f59e0b;">
+              <div class="explicacion-box__header" style="background:#fffbeb; color:#b45309;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+                <span>Calculados</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p style="margin-bottom:var(--espacio-3);">
+                  Se eliminan de la base de datos (se calculan al vuelo al hacer consultas).
+                </p>
+                <div style="background:#fefce8; border-left:3px solid #f59e0b; padding:var(--espacio-3); border-radius:0 var(--radio-sm) var(--radio-sm) 0; font-size:0.92rem;">
+                  <strong>Ejemplo:</strong> Borrar el atributo "Edad" si ya tienes la columna "Fecha_Nacimiento".
+                </div>
+              </div>
+            </div>
+
+            <!-- Multivaluados -->
+            <div class="explicacion-box" style="margin-top:0; border-top:4px solid #ef4444;">
+              <div class="explicacion-box__header" style="background:#fef2f2; color:#b91c1c;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><rect x="6" y="6" width="12" height="12" rx="1"></rect></svg>
+                <span>Multivaluados (Varios valores)</span>
+              </div>
+              <div class="explicacion-box__body">
+                <p style="margin-bottom:var(--espacio-3);">
+                  Tienen que salir de la tabla y crear una tabla nueva.
+                </p>
+                <div style="background:#fef2f2; border-left:3px solid #ef4444; padding:var(--espacio-3); border-radius:0 var(--radio-sm) var(--radio-sm) 0; font-size:0.92rem;">
+                  <strong>Ejemplo:</strong> Un alumno con varios números de teléfono. Se crea la tabla:<br>
+                  <code style="display:block; margin-top:4px; background:#0f172a; color:#f8fafc; padding:3px 8px; border-radius:4px; overflow-x:auto; max-width:100%;">TELEFONOS ( <strong style="color:#fbbf24; text-decoration:underline;">#DNI_Alumno</strong>, <strong style="color:#38bdf8; text-decoration:underline;">Numero_Telefono</strong> )</code>.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           BLOQUE 6: AUTOEVALUACIÓN INTERACTIVA
+           ==================================================================== -->
+      <section class="study-section fade-in-on-scroll" id="autoevaluacion" aria-labelledby="title-autoevaluacion">
+        <h2 class="section-title"><span>6. Autoevaluación Interactiva</span><a href="#autoevaluacion" class="anchor-link" title="Enlace permanente">#</a></h2>
+
+        <p class="lead-text">
+          Pon a prueba tu comprensión de los conceptos clave de este tema (Entidades Débiles, Restricciones, Jerarquías y Relaciones Reflexivas). Selecciona la respuesta correcta y pulsa "Comprobar respuesta" para verificar tu resultado con argumentación técnica inmediata.
+        </p>
+
+        <!-- Pregunta 1 -->
+        <div class="quiz-card" data-quiz-id="bd1">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 1 de 8</span>
+            <span class="quiz-topic">Dependencia en Existencia</span>
+          </div>
+          <p class="quiz-question">
+            En una entidad débil con dependencia en existencia (E), respecto a su clave primaria:
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd1" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) No tiene clave primaria propia y debe heredarla obligatoriamente de la entidad fuerte.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd1" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Tiene su propia clave primaria completa y única, pero si se elimina la fuerte, la débil se elimina por regla de negocio.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd1" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Solo puede tener una clave parcial que se subraya con línea discontinua.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="b" data-feedback="¡Exacto! En la dependencia en existencia (E), la entidad débil sí posee una clave primaria completa y única (como el DNI del familiar). La debilidad estriba en la regla de negocio que obliga a borrarla si el empleado/fuerte es eliminado.">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="quiz-card" data-quiz-id="bd2">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 2 de 8</span>
+            <span class="quiz-topic">Dependencia en Identificación</span>
+          </div>
+          <p class="quiz-question">
+            En el ejemplo de las entidades SALA (fuerte) y MESA (débil), ¿por qué MESA es débil en identificación?
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd2" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) Porque el atributo Num_mesa se repite en varias salas y necesita unirse al código de sala para identificarse de forma única.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd2" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Porque las mesas no se pueden borrar si se borra la sala.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd2" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Porque tiene una relación N:M con la entidad Sala.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="a" data-feedback="¡Correcto! La entidad MESA no tiene PK completa propia. El número de mesa (ej. Mesa 1) se repite en múltiples salas. Para identificarla inequívocamente en la base de datos se debe unir la clave parcial de la mesa con la clave de la sala.">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="quiz-card" data-quiz-id="bd3">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 3 de 8</span>
+            <span class="quiz-topic">Restricción de Inclusión</span>
+          </div>
+          <p class="quiz-question">
+            En el caso de HOMBRE y MUJER con SE_CASA y SE_DIVORCIA, para poder registrar a una pareja en el divorcio se exige obligatoriamente que exista un registro previo de esa misma pareja en casados. ¿A qué restricción corresponde?
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd3" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) Restricción de exclusión mutua.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd3" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Restricción de inclusión (condicional de historial que exige pareja previa en la relación base).</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd3" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Dependencia en identificación.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="b" data-feedback="¡Excelente! Es una restricción de inclusión: exige que la misma pareja exacta esté guardada y unida previamente en la relación A (SE_CASA) para tener permiso de unirse en la relación B (SE_DIVORCIA).">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="quiz-card" data-quiz-id="bd4">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 4 de 8</span>
+            <span class="quiz-topic">Restricción de Exclusión</span>
+          </div>
+          <p class="quiz-question">
+            En el caso de PROFESOR y CURSO (relaciones IMPARTE y RECIBE), prohibir que Paco imparta y reciba el mismo curso de "Bases de Datos" a la vez (incompatibilidad de la misma pareja) representa:
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd4" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) Una restricción de exclusión (la misma pareja exacta no puede guardarse en ambas relaciones a la vez).</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd4" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Una restricción de inclusividad con contador.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd4" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Una relación reflexiva.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="a" data-feedback="¡Totalmente acertado! Es una restricción de exclusión: los datos pueden participar en ambas relaciones por separado con otras combinaciones, pero la misma pareja exacta jamás puede estar en ambas a la vez (o lo imparte, o lo recibe).">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="quiz-card" data-quiz-id="bd5">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 5 de 8</span>
+            <span class="quiz-topic">Restricción de Inclusividad</span>
+          </div>
+          <p class="quiz-question">
+            Para registrar que un EMPLEADO diseña un producto en la relación DISEÑA, el sistema exige comprobar previamente que ese empleado tiene al menos 2 registros en la relación ASISTE (a cursos). ¿Qué restricción se está aplicando?
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd5" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) Restricción de inclusividad (condicional basado en un contador de cantidad mínima).</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd5" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Restricción de exclusividad (elegir un único camino).</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd5" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Restricción semántica sin símbolo.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="a" data-feedback="¡Brillante! La restricción de inclusividad funciona como un contador: antes de permitir registrar un dato en la relación B, cuenta cuántas veces aparece en la relación A y exige un mínimo establecido.">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- Pregunta 6: Jerarquías -->
+        <div class="quiz-card" data-quiz-id="bd6">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 6 de 8</span>
+            <span class="quiz-topic">Reglas de Configuración de Jerarquías</span>
+          </div>
+          <p class="quiz-question">
+            Si en un modelo E-R todo registro del Padre tiene que pertenecer obligatoriamente a algún Hijo, y a la vez solo puede pertenecer a un único Hijo a la vez, ¿qué combinación y dibujo corresponden?
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd6" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) Total y Exclusiva: Círculo en el vértice superior y arco inferior en las ramas hijas (o doble línea + "d").</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd6" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Parcial y Exclusiva: Sin círculo en el vértice superior y sin arco inferior.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd6" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Total y Solapada: Círculo en el vértice superior y sin arco inferior.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="a" data-feedback="¡Perfecto! La regla de Cobertura define el círculo superior (Total = círculo en el vértice superior; Parcial = sin círculo). La regla de Solapamiento define el arco inferior (Exclusiva = con arco inferior; Solapada = sin arco). Por tanto, Total y Exclusiva lleva círculo en el vértice superior y arco inferior.">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- Pregunta 7: Relaciones en Subclases -->
+        <div class="quiz-card" data-quiz-id="bd7">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 7 de 8</span>
+            <span class="quiz-topic">Relaciones Propias y Deducción de Cardinalidad</span>
+          </div>
+          <p class="quiz-question">
+            En el caso de TRABAJADOR y EMPRESA, si el enunciado dice en singular "la empresa en la que trabajan", ¿cómo se modela y qué cardinalidad se deduce?
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd7" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) Se añaden los datos de la empresa como atributos sueltos al Trabajador.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd7" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Se crea una nueva entidad EMPRESA conectada por un rombo únicamente a TRABAJADOR, con relación 1:N (1 trabajador en 1 única empresa, y la empresa tiene N trabajadores).</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd7" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Se conecta la EMPRESA a la entidad ALUMNO general con relación N:M.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="b" data-feedback="¡Exacto! Al tener identificador propio (CIF, nombre, dirección), la empresa forma una entidad externa propia conectada mediante rombo solo al hijo TRABAJADOR (los desempleados no participan). Y al decir el enunciado en singular 'la empresa en la que trabajan', se asume la opción más segura de examen: relación 1:N.">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- Pregunta 8: Relaciones Reflexivas -->
+        <div class="quiz-card" data-quiz-id="bd8">
+          <div class="quiz-header">
+            <span class="quiz-badge">Pregunta 8 de 8</span>
+            <span class="quiz-topic">Relaciones Reflexivas y Roles</span>
+          </div>
+          <p class="quiz-question">
+            En una relación reflexiva (como "Un empleado supervisa a otro empleado"), ¿cómo se determina correctamente la cardinalidad global de la relación?
+          </p>
+          <div class="quiz-options">
+            <label class="quiz-option">
+              <input type="radio" name="q-bd8" value="a">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">A) Se analiza la participación de la entidad bajo dos roles lógicos distintos y complementarios (ej. rol "supervisor" y rol "subordinado") y se cruzan los máximos de ambos roles.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd8" value="b">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">B) Se asume siempre que es 1:1 obligatoria al tratarse de una única entidad.</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q-bd8" value="c">
+              <span class="quiz-option-indicator"></span>
+              <span class="quiz-option-text">C) Se debe duplicar la entidad físicamente creando dos tablas idénticas en el diagrama.</span>
+            </label>
+          </div>
+          <button type="button" class="btn-quiz-check" data-correct="a" data-feedback="¡Extraordinario! En las relaciones reflexivas, la misma entidad participa dos veces con roles lógicos opuestos (supervisor y subordinado, compuesto y componente). Para obtener la cardinalidad global se estudian por separado ambos roles y se cruzan sus máximos.">Comprobar respuesta</button>
+          <div class="quiz-feedback" aria-live="polite"></div>
+        </div>
+
+      </section>
+
+    </main>
+  </div> <!-- .app-container -->
+
+  <!-- Botón flotante para volver arriba -->
+  <button type="button" class="btn-back-to-top" id="backToTop" title="Volver al inicio" aria-label="Volver arriba">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Pie de página institucional profesional (Multi-columna) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-columns-grid">
+        <!-- Columna 1: Marca y Acreditación -->
+        <div class="footer-col__brand">
+          <div class="footer-brand-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--azul-principal)" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span>DAW StudyHub</span>
+          </div>
+          <p class="footer-brand-desc">
+            Plataforma de estudio técnico oficial para el ciclo formativo de grado superior en Desarrollo de Aplicaciones Web. Transcripción literal garantizada.
+          </p>
+          <div class="footer-badges-row">
+            <span class="table-badge table-badge--primary">1.º DAW</span>
+            <span class="table-badge table-badge--success">100% Literal</span>
+            <span class="table-badge table-badge--info">Bases de Datos</span>
+          </div>
+        </div>
+
+        <!-- Columna 2: Navegación Curricular -->
+        <div class="footer-col">
+          <h3 class="footer-col__title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Asignaturas &amp; Temas</span>
+          </h3>
+          <ul class="footer-nav-list">
+            <li><a href="tema1.html" class="footer-nav-link">Sistemas: Tema 1 (Hardware)</a></li>
+            <li><a href="tema2.html" class="footer-nav-link">Sistemas: Tema 2 (Redes)</a></li>
+            <li><a href="bbdd-tema1.html" class="footer-nav-link">Bases de Datos: Tema 1 (Modelo E-R)</a></li>
+            <li><a href="index.html#directorio-asignaturas" class="footer-nav-link">Directorio de Asignaturas</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Herramientas y Exámenes -->
+        <div class="footer-col">
+          <h3 class="footer-col__title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            <span>Herramientas de Estudio</span>
+          </h3>
+          <ul class="footer-nav-list">
+            <li><a href="#autoevaluacion" class="footer-nav-link">Autoevaluación de Bases de Datos</a></li>
+            <li><a href="tema2.html#sec-6" class="footer-nav-link">Solucionario Oficial de Redes</a></li>
+            <li><a href="tema1.html#anexo1" class="footer-nav-link">Guía Técnica Hardware</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Barra inferior con copyright y botón scroll top -->
+      <div class="footer-bottom-bar">
+        <span>&copy; 2024-2025 DAW StudyHub · Departamento de Informática. Todos los derechos reservados conforme a la programación docente oficial.</span>
+        <div class="footer-bottom-links">
+          <button type="button" class="footer-scroll-top-btn" id="footerScrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Volver arriba">
+            <span>Volver arriba</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal de búsqueda rápida en el documento -->
+  <div class="search-modal" id="searchModal" aria-hidden="true" role="dialog" aria-label="Buscador de términos técnicos">
+    <div class="search-modal__backdrop" id="searchBackdrop"></div>
+    <div class="search-modal__dialog">
+      <div class="search-modal__header">
+        <input type="search" class="search-modal__input" id="searchInput" placeholder="Buscar en el tema (ej: jerarquía, herencia, subclase, cobertura, solapamiento, empresa...)" aria-label="Término de búsqueda">
+        <button type="button" class="search-modal__close" id="searchClose" aria-label="Cerrar buscador">✕</button>
+      </div>
+      <div class="search-modal__results" id="searchResults">
+        <div class="search-empty">Escribe cualquier concepto para buscar...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal visor de imagen a pantalla completa (Lightbox minimalista) -->
+  <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visor de imagen ampliada">
+    <div class="image-modal__backdrop" id="imageModalBackdrop"></div>
+    <div class="image-modal__dialog">
+      <button type="button" class="image-modal__close" id="imageModalClose" aria-label="Cerrar visor">✕</button>
+      <div class="image-modal__img-box">
+        <img src="" alt="" id="imageModalImg" class="image-modal__img">
+      </div>
+      <p class="image-modal__caption" id="imageModalCaption"></p>
+    </div>
+  </div>
+
+  <!-- Scripts unificados vanilla -->
+  <script src="js/main.js"></script>
+</body>
+</html>

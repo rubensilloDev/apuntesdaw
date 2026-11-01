@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentes físicos de un ordenador actual | Tema 1</title>
+  <meta name="description" content="Guía de estudio completa y minimalista sobre los componentes físicos de un ordenador actual: hardware, placas base, procesadores, memorias, almacenamiento y periféricos.">
+  
+  <!-- Tipografía Google Fonts: Inter con fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Barra de progreso de lectura superior -->
+  <div class="reading-progress-container" aria-hidden="true">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+  </div>
+
+  <!-- Cabecera fija de navegación -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <div class="header-brand">
+        <a href="#inicio" class="site-brand" aria-label="Ir al inicio del documento">
+          <div class="site-brand__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="site-brand__text">
+            <span class="site-brand__title">Hardware Actual</span>
+            <span class="site-brand__subtitle">Tema 1: Componentes Físicos</span>
+          </div>
+        </a>
+        <div class="header-status-pill" title="Curso 2024-2025 · Plan de estudios verificado">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>1.º DAW · Sistemas Informáticos</span>
+        </div>
+      </div>
+
+      <div class="site-header__actions">
+        <!-- Enlace de vuelta al portal -->
+        <a href="index.html" class="btn-portal-back" title="Volver a la pantalla de inicio" aria-label="Volver al Portal de asignaturas">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span>Inicio</span>
+        </a>
+
+        <!-- Buscador rápido -->
+        <button type="button" class="btn-search-trigger" id="searchTrigger" aria-label="Buscar en el documento (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Buscar...</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <!-- Botón para alternar índice en escritorio (plegar/desplegar de izq a dcha) -->
+        <button type="button" class="btn-sidebar-desktop-toggle" id="sidebarToggleDesktop" title="Ocultar o mostrar índice lateral (Ctrl+B / Alt+S)" aria-label="Alternar índice lateral" aria-expanded="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg>
+          <span class="btn-sidebar-desktop-toggle__text">Índice</span>
+        </button>
+
+        <!-- Controles de tamaño tipográfico -->
+        <div class="font-controls" role="group" aria-label="Ajustar tamaño de fuente">
+          <button type="button" class="btn-font-size" id="fontDecrease" title="Disminuir tamaño de texto" aria-label="Disminuir tamaño de texto">A-</button>
+          <button type="button" class="btn-font-size" id="fontIncrease" title="Aumentar tamaño de texto" aria-label="Aumentar tamaño de texto">A+</button>
+        </div>
+
+        <!-- Botón menú hamburguesa para móviles/tablets -->
+        <button type="button" class="btn-menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="sidebarNav" aria-label="Abrir tabla de contenidos">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overlay para cierre en dispositivos táctiles -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+  <!-- Contenedor general en dos columnas -->
+    <!-- Botón flotante para reabrir el menú en escritorio cuando está oculto -->
+  <button type="button" class="desktop-floating-toc-btn" id="desktopFloatingTocBtn" title="Mostrar índice lateral (Ctrl+B)" aria-label="Mostrar índice lateral">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+    <span>Índice</span>
+  </button>
+
+  <!-- Botón flotante accesible para móvil (alcance de pulgar) -->
+  <button type="button" class="mobile-floating-toc-btn" id="mobileFloatingTocBtn" aria-label="Abrir tabla de contenidos">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+    <span>Índice</span>
+  </button>
+
+  <div class="app-container" id="inicio">
+    <!-- Barra lateral fija / Índice navegable -->
+    <aside class="sidebar-nav" id="sidebarNav" aria-label="Tabla de contenidos del tema">
+      <div class="sidebar-nav__header">
+        <span class="sidebar-nav__title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Índice del tema
+        </span>
+        <div class="sidebar-nav__actions">
+          <button type="button" class="btn-sidebar-collapse" id="sidebarCollapseBtn" title="Ocultar índice hacia la izquierda" aria-label="Ocultar índice lateral">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="sidebar-close-mobile-btn" id="sidebarCloseMobile" aria-label="Cerrar índice">✕</button>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav__content">
+        <div class="nav-group-title">Secciones Principales</div>
+        <ul class="nav-toc-list">
+          <li class="nav-toc-item"><a href="#seccion-1" class="nav-toc-link">1. Componentes físicos</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-1" class="nav-toc-link">1.1. Cajas/carcasas</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-2" class="nav-toc-link">1.2. Fuentes de alimentación</a></li>
+          <li class="nav-toc-item">
+            <a href="#seccion-1-3" class="nav-toc-link">1.3. Placas base</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#seccion-1-3-1" class="nav-toc-link">1.3.1. Chipset</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item">
+            <a href="#seccion-1-4" class="nav-toc-link">1.4. Procesadores</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#seccion-1-4-1" class="nav-toc-link">1.4.1. Núcleos y funcionamiento</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item"><a href="#seccion-1-5" class="nav-toc-link">1.5. Memoria RAM</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-6" class="nav-toc-link">1.6. Almacenamiento I</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-7" class="nav-toc-link">1.7. Almacenamiento II</a></li>
+          <li class="nav-toc-item">
+            <a href="#seccion-1-8" class="nav-toc-link">1.8. Tarjetas de expansión</a>
+            <ul class="nav-toc-sublist">
+              <li><a href="#seccion-1-8-1" class="nav-toc-link">1.8.1. Tarjetas gráficas</a></li>
+              <li><a href="#seccion-1-8-2" class="nav-toc-link">1.8.2. Otras tarjetas</a></li>
+            </ul>
+          </li>
+          <li class="nav-toc-item"><a href="#seccion-1-9" class="nav-toc-link">1.9. Periféricos de entrada I</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-10" class="nav-toc-link">1.10. Periféricos de entrada II</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-11" class="nav-toc-link">1.11. Periféricos de salida I</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-12" class="nav-toc-link">1.12. Periféricos de salida II</a></li>
+          <li class="nav-toc-item"><a href="#seccion-1-13" class="nav-toc-link">1.13. Periféricos de entrada/salida</a></li>
+        </ul>
+
+        <div class="nav-group-title">Anexos Temáticos</div>
+        <ul class="nav-toc-list">
+          <li class="nav-toc-item"><a href="#anexo-1" class="nav-toc-link">Anexo I: Clasificación</a></li>
+          <li class="nav-toc-item"><a href="#anexo-2" class="nav-toc-link">Anexo II: Conectores placa</a></li>
+          <li class="nav-toc-item"><a href="#anexo-3" class="nav-toc-link">Anexo III: Periféricos E/S</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Área principal de lectura y contenido -->
+    <main class="main-content" role="main">
+
+      <!-- Portada y título del tema -->
+      <header class="hero-banner fade-in-on-scroll">
+        <span class="hero-banner__badge">Unidad Formativa</span>
+        <h1 class="main-title">Componentes físicos de un ordenador actual</h1>
+        <p class="main-subtitle">Documento completo de estudio técnico y arquitectura de hardware.</p>
+      </header>
+
+      <!-- Página 2: Índice original -->
+      <section class="study-section fade-in-on-scroll" id="indice-original">
+        <h2 class="section-title">
+          <span>Índice</span>
+          <a href="#indice-original" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+        <p><em>(Actualiza este campo haciendo clic derecho -&gt; Actualizar campos)</em></p>
+      </section>
+
+      <!-- 1.- Componentes físicos de un ordenador actual. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1">
+        <h2 class="section-title">
+          <span>1.- Componentes físicos de un ordenador actual.</span>
+          <a href="#seccion-1" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig1_setup.jpg" alt="Conjunto compuesto por torre, monitor, teclado y ratón" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Conjunto compuesto por una torre de ordenador junto a un monitor un teclado y un ratón. (Ministerio de Educación. CC BY-NC)</figcaption>
+          </div>
+        </figure>
+
+        <p>La arquitectura de un ordenador define la estructura funcional de cada una de sus partes, pero se hace necesario implementar dicha estructura mediante hardware de fabricación y comercialización actual.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig2_laptop.jpg" alt="Ordenador portátil con la pantalla abierta" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Ordenador portátil con la pantalla abierta. (Ministerio de Educación. CC BY-NC)</figcaption>
+          </div>
+        </figure>
+
+        <p>La imagen que normalmente se tiene de un ordenador es la de una carcasa, con un diseño más o menos bonito, a la que están conectados como mínimo un teclado, un ratón y un monitor. El ordenador en sí está dentro de la carcasa y está constituido por la placa base, el procesador y la memoria. El resto de elementos que contiene son los periféricos que nos permiten comunicarnos con él, como la tarjeta gráfica, la de sonido, o las unidades de almacenamiento como el disco duro o el lector de DVD.</p>
+
+        <p>Claro que también podemos pensar en un portátil, pero este no deja de ser un ordenador con todos sus componentes, de reducido tamaño, integrados en su interior.</p>
+
+        <p>Así, en función de las características tecnológicas de los componentes empleados en su construcción (su tamaño, su grado de miniaturización, su capacidad de proceso, su capacidad de almacenamiento, su velocidad de proceso, su velocidad de transmisión, etc.) se van a construir ordenadores personales más o menos potentes: portátiles, tabletsPC, PDAs, smartphones y hasta consolas de videojuegos. Pero también se fabrican servidores, mainframes y, por supuesto, superordenadores.</p>
+
+        <p>Vamos a hacer un estudio de los distintos elementos utilizados para el montaje de un ordenador personal de escritorio de uso general (por ser la arquitectura más accesible), en base a los componentes físicos que se fabrican y se comercializan en la actualidad, analizando en la medida de lo posible sus características de funcionamiento particulares.</p>
+
+        <p>Los distintos componentes deben seguir determinados estándares de fabricación, sobre todo en lo relativo a sus conexiones e interfaces, para permitir su completa integración en el sistema y mantener la compatibilidad de funcionamiento entre ellos.</p>
+
+        <p>La base sobre la que se asienta el montaje de un ordenador personal es la placa base. A ella se conectan de una u otra forma, a través de los buses de interconexión, todos y cada uno de sus componentes. Las líneas de suministro eléctrico, procedentes de la fuente de alimentación, proporcionan corriente continua para su funcionamiento.</p>
+
+        <p>Como la mayoría de estos componentes necesitan de un recipiente a modo de envase que los contenga y los proteja, se han diseñado para ello las cajas de ordenador, también conocidas como carcasas.</p>
+
+        <aside class="callout callout--recommendation">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <h3 class="callout__title">Recomendación</h3>
+          </div>
+          <div class="callout__body">
+            <p>Existen multitud de programas de diagnóstico que nos permiten conocer los componentes hardware de nuestro equipo. Una forma sencilla de conocer algunos componentes, como el procesador y el modelo de nuestra placa base es utilizando el cuadro de "información del sistema" en Windows. Recomendamos probar programas gratuitos que ofrecen una información más completa y visual de nuestro hardware, como HWiNFO o CPU-Z.</p>
+          </div>
+        </aside>
+      </section>
+
+      <!-- 1.1.- Cajas/carcasas de ordenador. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-1">
+        <h2 class="section-title">
+          <span>1.1.- Cajas/carcasas de ordenador.</span>
+          <a href="#seccion-1-1" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig3_cajas_factores.jpg" alt="Cajas de ordenador mostrando diferentes factores de forma" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Tres cajas de ordenador de distinto tamaño que estan juntas para mostrar sus diferentes factores de forma. (Ministerio de Educación. CC BY-NC)</figcaption>
+          </div>
+        </figure>
+
+        <p>Las cajas o carcasas de ordenador se fabrican de diversos materiales como acero, aluminio, plástico, metacrilato, etc. o con una combinación de ellos. Deben tener la suficiente resistencia para aguantar tanto el peso de los componentes que se coloquen en su interior, como el calor que generen, y por supuesto la suficiente capacidad como para poder albergarlos con una distribución adecuada.</p>
+
+        <p>Estas cajas se fabrican siguiendo unos diseños basados en unos factores de forma estándares cada uno de los cuales tiene definidas sus propias características de tamaño, forma, capacidad, etc., para adaptarse a las placas base que se instalarán en ellas. Así que podemos elegir alguno de entre los distintos formatos de caja más habituales en la actualidad:</p>
+
+        <ul>
+          <li><strong>Minitorre o semitorre:</strong> La diferencia entre ellas está en su altura que depende del número de bahías de 5 pulgadas y cuarto de que disponga. A mayor número de bahías más dispositivos podrá contener y más aumenta su altura. Suelen tener 2 y 4 bahías respectivamente. En la actualidad es común que las torres no tengan bahías externas, ya que cada vez se usan menos los lectores de discos ópticos y de disquetes/tarjetas de memoria.</li>
+          <li><strong>Sobremesa:</strong> Son similares a las minitorres, pero se colocan de forma horizontal, lo que obliga a rotar 90 grados los dispositivos extraíbles de su frontal.</li>
+          <li><strong>Barebone y slim:</strong> Son cajas de pequeño tamaño diseñadas sobre todo para ocupar poco espacio. Esto conlleva que su interior admita pocos dispositivos, o ninguno, pero esto se intenta compensar aumentando el número de conectores para dispositivos externos.</li>
+        </ul>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig4_caja_slim.jpg" alt="Caja de ordenador personal de tipo Slim y pequeñas dimensiones" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544652478-6653e09f18a2?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Caja de ordenador personal de tipo Slim / Ordenador de pequeñas dimensiones</figcaption>
+          </div>
+        </figure>
+
+        <aside class="callout callout--more-info">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <h3 class="callout__title">Para saber más</h3>
+          </div>
+          <div class="callout__body">
+            <p>Puedes ampliar información sobre el factor de forma de las cajas de ordenador en el siguiente enlace: Factor de forma de las torres o cajas de una computadora en Wikipedia.</p>
+          </div>
+        </aside>
+
+        <p>Con independencia de su forma o tamaño, de una carcasa se espera que en su interior contenga ciertos compartimentos dedicados a alojar la fuente de alimentación, los discos duros, las unidades ópticas y por supuesto la placa base y las tarjetas de expansión que se le conecten.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig5_caja_interior.jpg" alt="Interior de una caja de ordenador vacía" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/c/ca/Gabinete99.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Muestra el interior de una caja de ordenador vaciá, recién comprada.</figcaption>
+          </div>
+        </figure>
+
+        <p>En el panel frontal se sitúan los botones de encendido y reinicio y los LED que indican si el ordenador está encendido o si se está utilizando el dispositivo de almacenamiento principal. También las bocas de las unidades extraíbles y algunos conectores externos de uso habitual, como los USB o conectores de audio.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig6_torre_frontal.jpg" alt="Frontal de una torre de ordenador con botones y bahías" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/c/ce/Antec_P182_-_Power_and_LEDs.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Muestra el frontal de una torre de ordenador</figcaption>
+          </div>
+        </figure>
+
+        <p>En la parte trasera se pueden ver los conectores que asoman directamente desde la placa base y desde las tarjetas de expansión, así como la toma de corriente eléctrica y la salida de ventilación de la fuente de alimentación.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig7_torre_trasera.jpg" alt="Parte trasera de una torre de ordenador ATX" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/2/2a/ATX_computer_case_-_left_-_2018-05-18.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Muestra la trasera de una torre de ordenador</figcaption>
+          </div>
+        </figure>
+
+        <p>También podemos ver, estratégicamente distribuidas por distintas zonas de la caja, rejillas o aberturas por las que debe circular el aire, libremente o con ayuda de ventiladores situados en su interior, cuyo fin es disipar el calor que generan los componentes internos.</p>
+
+        <p>En la actualidad también es común encontrar carcasas con algunos de sus paneles exteriores en cristal templado o metacrilato para dejar ver el interior, y con ventiladores con luces RGB. Estas suelen estar orientadas al sector gaming.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig8_torre_argb.jpg" alt="Torre actual con panel de cristal templado y ventiladores ARGB" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Torre actual con panel de cristal templado y ventiladores ARGB</figcaption>
+          </div>
+        </figure>
+
+        <!-- Autoevaluación 1 -->
+        <article class="quiz-card" data-explanation="En el panel frontal o superior encontramos los botones de encendido/reset, los LED de actividad y los puertos de acceso rápido (USB y audio). El conector de corriente eléctrica se ubica siempre en la parte trasera junto a la fuente de alimentación.">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">¿Cuáles de los siguientes son elementos que solemos encontrar en el exterior frontal o superior de las carcasas de los ordenadores?</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Botones de encendido y reseteo.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Luces de encendido y de actividad de disco.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Conector de cable de alimentación.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Puertos USB y de audio.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.2.- Fuentes de alimentación. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-2">
+        <h2 class="section-title">
+          <span>1.2.- Fuentes de alimentación.</span>
+          <a href="#seccion-1-2" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>La fuente de alimentación es un elemento imprescindible cuya misión es alimentar de corriente continua a todos los componentes que se integran en el interior del ordenador y a los de bajo consumo que se conectan desde el exterior. Para ello debe ser capaz de suministrar una potencia no menor de 350 vatios, aunque esto depende mucho de los componentes instalados en el equipo. Hay que tener en cuenta que una fuente con potencia insuficiente puede causar problemas de mal funcionamiento y hasta dañar el equipo.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig9_fuente_emplazamiento.jpg" alt="Emplazamiento de la fuente de alimentación dentro del chasis" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Muestra el emplazamiento de la fuente de alimentación dentro de la caja del ordenador.</figcaption>
+          </div>
+        </figure>
+
+        <p>La fuente de alimentación a veces viene preinstalada en la caja del ordenador, aunque no siempre es así, para poder elegir con independencia de la caja un modelo que se adapte a nuestras necesidades, por ejemplo, que sea de mayor potencia, más silenciosa, más eficiente, con cables modulares, que tenga luces decorativas, etc.</p>
+
+        <p>La fuente de alimentación es una pequeña caja metálica, con muchas rejillas para ventilarse, de la que salen los cables con los conectores necesarios para alimentar los componentes del interior del ordenador con voltajes de más y menos 12 voltios, más 5 voltios y más 3,3 voltios (12 voltios para los motores de las unidades de almacenamiento, ventiladores, CPU y tarjeta gráfica, y 5 y 3,3 voltios para otros componentes de menor consumo).</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig10_fuente_cables.jpg" alt="Fuente de alimentación de la que salen sus cables y conectores" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/6/62/PSU-Open1.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Vista de una fuente de alimentación de la que salen sus cables con sus conectores.</figcaption>
+          </div>
+        </figure>
+
+        <p>Existen fuentes modulares que permiten el acoplamiento de los cables con los conectores necesarios, pudiendo retirar los cables sobrantes no utilizados para que no molesten dentro de la caja.</p>
+
+        <p>Desde la parte trasera de la fuente de alimentación podemos ver el conector para el cable de la conexión a la red eléctrica y la rejilla de ventilación por la que su propio ventilador extrae el aire caliente que ella misma genera.</p>
+
+        <p>La parte trasera adicionalmente puede disponer de otros elementos como:</p>
+
+        <ul>
+          <li>Un interruptor de apagado total de la fuente que evita que el equipo pueda quedar suspendido o en standby, en cuyo caso podría reiniciarse con un toque de teclado, un movimiento de ratón o una señal externa desde la tarjeta de red.</li>
+          <li>Un selector para fijar la entrada de corriente alterna a 110 voltios o a 220 voltios, según región.</li>
+          <li>Un conector para alimentación eléctrica del monitor, en fuentes muy antiguas.</li>
+        </ul>
+
+        <!-- Autoevaluación 2 -->
+        <article class="quiz-card" data-explanation="Las cajas se construyen siguiendo factores de forma estandarizados (ATX, microATX...) y deben estar bien ventiladas para expulsar el calor generado internamente. No todos los dispositivos van dentro (los periféricos van fuera) ni las conexiones exteriores son para dispositivos internos.">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">Señala las respuestas correctas respecto a las cajas de ordenador.</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Se fabrican siguiendo unas dimensiones estándares.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">En su interior se instalan todos los dispositivos conectados al ordenador.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">En su exterior podemos ver las conexiones disponibles para los dispositivos internos.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Deben estar bien ventiladas para evacuar el calor generado por los componentes de su interior.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.3.- Placas base. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-3">
+        <h2 class="section-title">
+          <span>1.3.- Placas base.</span>
+          <a href="#seccion-1-3" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>La placa base es una tarjeta de circuito impreso a la que se conectan los demás elementos de un ordenador. Contiene una serie de circuitos integrados entre los que se encuentra el chipset, que le sirve como centro de conexión entre el procesador y el resto de componentes.</p>
+
+        <p>Su diseño debe cumplir unos estándares basados en el factor de forma, que define algunas de sus características físicas, por ejemplo:</p>
+
+        <ul>
+          <li>La forma de la placa base con sus dimensiones exactas (ancho y largo).</li>
+          <li>La posición de los anclajes, o sea, el lugar donde se sitúan los huecos para los tornillos que la fijan al chasis.</li>
+          <li>Las áreas donde se sitúan algunos de sus componentes como el zócalo del procesador, las ranuras de expansión y los conectores de la parte trasera para teclado, ratón, USB, red, etc.</li>
+          <li>Las conexiones eléctricas de la fuente de alimentación: la cantidad de conectores y su forma, sus voltajes, etc.</li>
+        </ul>
+
+        <p>El principal factor de forma utilizado en la actualidad es el ATX y sus derivados como microATX (a veces abreviado µATX, uATX o mATX).</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig11_placa_base_superior.jpg" alt="Vista superior de placa base con todos sus componentes integrados" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Vista desde arriba que permite ver todos los componentes integrados en la placa base que se muestra.</figcaption>
+          </div>
+        </figure>
+
+        <p>La placa base es un componente fundamental a través del cual se integran e interrelacionan todos y cada uno de los dispositivos del ordenador.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig12_placa_base_lateral.jpg" alt="Vista lateral de conectores externos y puertos de placa base" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1597733336794-12d05021d510?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Vista desde el lateral que permite ver los conectores externos instalados en la placa base que se muestra.</figcaption>
+          </div>
+        </figure>
+
+        <p>La placa base incluye un chip conocido como BIOS con un software propio o firmware, que le permite realizar funcionalidades básicas, como reconocimiento y autochequeo de los dispositivos instalados (POST), gestión básica de vídeo y del teclado. Es el software que se encarga de la parte del arranque del equipo anterior al sistema operativo. También incluye una utilidad de configuración que permite configurar algunos parámetros de los componentes del equipo.</p>
+
+        <p>En lugar de BIOS, los equipos actuales incorporan un firmware llamado UEFI que introduce, entre otras, mejoras como:</p>
+
+        <ul>
+          <li>Interfaz de usuario gráfica (GUI) controlable con ratón y teclado.</li>
+          <li>Posibilidad de conectar dispositivos de almacenamiento de más de 2 TB de capacidad.</li>
+          <li>Procedimiento de arranque totalmente nuevo y más seguro.</li>
+        </ul>
+
+        <p>A pesar de que UEFI es el nombre correcto del firmware de la placa base actual, por costumbre se sigue usando el término BIOS.</p>
+
+        <p>Un componente fundamental de la placa base es el chipset. Este es un chip (o conjunto de chips) cuya función es interconectar a unos componentes con otros.</p>
+
+        <p>Se ha de tener en cuenta que la placa base es el componente del equipo que determina en mayor medida la compatibilidad del resto de componentes. El manual de la placa base es el documento de referencia más importante del equipo, en el que se suelen recoger:</p>
+
+        <ul>
+          <li><strong>Advertencias de seguridad:</strong> Para el uso y manipulación de la placa base y la instalación del resto de hardware.</li>
+          <li><strong>Instalación de componentes:</strong> Normalmente con imágenes que muestran cómo se deben instalar los distintos componentes del equipo (procesador, memoria RAM, unidades de almacenamiento, etcétera).</li>
+          <li><strong>Especificaciones:</strong> Tabla con las características de la placa base y compatibilidad de componentes.</li>
+          <li><strong>Contenidos de la caja:</strong> Indica lo que se incluye en la caja de la placa base que se ha comprado.</li>
+          <li><strong>Diagrama de la placa base:</strong> Dibujo a modo de "mapa" que muestra todos sus componentes (ranuras, conectores, zócalo del procesador, adaptadores integrados, etcétera) y sus nombres.</li>
+          <li><strong>Panel trasero:</strong> Dibujo con todos los puertos del panel trasero, sus nombres y características.</li>
+          <li><strong>Diagrama de bloques:</strong> Que muestra con dibujos/bloques y flechas cómo se intercomunican entre sí la CPU, el chipset y el resto de dispositivos del equipo.</li>
+          <li><strong>Características de los componentes:</strong> Aclaraciones sobre los distintos componentes de la placa.</li>
+          <li><strong>Uso de la BIOS/UEFI:</strong> Cómo acceder a la utilidad de configuración de la BIOS/UEFI y principales acciones que se pueden realizar. A menudo existe un manual de la UEFI independiente, dada la gran cantidad de opciones de la misma.</li>
+          <li><strong>Resolución de problemas:</strong> Con problemas comunes, sus causas y posibles soluciones.</li>
+        </ul>
+
+        <aside class="callout callout--more-info">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <h3 class="callout__title">Para saber más</h3>
+          </div>
+          <div class="callout__body">
+            <p>Para que tengas más información sobre el "factor de forma", aquí encontraras una lista de tamaños estándar de placas base: Factores de forma.</p>
+          </div>
+        </aside>
+
+        <!-- 1.3.1.- El chipset de la placa base. -->
+        <div id="seccion-1-3-1">
+          <h3 class="subsection-title">1.3.1.- El chipset de la placa base.</h3>
+
+          <p>El chipset de la placa base es un chip (o conjunto de chips) que interconecta a unos componentes con otros. Su diseño ha variado a lo largo de los años:</p>
+
+          <ul>
+            <li><strong>Chipset clásico:</strong> Hasta aproximadamente el año 2008 los chipsets de las placas bases normalmente eran un conjunto formado por dos chips llamados puente norte y puente sur, en inglés northbridge y southbridge respectivamente. Se trata de dos circuitos integrados que con el tiempo fueron recogiendo en su diseño funcionalidades de controladores que antes habían sido independientes. Así, el puente norte se encarga de controlar funciones como las comunicaciones entre los componentes más rápidos, como son el procesador, la memoria, y la tarjeta gráfica (a través de la ranura de expansión principal). Incluso en algunos modelos puede integrar adaptadores de vídeo, sonido y red. El puente sur, por su parte, lleva el control del resto de puertos internos y externos de la placa base, más lentos. Por tanto, el chipset hace que la placa base funcione como un sistema "nervioso", que interconecta todos sus componentes por medio de diversos buses, permitiendo la comunicación entre ellos.</li>
+          </ul>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig13_chipset_clasico.png" alt="Diagrama de bloques de chipset clásico puente norte y puente sur" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/e/ed/Northsouthbridge_es.png';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Diagrama de bloques de chipset clásico</figcaption>
+          </div>
+        </figure>
+
+          <ul>
+            <li><strong>Chipset actual:</strong> La arquitectura del chipset clásico generaba varios cuellos de botella en las comunicaciones entre la CPU, la RAM y las tarjetas gráficas de última generación (conectadas mediante PCI-Express). En la actualidad, la CPU incorpora el controlador de memoria y controlador PCI-Express para que la CPU se pueda comunicar de manera directa con estos componentes rápidos. A menudo, también incorpora gráficos integrados (iGPU) e incluso, en ocasiones, controla dispositivos más lentos. Se puede decir que las que antes eran funciones del northbridge han quedado integradas en el procesador, quedando un único chip para realizar el resto de tareas. A este chip se le llama simplemente chipset, aunque a veces se utiliza southbridge o PCH.</li>
+          </ul>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig14_chipset_moderno.png" alt="Diagrama de bloques de placa base moderna" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/4/4f/ASRock_K7VT4A_Pro_Mainboard_Labeled_German.PNG';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Diagrama de bloques de placa base Intel / Diagrama de bloques de placa base AMD</figcaption>
+          </div>
+        </figure>
+        </div>
+
+        <!-- Autoevaluación 3 -->
+        <article class="quiz-card" data-explanation="A través de las pistas y ranuras de la placa base se distribuye corriente a tarjetas y discos, e incluye el chipset para interconectar dispositivos con la CPU. La pila únicamente alimenta la memoria CMOS (no todo el equipo) y la compatibilidad con procesadores depende estrictamente del socket y chipset.">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">Señala las respuestas correctas relativas a la placa base del ordenador:</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Recibe de la pila que lleva incorporada toda la corriente eléctrica que necesita para funcionar.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">A través de ella le llega la corriente eléctrica a algunos componentes internos que tenga conectados.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Incluye un chipset que hace de puente de comunicación entre algunos dispositivos y el procesador.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Cualquier placa base es apta para cualquier procesador.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.4.- Procesadores. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-4">
+        <h2 class="section-title">
+          <span>1.4.- Procesadores.</span>
+          <a href="#seccion-1-4" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>El procesador o microprocesador (a menudo llamado también CPU) es la parte más importante del ordenador porque es el encargado de controlar al resto de componentes. Se trata de un microchip compuesto de miles de millones de microcomponentes recogidos en una cápsula, normalmente cerámica, de la que salen una serie de patillas o contactos, que hay que acoplar en el zócalo correspondiente de la placa base.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig15_procesador_dos_caras.jpg" alt="Procesador visto por sus dos caras" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Puede un procesador por sus dos caras</figcaption>
+          </div>
+        </figure>
+
+        <aside class="callout callout--more-info">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <h3 class="callout__title">Para saber más</h3>
+          </div>
+          <div class="callout__body">
+            <p>Para obtener más información sobre los procesadores de estos dos fabricantes.</p>
+            <ul>
+              <li>Modelos de procesadores de AMD y su evolución.</li>
+              <li>Modelos de procesadores de Intel y su evolución.</li>
+            </ul>
+          </div>
+        </aside>
+
+        <p>Hay diversas características que definen un procesador:</p>
+
+        <ul>
+          <li><strong>La frecuencia de reloj</strong>, que se mide en hercios, o en alguno de sus múltiplos (normalmente en GHz, o millones de Hz). Con esta medida se especifica el número de ciclos por segundo, que tiene relación con el máximo de operaciones por segundo que es capaz de procesar. Se supone que cuantos más hercios tenga un procesador, más rápido es y puede realizar más operaciones. Esta medida puede ser útil para comparar procesadores de un mismo fabricante y de la misma generación, ya que iguales frecuencias de reloj pueden suponer diferentes velocidades de trabajo si la comparación se hace con procesadores de diferentes fabricantes, o con procesadores cuya arquitectura interna es muy distinta (por ejemplo, procesadores de un mismo fabricante con varios años de diferencia entre ellos). En la actualidad las CPU suelen tener frecuencias de reloj entre 3 y 5 GHz.</li>
+          <li><strong>La tecnología de fabricación</strong>, que se mide en nanómetros. Es una medida utilizada para referirse al tamaño de los transistores que componen los procesadores. Cuanto menor sea el tamaño de los transistores, más cerca pueden colocarse unos de otros. Esto permite reducir la cantidad de energía eléctrica necesaria para comunicarlos, y por consiguiente disminuir el calor generado durante el funcionamiento del microprocesador, que puede alcanzar mayores frecuencias de reloj. En 2023 se fabrican procesadores con tecnología de 7 nm y hasta 5 nm, y este número sigue reduciéndose con el paso de los años.</li>
+          <li><strong>El tamaño y distribución de la memoria caché.</strong> Es una memoria de gran velocidad utilizada para almacenar copias de instrucciones y datos a los que el procesador accede con frecuencia. La inclusión de una buena cantidad de memoria caché en el procesador hace que mejore su rendimiento porque permite reducir el número de accesos, mucho más lentos, a la memoria RAM. Suele haber varios tipos de memoria caché que se organizan por niveles, creando una jerarquía basada en la proximidad al núcleo del procesador, de forma que cuanto mas cerca esté, trabajará a mayor velocidad pero será de menor tamaño. Nos podemos encontrar con:
+            <ul>
+              <li><strong>Caché de primer nivel o L1:</strong> Caché que está integrada en el núcleo del procesador y trabaja a su misma velocidad. Su capacidad varía de un procesador a otro, estando normalmente entre los 64 KB y los 512 KB. Suele estar dividida en dos partes dedicadas, una a trabajar con las instrucciones y otra con los datos.</li>
+              <li><strong>Caché de segundo nivel o L2 y de tercer nivel o L3:</strong> También suelen están integradas en el chip del procesador, aunque no directamente en su núcleo. En 2023, sus tamaños llegan a los 32 MB en L2 (Intel Core i9-13900K) y los 128 MB en L3 (AMD Ryzen 9 7950X3D), y con los años va aumentando.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- 1.4.1.- Núcleos y características de funcionamiento de procesadores. -->
+        <div id="seccion-1-4-1">
+          <h3 class="subsection-title">1.4.1.- Núcleos y características de funcionamiento de procesadores.</h3>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig16_patillas_procesador.jpg" alt="Patillas de contacto de un procesador PGA" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/0/04/Pentium_4_Underside_Demonstrating_PGA_Socket.JPG';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Pueden verse las patillas de un procesador que le sirven de contactos.</figcaption>
+          </div>
+        </figure>
+
+          <p>Siguiendo con las características de los procesadores, vamos a detallar algunas que tienen mucho que ver con el funcionamiento de los procesadores más modernos, independientemente de si estos son utilizados por ordenadores de sobremesa, portátiles o grandes ordenadores.</p>
+
+          <ul>
+            <li><strong>Número de núcleos.</strong> Cada núcleo (en inglés core) de procesamiento es un conjunto de componentes de la CPU que ejecuta un subproceso o hilo (en inglés thread). Con varios núcleos se pueden ejecutar varios subprocesos al mismo tiempo. Como se está haciendo difícil, o poco rentable, aumentar la frecuencia de trabajo de los nuevos procesadores para continuar incrementando su rendimiento, los fabricantes han aprovechado el altísimo nivel de integración conseguido en su fabricación y han incluido más de un núcleo en el mismo encapsulado. Además, las CPU actuales a menudo utilizan SMT (HT en terminología de Intel), lo que hace que los núcleos puedan avanzar en más de un subproceso, normalmente dos por cada núcleo. Así, para las CPU modernas se suele indicar el número de núcleos y de subprocesos que pueden ejecutar simultáneamente. Por ejemplo, una CPU AMD Ryzen 5 5600X tiene 6C/12T (6 cores o núcleos y 12 threads o subprocesos simultáneos). Aunque con SMT se puede avanzar en dos subprocesos, rinden más dos núcleos físicos sin SMT (2C/2T) que uno con SMT (1C/2T). Intel en su 12ª generación de procesadores introdujo una arquitectura mixta con dos tipos de núcleos distintos en algunas de sus CPU. Unos núcleos son P-cores (Performance-cores o "núcleos de rendimiento"), los cuales son más potentes, consumen más energía y usan HT. Los otros son llamados E-cores (Efficient-cores o "núcleos eficientes"), los cuales son menos potentes, consumen menos energía y no usan HT. En colaboración con los sistemas operativos modernos se pretende que los P-cores se encarguen de las tareas más exigentes mientras que los E-cores ejecuten las tareas más ligeras y tareas en segundo plano. Una CPU Intel Core i7-12700K tiene 12C/20T (8 P-cores con HT y 6 E-cores sin HT).</li>
+            <li><strong>Principal conjunto de instrucciones.</strong> Los procesadores se suelen dividir según su arquitectura en CISC y RISC. Los primeros usan un "conjunto de instrucciones complejas", y los segundos un "conjunto reducido de instrucciones". Las instrucciones complejas de los CISC son muchas, incluyen accesos de lectura/escritura de datos, y pueden tardar múltiples ciclos de reloj en ejecutarse. Las instrucciones reducidas de los RISC, en cambio, son pocas, simples, no incluyen accesos de lectura/escritura en la instrucción (las lecturas y escrituras son instrucciones independientes), y se ejecutan normalmente en un único ciclo de reloj, pero se necesitan más instrucciones simples para hacer lo mismo que con pocas instrucciones complejas. La mayoría de procesadores de ordenadores domésticos de Intel y AMD son CISC, y utilizan la arquitectura llamada x86-64 (también conocida como x64, x86_64, AMD64 e Intel 64), lo cual los hace compatibles entre sí. Por otro lado, los principales procesadores RISC de la actualidad utilizan versiones de la arquitectura ARM de 64 bits, como los smartphones, la mayoría de TabletPCs, los ordenadores de Apple con procesadores M1 o M2, y cada vez más se están introduciendo los procesadores ARM en el sector de los servidores, ya que estos chips, por su propio diseño, consumen bastante menos energía que los x86-64. En la actualidad, todas estas arquitecturas normalmente son de 64 bits. Es importante señalar que, debido a las evidentes diferencias entre sus instrucciones máquina, los procesadores x86-64 y ARM no son compatibles entre sí, y por tanto es necesario desarrollar su software específicamente para ellos.</li>
+            <li><strong>Zócalo compatible.</strong> Cada procesador es compatible con un determinado zócalo de CPU presente en la placa base, así como con una familia determinada de chipsets. Normalmente si el zócalo indicado de una CPU es el mismo que el de una placa base quiere decir que ambos son compatibles, pero hay que tener cuidado porque en algunos casos puede no ser compatible con el chipset de la placa base o puede no estar soportado por la BIOS (esto último a veces se puede solucionar actualizándola a una nueva versión).</li>
+            <li><strong>Refrigeración.</strong> Otra característica no menos importante de los procesadores es que durante su funcionamiento producen tanto calor que pueden llegar a quemarse si no se adoptan las medidas para evitarlo. Así que se hace imprescindible el uso de sistemas para disipar ese calor, llamados coolers o refrigeradores. Lo habitual es colocar sobre la CPU un disipador, que es un elemento metálico (de aluminio o cobre) con mucha superficie de contacto con el aire, que absorbe el calor del procesador disipándolo en el aire. Esto se conoce como disipación pasiva. Como en los procesadores actuales esto no es suficiente, se acoplan ventiladores a los disipadores para que evacúen el calor con mayor rapidez mediante sus flujos de aire, produciendo una disipación activa.</li>
+          </ul>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig17_cooler_stock.jpg" alt="Cooler y disipador con ventilador para procesador" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/6/62/Cooler_Master_Hyper_212_EVO_-_CPU_Cooler_with_120mm_PWM_Fan_%28RR-212E-20PK-R2%29.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Cooler stock de Intel / AMD / Noctua</figcaption>
+          </div>
+        </figure>
+
+          <p>Existen sistemas alternativos como por ejemplo la refrigeración líquida que extrae el calor del procesador y de otros componentes aprovechando su mayor conductividad. Aunque tiene el inconveniente de tener que instalar circuitos cerrados para hacer pasar el líquido por las zonas a refrigerar además de necesitar un radiador externo para que el líquido se desprenda del calor.</p>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig18_refrigeracion_liquida.png" alt="Kit de refrigeración líquida todo en uno AIO" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/3/3b/Deepcool_cooler.png';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Kit de refrigeración líquida AIO Thermaltake</figcaption>
+          </div>
+        </figure>
+
+          <h4 class="sub-subsection-title">Pruebas de rendimiento (benchmarks).</h4>
+
+          <p>Comparar el rendimiento de dos procesadores no es una tarea sencilla, dado que depende de muchos factores como la frecuencia de reloj, la arquitectura interna, el número de núcleos y subprocesos, el tamaño y distribución de la caché, etc. Además, unos procesadores pueden ser mejores en cierto tipo de tareas y peores en otras.</p>
+
+          <p>Para comparar el rendimiento de los procesadores se llevan a cabo pruebas de rendimiento o benchmarks. Estas son pruebas que consisten en ejecutar una misma tarea con dos procesadores distintos (en equipos que deben tener, por lo demás, componentes similares) y medir el resultado. Esto puede ser cronometrar lo que tardan en realizar una misma tarea, o medir el número de repeticiones que han hecho de una tarea en bucle en un tiempo fijo.</p>
+
+          <p>Existen pruebas de rendimiento sintéticas y reales. Las sintéticas son pruebas que están diseñadas exclusivamente para medir el rendimiento de procesadores, mientras que las reales son pruebas realizadas usando software de trabajo real, utilizando proyectos o datos de prueba representativos de lo que sería una carga de trabajo real.</p>
+
+          <p>Dado que los propios fabricantes de procesadores presentan datos de benchmarks de dudosa fiabilidad intentando favorecer a sus productos, es recomendable acudir a sitios de Internet donde se realicen pruebas de rendimiento independientes.</p>
+        </div>
+
+        <!-- Autoevaluación 4 -->
+        <article class="quiz-card" data-explanation="La frecuencia de reloj se mide en hercios (Hz o GHz) y la memoria caché se estructura jerárquicamente en varios niveles (L1, L2, L3). Los nanómetros miden la tecnología/tamaño de transistores (no velocidad) y las arquitecturas comunes son de 32 o 64 bits (no bytes).">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">Señala las características que corresponden a un procesador.</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">La velocidad o frecuencia en nanómetros.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">La frecuencia de reloj que puede llegar a alcanzar un procesador, se mide en hertzios (Hz).</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">Puede disponer de varios niveles de memoria caché.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="checkbox" class="quiz-option__input">
+                <span class="quiz-option__text">La arquitectura de 23 o 46 bytes con que se fabrican.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.5.- Memoria RAM. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-5">
+        <h2 class="section-title">
+          <span>1.5.- Memoria RAM.</span>
+          <a href="#seccion-1-5" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig19_modulos_ram.jpg" alt="Módulos de memoria RAM con muescas y contactos dorados" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Tres módulos distintos de memoria RAM para mostrar sus diferencias de forma.</figcaption>
+          </div>
+        </figure>
+
+        <p>La memoria RAM (del inglés Random-Access Memory), llamada a menudo memoria principal, es la memoria que necesita el procesador para ejecutar los programas. En ella busca las instrucciones y los datos, y en ella guarda los resultados. La memoria RAM se dice que es volátil, ya que necesita un continuo refresco de alimentación eléctrica para mantener la información, lo que hace que pierda todo su contenido cuando el equipo se apaga.</p>
+
+        <p>Físicamente, los módulos de memoria RAM son pequeñas tarjetas de circuito impreso a las que se sueldan los chips de memoria por una o por ambas caras. Llevan en uno de sus cantos una fila de pines o contactos metálicos para insertarlos en los zócalos de memoria de la placa base.</p>
+
+        <p>Las principales características de los módulos de memoria son:</p>
+
+        <ul>
+          <li><strong>Capacidad:</strong> Es la cantidad de información que puede albergar. Son comunes los módulos con capacidades entre 4 GB y 32 GB.</li>
+          <li><strong>Frecuencia:</strong> Indica la cantidad de transferencias por segundo que puede realizar el módulo, se suele indicar en MHz o en MT/s (son lo mismo). Son normales frecuencias entre 2133 MHz y 3600 MHz para DDR4 y entre 4800 MHz y 6000 MHz para DDR5.</li>
+          <li><strong>Latencia CAS o CL:</strong> Es el tiempo que tarda en llegar un dato desde que se solicita. Se indica en clics de reloj, por lo que un número menor es mejor. Este número depende de la frecuencia de la memoria, por lo que puede ser engañoso.</li>
+        </ul>
+
+        <p>La mayoría de los equipos actuales soportan dual-channel. Esta es una técnica que permite acceder a dos módulos de memoria simultáneamente, situados cada uno en un canal de memoria distinto, lo cual puede llegar a duplicar el ancho de banda de la memoria en escenarios óptimos. Para el buen funcionamiento de la memoria en dual-channel los módulos se deben colocar por parejas, uno en cada canal según indique el manual de la placa base, y los módulos deben tener la misma frecuencia y latencia CAS. Se suelen comprar módulos idénticos en parejas o grupos de cuatro para asegurar que funcionan bien en dual-channel.</p>
+
+        <p>Los módulos que actualmente se encuentran en el mercado son del tipo DDR (Double Data Rate) o doble tasa de transferencia de datos, que vienen integrados principalmente en tarjetas de memoria DIMM o SO-DIMM, usados en equipos de sobremesa y en portátiles, respectivamente.</p>
+
+        <p>Los encontramos en diferentes versiones, que podemos reconocer por el número de contactos y por la posición en la que tienen la muesca que les impide su colocación en un zócalo que no sea el de su tipo:</p>
+
+        <ul>
+          <li><strong>DDR:</strong> Son módulos de RAM que usan memorias síncronas (SDRAM), en encapsulados tipo DIMM, que permiten hacer dos transferencias simultáneas en un mismo ciclo de reloj. Tienen 184 pines en DIMM, y 200 en SO-DIMM. Se introdujeron en 1998.</li>
+          <li><strong>DDR2:</strong> Trabajan al doble de la frecuencia del reloj de memoria, por lo que durante cada ciclo de reloj se realizan cuatro transferencias. Tienen 240 pines en DIMM y 200 en SO-DIMM. Se introdujeron en 2003.</li>
+          <li><strong>DDR3:</strong> Pueden realizar ocho transferencias de datos por cada ciclo de reloj. Tienen 240 pines en DIMM y 204 en SO-DIMM. Se introdujeron en 2007.</li>
+          <li><strong>DDR4:</strong> No aumentan el número de transferencias por ciclo de reloj, manteniéndose en 8, pero aumentan la velocidad incrementando la frecuencia del reloj. Además, tienen mayor densidad (mayor capacidad de datos) y menores requisitos de voltaje. Usan encapsulados DIMM de 288 pines, y SO-DIMM de 260. Se introdujeron en 2014.</li>
+          <li><strong>DDR5:</strong> Las transferencias aumentan a 16 por ciclo y aumentan las frecuencias base de reloj, así como se reduce el voltaje de funcionamiento. Los módulos DDR5 incluyen módulo regulador de voltaje para alcanzar muy altas frecuencias. Se introdujeron en 2020.</li>
+        </ul>
+
+        <p>En la actualidad, los equipos domésticos usan memorias DDR5 o DDR4.</p>
+
+        <!-- Autoevaluación 5 -->
+        <article class="quiz-card" data-explanation="La memoria RAM se inserta físicamente en las ranuras o zócalos DIMM de la placa base. Las diferentes generaciones de DDR son incompatibles entre sí tanto física como eléctricamente gracias a la posición de sus muescas.">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">De las siguientes respuestas, señala la correcta.</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz5" class="quiz-option__input">
+                <span class="quiz-option__text">La memoria RAM viene integrada en la placa base para que funcione más rápido.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz5" class="quiz-option__input">
+                <span class="quiz-option__text">La memoria RAM hay que añadirla insertándola en los zócalos de la placa base.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz5" class="quiz-option__input">
+                <span class="quiz-option__text">La memoria DDR5 puede insertarse en un zócalo para DDR4 pero dándole la vuelta para que coincida la ranura.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz5" class="quiz-option__input">
+                <span class="quiz-option__text">La memoria DDR2 Y DDR3 pueden ponerse en los mismos zócalos porque tienen el mismo número de pines.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.6.- Dispositivos de almacenamiento I. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-6">
+        <h2 class="section-title">
+          <span>1.6.- Dispositivos de almacenamiento I.</span>
+          <a href="#seccion-1-6" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Los dispositivos de almacenamiento conforman lo que se llama memoria secundaria o masiva. Estos dispositivos se caracterizan por almacenar datos de manera permanente, en contraposición a la memoria principal o RAM. Además, si los comparamos con la memoria principal, estos dispositivos pueden tener capacidades muy superiores y ser más baratos en precio por bit, aunque su velocidad de transferencia y de acceso a los datos es inferior.</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig20_jerarquia_memoria.svg" alt="Pirámide y diagrama de jerarquía de memoria" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/0/0c/ComputerMemoryHierarchy.svg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Jerarquía de la memoria</figcaption>
+          </div>
+        </figure>
+      </section>
+
+      <!-- 1.7.- Dispositivos de almacenamiento II. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-7">
+        <h2 class="section-title">
+          <span>1.7.- Dispositivos de almacenamiento II.</span>
+          <a href="#seccion-1-7" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Algunos de los principales dispositivos de almacenamiento utilizados en los ordenadores actuales son:</p>
+
+        <ul>
+          <li><strong>Unidades SSD:</strong> Los SSD o "Unidades de Estado Sólido" son unidades de almacenamiento basadas en memoria flash que han desplazado a los discos duros tradicionales como el dispositivo de almacenamiento principal en los ordenadores. Su velocidad de transferencia de datos es muy alta y su tiempo de acceso a los datos muy reducido. Consumen poca energía y no generan ruido ni vibraciones. Se suelen utilizar para almacenar el sistema operativo y las aplicaciones que se usan con más frecuencia. Suelen comercializarse como tarjetas M.2 de tamaño reducido, o como unidades SATA de 2'5 pulgadas, con capacidades que alcanzan varios TB.</li>
+          <li><strong>Discos duros (HDD):</strong> Los discos duros mecánicos tradicionales se han utilizado desde hace décadas. La tecnología que usan para grabar y leer la información utiliza campos magnéticos. Su rendimiento es bastante inferior al de los SSD, por lo que se han visto relegados a un papel secundario. Su bajo coste y su alta capacidad, que puede llegar a decenas de TB, los hacen ideales para ser utilizados como almacenamiento de datos que no requieren una alta velocidad de acceso ni transferencias muy rápidas.</li>
+          <li><strong>Memorias USB (pendrives):</strong> Estos dispositivos están basados en memoria flash, como los SSD. Su pequeño tamaño y alta capacidad los hacen ideales para transportar datos entre distintos dispositivos. La mayoría de aparatos con puertos USB pueden leer información de estos dispositivos. Se suelen comercializar con capacidades de hasta 1 TB.</li>
+          <li><strong>Tarjetas de memoria:</strong> También son memorias de estado sólido, basadas en memoria flash. En su concepción son muy similares a las memorias USB, pero estas tarjetas requieren de un dispositivo lector de tarjetas para poder leer o escribir en ellas. Este lector de tarjetas puede estar integrado en un aparato o puede ser una unidad que se instala, como en un frontal de una torre de ordenador. Las tarjetas más populares son las SD y sus derivadas, y se suelen usar en cámaras de fotografía digitales y otros dispositivos portátiles. Suelen tener capacidades similares a las de los pendrives.</li>
+          <li><strong>Unidades de discos ópticos:</strong> Estas unidades son capaces de leer y a veces escribir distintos tipos de discos mediante tecnología óptica. Estos discos son los CD, DVD y BD. El uso de CD y DVD en ordenadores personales ha sido muy común en el pasado, pero cada vez se utilizan menos, en favor de otras alternativas como las memorias USB.</li>
+        </ul>
+
+        <!-- Autoevaluación 6 -->
+        <article class="quiz-card" data-explanation="Los SSD son el dispositivo preferente para albergar el sistema operativo y los programas principales gracias a sus velocidades de transferencia sumamente elevadas y sus tiempos de acceso mínimos.">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">¿Cuál de los siguientes dispositivos de almacenamiento se utiliza con más frecuencia para instalar el sistema operativo y las aplicaciones más utilizadas?</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz6" class="quiz-option__input">
+                <span class="quiz-option__text">El disco duro.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz6" class="quiz-option__input">
+                <span class="quiz-option__text">Las memorias USB.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz6" class="quiz-option__input">
+                <span class="quiz-option__text">Los SSD.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz6" class="quiz-option__input">
+                <span class="quiz-option__text">Las unidades de discos ópticos.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.8.- Tarjetas de expansión. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-8">
+        <h2 class="section-title">
+          <span>1.8.- Tarjetas de expansión.</span>
+          <a href="#seccion-1-8" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Las tarjetas de expansión son tarjetas que incluyen controladoras que pueden ampliar o mejorar las prestaciones de un equipo informático. Entre estas podemos encontrar tarjetas gráficas, tarjetas de red, tarjetas de sonido o tarjetas para la ampliación de puertos de almacenamiento.</p>
+
+        <p>Normalmente, las tarjetas de expansión se instalan en ranuras de expansión de la placa base de tipo PCI Express (abreviado PCIe o PCI-E), las cuales pueden tener distinto tamaño (entre x1 y x16) y distinto número de líneas de transmisión (también entre x1 y x16), siendo el número de líneas de transmisión siempre igual o menor al tamaño de la ranura. En equipos antiguos también es común ver ranuras PCI, estándar predecesor de PCle que prácticamente ya no se incluye en equipos nuevos.</p>
+
+        <p>En la siguiente imagen se muestran cuatro ranuras PCle de distintos tamaños y distinto número de líneas (indicado textualmente en la placa base). De arriba a abajo: PCIe x16 con 16 líneas, PCIe x1 con 1 línea, PCIe x1 con 1 línea, PCIe x16 con 4 líneas (nótese al ampliar la imagen que los conectores no recorren toda la ranura).</p>
+
+        <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig21_ranuras_pcie.jpg" alt="Ranuras PCI Express de distinto tamaño en placa base" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/0/0c/A790GXH-128M-Motherboard.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Ranuras PCle de distinto tamaño y número de líneas</figcaption>
+          </div>
+        </figure>
+
+        <p>Hay que tener en cuenta que PCle es un estándar de bus de comunicaciones en serie que no solamente se utiliza para las ranuras de expansión. También se utiliza, por ejemplo, en las ranuras M.2 de los SSD de tipo NVMe (normalmente con 4 líneas) o, en el caso de placas base de equipos AMD, para la comunicación entre la CPU y el chipset. Además, existen diversas versiones del estándar PCIe, cuya velocidad por línea se ha ido duplicando con cada versión. A pesar de ello, todas las versiones son compatibles entre sí, pudiéndose instalar una tarjeta PCIe 3.0x16 en una ranura PCIe 4.0x16 o una PCle 2.0x16, aunque en este último caso se reducirá el ancho de banda disponible para la tarjeta.</p>
+
+        <!-- Tabla versiones PCIe -->
+        <div class="table-wrapper">
+          <div class="table-scroll-hint"><span class="table-scroll-hint__icon">↔</span> Desliza horizontalmente para ver la tabla completa</div>
+          <table class="minimal-table">
+            <caption>Evolución y Anchos de Banda de PCI Express</caption>
+            <thead>
+              <tr>
+                <th scope="col">Versión</th>
+                <th scope="col">Introducción</th>
+                <th scope="col">Tasa de transferencia por línea</th>
+                <th scope="col">Ancho de banda (x1)</th>
+                <th scope="col">Ancho de banda (x4)</th>
+                <th scope="col">Ancho de banda (x8)</th>
+                <th scope="col">Ancho de banda (x16)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1.0</td>
+                <td>2003</td>
+                <td>2.5 GT/s</td>
+                <td>0.25 GB/s</td>
+                <td>1 GB/s</td>
+                <td>2 GB/s</td>
+                <td>4 GB/s</td>
+              </tr>
+              <tr>
+                <td>2.0</td>
+                <td>2007</td>
+                <td>5 GT/s</td>
+                <td>0.5 GB/s</td>
+                <td>2 GB/s</td>
+                <td>4 GB/s</td>
+                <td>8 GB/s</td>
+              </tr>
+              <tr>
+                <td>3.0</td>
+                <td>2010</td>
+                <td>8 GT/s</td>
+                <td>1 GB/s</td>
+                <td>4 GB/s</td>
+                <td>8 GB/s</td>
+                <td>16 GB/s</td>
+              </tr>
+              <tr>
+                <td>4.0</td>
+                <td>2017</td>
+                <td>16 GT/s</td>
+                <td>2 GB/s</td>
+                <td>8 GB/s</td>
+                <td>16 GB/s</td>
+                <td>31.5 GB/s</td>
+              </tr>
+              <tr>
+                <td>5.0</td>
+                <td>2019</td>
+                <td>32 GT/s</td>
+                <td>4 GB/s</td>
+                <td>16 GB/s</td>
+                <td>31.5 GB/s</td>
+                <td>63 GB/s</td>
+              </tr>
+              <tr>
+                <td>6.0</td>
+                <td>2022</td>
+                <td>64 GT/s</td>
+                <td>7.5 GB/s</td>
+                <td>30 GB/s</td>
+                <td>60.5 GB/s</td>
+                <td>121 GB/s</td>
+              </tr>
+              <tr>
+                <td>7.0</td>
+                <td>2025 (planeado)</td>
+                <td>128 GT/s</td>
+                <td>15 GB/s</td>
+                <td>60.5 GB/s</td>
+                <td>121 GB/s</td>
+                <td>242 GB/s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 1.8.1- Tarjetas gráficas. -->
+        <div id="seccion-1-8-1">
+          <h3 class="subsection-title">1.8.1- Tarjetas gráficas.</h3>
+
+          <p>Una tarjeta gráfica o tarjeta de vídeo es una tarjeta de expansión adicional que procesa la información de gráficos enviada por el procesador, generando imágenes que son enviadas a un dispositivo de salida como un monitor o un proyector. Igual que ocurre con la CPU, a la tarjeta gráfica a menudo se la llama GPU, aunque veremos que la GPU es un componente específico de la tarjeta.</p>
+
+          <p>La conexión de estos adaptadores o controladores gráficos a la placa base se hace actualmente a través de una ranura de expansión PCI Express (comúnmente escrito PCIe) de tamaño x16, ya que necesitan un bus rápido de comunicación. Hay modelos de procesadores (y antiguamente de placas base) que integran en su circuitería una controladora gráfica (llamada GPU integrada o iGPU) de suficiente calidad como para un uso normal del ordenador, pero que se queda escasa de potencia trabajando para aplicaciones que hagan un uso intensivo de representaciones gráficas, como por ejemplo juegos en 3D.</p>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig22_tarjeta_video.jpg" alt="Tarjeta gráfica dedicada con conector PCIe y puertos de vídeo" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=1200&q=80';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Puede apreciarse una tarjeta de video, tanto sus contactos internos (pci Express) como los externos en los que conectar el monitor.</figcaption>
+          </div>
+        </figure>
+
+          <p>Las tarjetas gráficas integran los siguientes componentes:</p>
+
+          <ul>
+            <li><strong>La GPU</strong> es un procesador dedicado en exclusiva al tratamiento de gráficos que libera al procesador central de esta tarea. Igualmente, necesita de sistemas para la disipación del calor que producen. También se le llama el "chip gráfico". Los principales fabricantes de GPU son Nvidia (chips GeForce), AMD (chips Radeon y gráficos integrado en sus procesadores) e Intel (chips Arc y gráficos integrados en sus procesadores).</li>
+            <li><strong>La memoria de vídeo o VRAM</strong> que incorporan es para uso exclusivo de la propia tarjeta. Esta memoria es similar a la RAM del ordenador, pero suele estar diseñada específicamente para tarjetas gráficas, para aumentar su rendimiento. Cuando el adaptador gráfico está integrado en el procesador se reserva para su uso particular una parte de la memoria RAM del ordenador, diciendo en ese caso que la iGPU usa memoria compartida con la CPU.</li>
+            <li><strong>EI RAMDAC</strong> es un conversor de señal digital a analógico. Su función es transformar las señales para que puedan ser reproducidas por monitores analógicos. Este componente sólo es necesario cuando se utiliza una señal de vídeo analógica como VGA. En la actualidad, la mayoría de monitores y tarjetas gráficas utilizan señales digitales como HDMI o DisplayPort, por lo que este componente ya no suele estar presente.</li>
+          </ul>
+
+          <p>Los puertos de conexión más habituales entre la tarjeta gráfica y el monitor son:</p>
+
+          <ul>
+            <li><strong>HDMI.</strong> Interfaz digital que transmite tanto vídeo como audio. Es muy popular en televisiones, videoconsolas y otros aparatos domésticos.</li>
+            <li><strong>DisplayPort (DP).</strong> Interfaz digital que también transmite vídeo y audio. Es muy popular en monitores de ordenador y tarjetas gráficas.</li>
+            <li><strong>DVI.</strong> Interfaz de vídeo digital que sólo transmite vídeo. Está quedando en desuso y a menudo ya no se incluye en productos nuevos.</li>
+            <li><strong>VGA.</strong> Interfaz de vídeo analógico que ha sido utilizado durante muchos años. Todavía hay monitores que lo incorporan, pero cada vez es más raro verlo en productos nuevos.</li>
+          </ul>
+
+          <!-- Autoevaluación 7 -->
+          <article class="quiz-card" data-explanation="La GPU es efectivamente el procesador de gráficos. Una tarjeta física puede combinar conectores analógicos y digitales (como VGA y HDMI), y tener gráficos integrados no impide añadir una tarjeta dedicada adicional en la ranura PCIe.">
+            <div class="quiz-card__header">
+              <span class="quiz-card__badge">Autoevaluación</span>
+            </div>
+            <h3 class="quiz-card__question">De las siguientes respuestas, señala las que son correctas.</h3>
+            <ul class="quiz-card__options">
+              <li class="quiz-option" data-correct="true">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">La GPU es el procesador de las tarjetas de vídeo.</span>
+                </label>
+              </li>
+              <li class="quiz-option" data-correct="false">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">Las tarjetas de vídeo integradas en el procesador con conector VGA no necesitan RAMDAC.</span>
+                </label>
+              </li>
+              <li class="quiz-option" data-correct="false">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">Si ya tengo el vídeo integrado en el procesador no puedo añadir una nueva tarjeta de vídeo.</span>
+                </label>
+              </li>
+              <li class="quiz-option" data-correct="true">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">Una misma tarjeta de vídeo puede tener conectores de salida de los tipos VGA y HDMI.</span>
+                </label>
+              </li>
+            </ul>
+            <div class="quiz-card__actions">
+              <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+              <button type="button" class="btn-reset-quiz">Reiniciar</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </article>
+        </div>
+
+        <!-- 1.8.2- Otras tarjetas de expansión. -->
+        <div id="seccion-1-8-2">
+          <h3 class="subsection-title">1.8.2- Otras tarjetas de expansión.</h3>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig23_tarjeta_sonido.jpg" alt="Tarjeta de sonido con conexiones jack analógicas y conector de expansión" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/9/96/Creative-Sound-Blaster-Live_82997-480x360_%284816933779%29.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Muestra una tarjeta de sonido con sus conexiones tanto internas, pci, como externas para los altavoces, micrófono, etc.</figcaption>
+          </div>
+        </figure>
+
+          <h4 class="sub-subsection-title">Tarjeta de sonido</h4>
+
+          <p>Una tarjeta de sonido es una tarjeta de expansión que permite la entrada y salida de audio a través de sus conectores. Normalmente se inserta en una ranura PCIe x1 o PCI, aunque la mayoría de modelos de placas base ya vienen con un adaptador de sonido integrado. Las tarjetas de sonido incorporan los conectores tipo mini jack de 3'5 mm que se necesitan para la conexión de los dispositivos de sonido.</p>
+
+          <p>Los conectores suelen venir codificados por colores:</p>
+
+          <ul>
+            <li><strong>Entrada analógica para micrófono:</strong> rosa.</li>
+            <li><strong>Entrada analógica "Line-In":</strong> azul.</li>
+            <li><strong>Salida analógica para la señal estéreo principal (altavoces frontales):</strong> verde.</li>
+            <li><strong>Salida analógica para altavoces traseros:</strong> negro.</li>
+            <li><strong>Salida analógica para altavoces laterales:</strong> plateado.</li>
+            <li><strong>Salida analógica para altavoz central y subwoofer:</strong> naranja.</li>
+            <li><strong>Salida Digital SPDIF:</strong> conector RCA naranja o conector óptico TOSLINK.</li>
+          </ul>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig24_tarjeta_red.jpg" alt="Tarjeta de red Ethernet con conector RJ-45" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/9/9e/Network_card.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Tarjeta de red Ethernet</figcaption>
+          </div>
+        </figure>
+
+          <h4 class="sub-subsection-title">Tarjeta de red</h4>
+
+          <p>Hoy día es extraño que un ordenador no disponga de adaptador/tarjeta de red, ya sea cableado (Ethernet), inalámbrico (Wi-Fi) o ambos simultáneamente. Esto permite a los ordenadores trabajar en red local y conectarse a Internet, usualmente a través de una conexión de fibra óptica, o de cable tipo DOCSIS o mediante ADSL donde la fibra no está disponible. Casi todas las placas base incluyen un adaptador de red integrado, por lo que no es necesario instalar una tarjeta a no ser que el adaptador integrado deje de funcionar.</p>
+
+          <figure class="figure-card">
+          <div class="figure-card__img-container">
+            <img src="img/fig25_ampliacion_puertos.jpg" alt="Tarjeta de ampliación de puertos USB 3.0 Type-C PCIe" class="figure-card__img" loading="lazy" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/c/cc/ASRock_USB-3_Type-C_PCIe-card.jpg';">
+            <button type="button" class="figure-card__zoom-btn" title="Ampliar imagen" aria-label="Ampliar imagen">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+          <div class="figure-card__meta">
+            <span class="figure-card__badge">Figura / Ilustración</span>
+            <figcaption class="figure-card__caption">Tarjetas de ampliación de puertos</figcaption>
+          </div>
+        </figure>
+
+          <h4 class="sub-subsection-title">Tarjetas de ampliación de puertos</h4>
+
+          <p>Son tarjetas que permiten aumentar la cantidad de puertos o conexiones disponibles en el equipo. Normalmente, estas tarjetas se conectan a una ranura PCIe, y proporcionan puertos externos como USB, o puertos internos como SATA o ranuras M.2.</p>
+
+          <!-- Autoevaluación 8 -->
+          <article class="quiz-card" data-explanation="Las tarjetas de sonido reproducen audio para altavoces o auriculares, muchas placas base ya traen chips integrados (audio, red) y es posible añadir adaptadores PCIe para disponer de ranuras M.2 adicionales.">
+            <div class="quiz-card__header">
+              <span class="quiz-card__badge">Autoevaluación</span>
+            </div>
+            <h3 class="quiz-card__question">De las siguientes afirmaciones sobre las tarjetas de expansión, señala las que sean correctas.</h3>
+            <ul class="quiz-card__options">
+              <li class="quiz-option" data-correct="true">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">Las tarjetas de sonido se utilizan para reproducir sonidos que se envían a los altavoces o a los auriculares.</span>
+                </label>
+              </li>
+              <li class="quiz-option" data-correct="true">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">Algunos adaptadores de expansión pueden ir integrados en la placa base.</span>
+                </label>
+              </li>
+              <li class="quiz-option" data-correct="false">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">Es necesario instalar una tarjeta de red dedicada para poder conectar un equipo en red local.</span>
+                </label>
+              </li>
+              <li class="quiz-option" data-correct="true">
+                <label class="quiz-option__label">
+                  <input type="checkbox" class="quiz-option__input">
+                  <span class="quiz-option__text">Si un equipo no tiene ranuras M.2, se puede instalar una tarjeta PCIe que los proporcione.</span>
+                </label>
+              </li>
+            </ul>
+            <div class="quiz-card__actions">
+              <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+              <button type="button" class="btn-reset-quiz">Reiniciar</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 1.9.- Periféricos de entrada I. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-9">
+        <h2 class="section-title">
+          <span>1.9.- Periféricos de entrada I.</span>
+          <a href="#seccion-1-9" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Los periféricos de entrada son todos aquellos que puede utilizar el usuario para introducir información al ordenador. Para ello será necesario que estén conectados al ordenador de alguna de las formas posibles. La mayoría de las conexiones utilizadas, sobre todo en dispositivos de bajo consumo, reciben la alimentación necesaria a través del propio conector, como en el caso del teclado. Pero otros dispositivos cuyo consumo será mayor necesitan tener su propia fuente de alimentación, como por ejemplo algunos escáneres.</p>
+
+        <h3 class="subsection-title">Teclado</h3>
+        <p>Es una de las unidades de entrada más habituales y casi imprescindibles que utilizamos para enviar información al ordenador mediante la pulsación de sus teclas. Nos permite escribir textos, números y enviar señales de control. Su modo de funcionamiento normalmente incluye que lo tecleado aparezca automáticamente en la pantalla, y así comprobar que se ha tecleado lo correcto. Se conecta al ordenador por medio de un conector USB, o en teclados antiguos uno de tipo PS/2. También los hay inalámbricos que necesitan dos terminales con emisor y receptor, uno de ellos en el propio teclado y el otro que debe estar conectado al ordenador por medio de conector USB o PS/2. Además, entre los inalámbricos nos encontramos los que utilizan tecnología bluetooth, que pueden aprovechar los emisores ya incorporados en el ordenador.</p>
+
+        <h3 class="subsection-title">Ratón</h3>
+        <p>El ratón es un pequeño dispositivo que al ser desplazado por una superficie plana mueve sobre la pantalla un cursor que lo representa, reflejando sus movimientos. Dependiendo del modelo, un ratón puede tener dos o más botones, e incluso una o varias ruedas de desplazamiento, que permiten dar diversas órdenes en función del botón pulsado y del número de pulsaciones. El cursor, que suele tener aspecto de flecha, se utiliza para señalar los objetos gráficos que aparecen en la pantalla. Para su conexión al ordenador se utiliza un conector USB o PS/2 en modelos antiguos. También como los teclados, pueden ser inalámbricos, incluso hay modelos que pueden compartir el mismo transmisor base con el teclado.</p>
+
+        <h3 class="subsection-title">Joysticks y gamepads</h3>
+        <p>El joystick o palanca de mando es un periférico similar al ratón en cuanto que transmite los movimientos que realicemos con él al ordenador. Se utiliza sobre todo en juegos para dirigir el movimiento de personajes o de objetos como aviones, coches, etc. El gamepad es un mando de videojuegos más moderno, con multitud de botones y palancas de control analógicas y digitales. Se suelen conectar al ordenador mediante el puerto USB, habiendo mandos con cable e inalámbricos.</p>
+
+        <h3 class="subsection-title">Escáner</h3>
+        <p>Se utiliza para explorar documentos, fotografías, dibujos, etc. y obtener su representación digital. El proceso de digitalizar consiste en tomar información de cada uno de los puntos de la superficie de un objeto y representarlos con valores binarios para generar un duplicado virtual que pueda procesar el ordenador. Utiliza un cabe de tipo USB para conectarse al ordenador. En algunos modelos necesita toma de corriente eléctrica para su propia alimentación. Existen diferentes tipos de escáner: de sobremesa, de rodillo, de mano, de tambor, cenital, etc.</p>
+      </section>
+
+      <!-- 1.10.- Periféricos de entrada II. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-10">
+        <h2 class="section-title">
+          <span>1.10.- Periféricos de entrada II.</span>
+          <a href="#seccion-1-10" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Otros periféricos de entrada que permiten introducir información al ordenador son:</p>
+
+        <h3 class="subsection-title">Lectores de códigos de barras y códigos QR</h3>
+        <p>Hay lectores de mano y lectores fijos. Ambos son escáneres especializados en la tarea de leer e interpretar códigos de barras o QR. No se utilizan para obtener el dibujo de los códigos que escanean, sino el valor numérico, textual o binario que representan. Según los modelos existen varias posibilidades de conexión al ordenador: USB, puerto serie, Wi-Fi, bluetooth, incluso directamente al antiguo puerto serie del teclado por medio de un adaptador.</p>
+
+        <h3 class="subsection-title">Tableta gráfica o tableta digitalizadora</h3>
+        <p>Es un periférico que permite introducir gráficos o dibujos a mano, como si se hiciera con lápiz y papel. Se trata de una tablilla plana especial sobre la que el usuario simula escribir utilizando el estilete (o lapicero) que le acompaña, aunque en realidad los trazos van apareciendo sobre la pantalla del ordenador. Algunas tabletas tienen delimitadas zonas de actuación especial que actúan como botones al ser tocados con el lápiz, e incluso pueden utilizarse como un ratón de gran precisión ya que permite apuntar y seleccionar los objetos que se encuentran en la pantalla. Las tabletas digitalizadoras actuales suelen conectarse al ordenador mediante USB, aunque hay modelos que lo hacen mediante bluetooth o Wi-Fi.</p>
+
+        <h3 class="subsection-title">Micrófono</h3>
+        <p>Es un dispositivo que permite la introducción de sonidos al ordenador como música, señales acústicas o la propia voz. Su conexión se hace a través de un conector llamado mini-jack, proporcionado por la tarjeta de sonido, que debe estar incluida en el ordenador para que pueda ser utilizado. También existe otro tipo de micrófonos que se conectan directamente al puerto USB y se comportan como un dispositivo de grabación de voz, sin necesidad de tarjeta de sonido, ya que ésta va incluida dentro del propio dispositivo.</p>
+
+        <h3 class="subsection-title">Cámaras web o de red</h3>
+        <p>Dispositivo cuya utilidad es captar imágenes y codificarlas en formato binario para que puedan ser procesadas por el ordenador. Estas capturas pueden ser almacenadas como imágenes estáticas o como vídeo en movimiento. En la actualidad distinguimos dos tipos de cámaras: las llamadas cámaras web, que necesitan un ordenador para transmitir las imágenes al que se conectan mediante USB; o las llamadas cámaras de red, que se conectan a un punto de red, de forma cableada o inalámbrica. La mayoría de los actuales ordenadores portátiles ya llevan incorporada una diminuta cámara web en su propia carcasa. También existen las cámaras fotográficas y de vídeo digitales, que aún trabajando de forma independiente, pueden conectarse al ordenador por medio de cables USB o de manera inalámbrica para descargar en él sus fotos y vídeos capturados.</p>
+
+        <aside class="callout callout--more-info">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <h3 class="callout__title">Para saber más</h3>
+          </div>
+          <div class="callout__body">
+            <p>Para que tengas una información más completa sobre las unidades de entrada que hemos tratado.</p>
+            <ul>
+              <li>Enlace a información más completa sobre teclados.</li>
+              <li>Enlace a información más completa sobre ratones.</li>
+              <li>Enlace a información más completa sobre joystick.</li>
+              <li>Enlace a información más completa sobre escáner.</li>
+              <li>Enlace a información más completa sobre lectores de código de barras.</li>
+              <li>Enlace a información más completa sobre tabletas digitalizadoras.</li>
+              <li>Enlace a información más completa sobre micrófonos.</li>
+              <li>Enlace a información más completa sobre cámaras web.</li>
+            </ul>
+          </div>
+        </aside>
+
+        <p>Aunque de uso menos frecuente, podemos citar otros periféricos de entrada como:</p>
+
+        <ul>
+          <li>Lectores de marcas ópticas que identifican marcas de lápiz en test, en impresos, etc.</li>
+          <li>Lectores magnéticos de tarjetas: de crédito, de DNI, etc.</li>
+          <li>Lectores de huellas digitales, o del iris del ojo humano, etc.</li>
+          <li>Capturadores de señales analógicas procedentes de sensores de humo, o de inundación, de detectores de presencia, o de temperatura, etc. que las convierten en señales digitales para su tratamiento informático. Son utilizadas en la industria o en los hogares para modificar las condiciones ambientales.</li>
+        </ul>
+
+        <!-- Autoevaluación 9 -->
+        <article class="quiz-card" data-explanation="El estándar USB es el puerto universal predominante hoy en día para conectar teclados, ratones, escáneres, cámaras y demás periféricos de entrada.">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">¿Cuál es el puerto de conexión habitual para conectar los periféricos de entrada actualmente?</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz9" class="quiz-option__input">
+                <span class="quiz-option__text">El mini-din.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz9" class="quiz-option__input">
+                <span class="quiz-option__text">El eSerie.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz9" class="quiz-option__input">
+                <span class="quiz-option__text">EI USB.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz9" class="quiz-option__input">
+                <span class="quiz-option__text">El paralelo.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.11.- Periféricos de salida I. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-11">
+        <h2 class="section-title">
+          <span>1.11.- Periféricos de salida I.</span>
+          <a href="#seccion-1-11" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Los periféricos de salida son todos aquellos mediante los cuales el usuario puede obtener información del ordenador. Junto con los periféricos de entrada, son los elementos de comunicación entre el hombre y la máquina. A continuación vamos a ver algunos de los más habituales.</p>
+
+        <h3 class="subsection-title">El monitor</h3>
+
+        <p>El monitor o pantalla de ordenador es un dispositivo que muestra la interfaz proporcionada por los programas para que interactuemos con ellos. Mediante esta interfaz visual que permite la interacción hombre/máquina podemos hacer que se ejecuten programas al pulsar sobre sus iconos y atender a las peticiones que estos nos hagan y, por supuesto, ver sus resultados. También nos permite ver los datos mientras los introducimos por el teclado o los movimientos del puntero cuando movemos el ratón. Existen varios tipos de monitores según su tecnología:</p>
+
+        <ul>
+          <li><strong>Monitores CRT o de Tubo de Rayos Catódicos.</strong> Ya es muy difícil encontrarlos por su gran tamaño, peso y menor calidad de imagen.</li>
+          <li><strong>Monitores LCD (Liquid Crystal Display).</strong> Pantallas planas de cristal líquido, normalmente retroiluminadas mediante LEDs. Dentro de este grupo podemos citar los Monitores LCD de matriz activa, más conocidos como monitores TFT (Thin Film Transistor o "capa fina de transistor"), y dentro de estos hay tres tipos básicos de paneles: los IPS, los TN y los VA, cada uno con sus ventajas e inconvenientes.</li>
+          <li><strong>Monitores OLED.</strong> Las pantallas OLED no están retroiluminadas, sino que cada píxel se enciende y apaga de manera independiente a los demás. Esto permite tener un mejor contraste de imagen. Por otro lado, el brillo máximo que alcanzan es menor y su precio es más elevado.</li>
+        </ul>
+
+        <p>Como características de los monitores podemos citar:</p>
+
+        <ul>
+          <li><strong>Tamaño del monitor.</strong> Expresa la longitud de su diagonal medida en pulgadas. Para LCD son populares los tamaños entre 17 y 32 pulgadas.</li>
+          <li><strong>Resolución.</strong> En un monitor, cuanto mayor sea su resolución, mejor será la calidad de la imagen en su pantalla. La resolución representa el número total de puntos que puede representar la pantalla, se expresa como el producto de dos números [horizontal x vertical]. Así, que un monitor tenga una resolución máxima de 1024x768 puntos quiere decir que puede representar hasta 768 líneas horizontales de 1024 puntos cada una, pudiendo además representar otras resoluciones inferiores, como son 800x600 o 640x480. Las resoluciones más comunes en la actualidad suelen estar entre 1366x768 (portátiles y monitores antiguos o de baja calidad) hasta 3840x2160 (conocida como "4K").</li>
+          <li><strong>Tasa de refresco.</strong> Indica el número de veces por segundo que se actualiza la imagen mostrada, en hercios (Hz). A mayor tasa de refresco, los movimientos y animaciones se ven con más fluidez. Los monitores básicos tienen 60 Hz, pero también hay monitores con altas tasas de refresco, como 144, 165, 240 o más Hz, utilizados sobre todo para videojuegos.</li>
+        </ul>
+
+        <p>En cuanto a la conexión de los monitores al ordenador, puede ser de tipo analógico, que era lo común en los monitores de tipo CRT, pero desde que se han impuesto los monitores digitales ya no es necesario convertir la señal de salida de las tarjetas de vídeo en analógica y la conexión se puede efectuar directamente en digital.</p>
+
+        <p>La conexión de los monitores en analógico se hace mediante conectores VGA, y en digital mediante conectores HDMI, DisplayPort y en menor medida DVI-D (en desuso).</p>
+
+        <h3 class="subsection-title">Los altavoces</h3>
+
+        <p>Se utilizan para reproducir sonidos, voces, música, etc. a través de la tarjeta de sonido a la que deben estar conectados. Pueden sustituirse por unos auriculares. También existen altavoces que se conectan por USB, que no requieren tarjeta de sonido porque ellos mismos lo procesan.</p>
+      </section>
+
+      <!-- 1.12.- Periféricos de salida II. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-12">
+        <h2 class="section-title">
+          <span>1.12.- Periféricos de salida II.</span>
+          <a href="#seccion-1-12" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Una de las unidades de salida más utilizada junto con los monitores es la impresora.</p>
+
+        <h3 class="subsection-title">Impresora</h3>
+
+        <p>Una impresora es un periférico de salida que permite plasmar sobre papel información procedente del ordenador. Se puede considerar a la impresora como el periférico más antiguo, incluso más que el teclado o el monitor. Debe ser por eso que existe tanta variedad de impresoras. Antiguamente utilizaba un puerto de conexión propio, el puerto paralelo, pero desde hace años las impresoras utilizan un puerto USB o se conectan mediante la red local, ya sea de manera cableada o inalámbrica.</p>
+
+        <p>Pueden estar dedicadas a un solo ordenador o compartidas entre varios, y pueden ser dispositivos únicos o multifunción cuando van unidos en la misma carcasa a un escáner o a un fax. Necesitan de un cable o fuente de alimentación eléctrica para abastecerse de energía.</p>
+
+        <h3 class="subsection-title">Plóter</h3>
+
+        <p>El plóter, también llamado trazador gráfico o lineal. Es un periférico utilizado para imprimir diseños de grandes dimensiones y con gran calidad. Muchos modelos permiten el uso de rollos de papel de gran ancho para la impresión de planos, mapas, carteles, patrones a tamaño real, etc.</p>
+
+        <p>Una variedad de plóter son las cortadoras industriales, usadas para cortar patrones de confección o para cortar piezas metálicas u otros materiales como el metacrilato. En ellas se sustituye la tinta por un láser de corte. Los plóteres actuales se conectan a la red y se controlan mediante una interfaz Ethernet, de forma que pueden estar compartidos entre varios ordenadores.</p>
+
+        <aside class="callout callout--more-info">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <h3 class="callout__title">Para saber más</h3>
+          </div>
+          <div class="callout__body">
+            <p>Para que tengas una información más completa sobre las unidades de salida que hemos tratado, sigue los enlaces que te facilitamos a continuación:</p>
+            <ul>
+              <li>Enlace a información más completa sobre monitores.</li>
+              <li>Enlace a información más completa sobre altavoces.</li>
+              <li>Enlace a información más completa sobre impresoras.</li>
+              <li>Enlace a información más completa sobre plóteres.</li>
+            </ul>
+          </div>
+        </aside>
+
+        <p>Además podemos citar los convertidores digital-analógico que convierten las señales digitales que proporciona el ordenador en analógicas para el control de ciertos dispositivos. Por ejemplo en domótica permiten subir o bajar persianas, encender o apagar luces, etc. Comentar que la mayoría de los robots industriales son dispositivos de salida que realizan determinadas tareas controladas por programas desde el ordenador al que estén conectados.</p>
+
+        <!-- Autoevaluación 10 -->
+        <article class="quiz-card" data-explanation="Todas las afirmaciones definen fielmente las características y propósitos de los periféricos de salida: transmitir datos del ordenador al usuario, convertir señales binarias en formatos humanos e interactuar mediante medios multimedia (pantalla, sonido, papel).">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">De las siguientes afirmaciones sobre los periféricos de salida, ¿cuál es la correcta?</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz10" class="quiz-option__input">
+                <span class="quiz-option__text">Se llaman periféricos de salida porque con ellos el usuario puede obtener la información que el ordenador proporciona.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz10" class="quiz-option__input">
+                <span class="quiz-option__text">Tienen la capacidad de convertir la información interna, en binario, a representaciones más comprensibles por el ser humano.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz10" class="quiz-option__input">
+                <span class="quiz-option__text">Son aquellos periféricos que presentan al usuario la información en formato multimedia (imágenes, sonido, etc.).</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz10" class="quiz-option__input">
+                <span class="quiz-option__text">Todas las anteriores son correctas.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- 1.13.- Periféricos de entrada/salida. -->
+      <section class="study-section fade-in-on-scroll" id="seccion-1-13">
+        <h2 class="section-title">
+          <span>1.13.- Periféricos de entrada/salida.</span>
+          <a href="#seccion-1-13" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Son aquellos periféricos que cumplen las dos funciones, la de introducir datos al ordenador y la de extraer datos bien sea para enviarlos a otro ordenador, para guardarlos de forma estable hasta que sean necesitados de nuevo o simplemente para ser mostrados al usuario del ordenador.</p>
+
+        <p>Entre estos dispositivos encontramos:</p>
+
+        <ul>
+          <li>Pantallas táctiles y pizarras digitales interactivas.</li>
+          <li>Periféricos para el envío y recepción de información, como tarjetas de red, módems o faxes.</li>
+          <li>Periféricos para el almacenamiento de información, como unidades de estado sólido SSD, memorias USB, lectores de tarjetas de memoria, discos duros, unidades de discos ópticos o unidades de cintas magnéticas.</li>
+        </ul>
+
+        <!-- Autoevaluación 11 -->
+        <article class="quiz-card" data-explanation="La webcam es un dispositivo exclusivamente de entrada (captura imágenes hacia el ordenador), a diferencia de pizarras interactivas, discos duros o grabadoras ópticas que leen y escriben datos.">
+          <div class="quiz-card__header">
+            <span class="quiz-card__badge">Autoevaluación</span>
+          </div>
+          <h3 class="quiz-card__question">¿Cuál de las siguientes no es una unidad de entrada/salida?</h3>
+          <ul class="quiz-card__options">
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz11" class="quiz-option__input">
+                <span class="quiz-option__text">Una pizarra digital interactiva.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz11" class="quiz-option__input">
+                <span class="quiz-option__text">Un disco duro.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="true">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz11" class="quiz-option__input">
+                <span class="quiz-option__text">Una webcam.</span>
+              </label>
+            </li>
+            <li class="quiz-option" data-correct="false">
+              <label class="quiz-option__label">
+                <input type="radio" name="quiz11" class="quiz-option__input">
+                <span class="quiz-option__text">Una grabadora de DVD.</span>
+              </label>
+            </li>
+          </ul>
+          <div class="quiz-card__actions">
+            <button type="button" class="btn-check-quiz">Comprobar respuesta</button>
+            <button type="button" class="btn-reset-quiz">Reiniciar</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </article>
+      </section>
+
+      <!-- Anexo I.- Clasificación de ordenadores. -->
+      <section class="study-section fade-in-on-scroll" id="anexo-1">
+        <h2 class="section-title">
+          <span>Anexo I.- Clasificación de ordenadores.</span>
+          <a href="#anexo-1" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>La base de todo ordenador es el procesador, que es su cerebro, es lo que lo define como tal. El resto de componentes que se le conectan no son más que dispositivos mediante los que se alimenta de energía o que le permiten interactuar con su entorno y en el que nos incluimos sus usuarios.</p>
+
+        <p>Vamos a clasificarlos por su tamaño, de mayor a menor, en cinco tipos:</p>
+
+        <ul>
+          <li>Superordenador o supercomputador.</li>
+          <li>Mainframe, macrocomputadora u ordenador central.</li>
+          <li>Minicomputadora o miniordenador.</li>
+          <li>Workstation o estación de trabajo</li>
+          <li>Ordenador Personal (PC) o microordenador.</li>
+        </ul>
+
+        <h3 class="subsection-title">Superordenador o supercomputador.</h3>
+
+        <p>Un superordenador es un ordenador extraordinariamente rápido con capacidades de proceso, de cálculo, y de almacenamiento, etc. muy superiores tecnológicamente comparado con el resto de ordenadores construidos en la misma época. Físicamente son de gran tamaño. Deben ser instalados en ambientes controlados para poder disipar el calor producido por sus componentes, lo que no impide que puedan soportar la conexión en línea de miles de usuarios.</p>
+
+        <p>Suelen incorporar miles de procesadores de gran capacidad de proceso trabajando conjuntamente, en paralelo, destinados a una tarea específica. El número de procesadores, dependiendo del modelo, varía en un rango muy amplio. En 2022 los principales superordenadores del mundo tienen cerca de 10 millones de núcleos. Por supuesto también cuentan con una generosa cantidad de memoria y con gran capacidad de almacenamiento. Esto les permite procesar ingentes cantidades de información en poco tiempo, pudiendo llegar a miles de PFlop/s, que son "Peta operaciones en coma flotante por segundo", siendo el prefijo "Peta" igual a 10^15. Están diseñados para desarrollar cálculos complicados a gran velocidad.</p>
+
+        <p>Por ello son utilizados para realizar simulaciones de procesos muy complejos con una gran cantidad de datos como por ejemplo, el análisis del genoma humano, la simulación de explosiones nucleares, las predicciones meteorológicas o astronómicas, simulaciones de dinámica molecular, etc. Pero también son utilizados para diseñar y probar virtualmente máquinas complejas como automóviles o aviones, y para controlar el funcionamiento de naves espaciales y satélites, entre otras cosas. Como también tienen un costo excesivo en comparación con otros ordenadores, se suelen fabricar muy pocos.</p>
+
+        <h3 class="subsection-title">Mainframe, macrocomputadora u ordenador central.</h3>
+
+        <p>Los mainframes son grandes ordenadores, de uso general, que disponen de varios procesadores que pueden trabajar de forma independiente entre sí, pudiendo así ejecutar varias tareas a la vez. Están preparados para realizar millones de operaciones por segundo. Su gran capacidad de proceso les permite, por un lado, controlar al mismo tiempo a cientos de usuarios, incluso a miles, y por otro controlar el manejo de puertos de entrada salida, dando soporte a cientos de dispositivos de entrada y salida, gracias a lo cual pueden contar con muchas unidades de almacenamiento que les permiten almacenar grandes cantidades de información.</p>
+
+        <p>Físicamente hoy en día un mainframe tiene la apariencia de una fila de archivadores, similares a los de una biblioteca, que se suelen instalar en una habitación, con control de temperatura y con doble suelo, bajo el cual se aloja la inmensa cantidad de cables necesarios para la conexión de los ordenadores y la infraestructura de red.</p>
+
+        <p>En comparación con un superordenador, un mainframe es mucho más barato y suelen ejecutar simultáneamente mayor número de programas, pero los superordenadores pueden ejecutar un solo programa mucho más rápido. Son utilizados en las empresas de gran tamaño, con muchas sucursales, como bancos, compañías de transportes, etc.</p>
+
+        <h3 class="subsection-title">Minicomputadora o miniordenador.</h3>
+
+        <p>Son la versión reducida de un mainframe, con menos prestaciones en velocidad, menos memoria, menor capacidad de almacenamiento y menor número de terminales. Están orientadas a tareas específicas. Fueron ideadas para dar servicio a empresas e instituciones, de menor tamaño, que no necesitan toda la capacidad de proceso, ni todos los periféricos de un mainframe.</p>
+
+        <p>Un minicomputador es, por tanto, un sistema multiproceso y multiusuario que ofrece servicios específicos, que cuenta con capacidad para soportar hasta 200 usuarios conectados simultáneamente y que soporta un número limitado de dispositivos. Siendo, de un relativo pequeño tamaño y pequeño costo, en comparación con un mainframe. Se suelen utilizar para el almacenamiento de grandes bases de datos, para control automático en la industria y para aplicaciones multiusuario. Esta categoría de minicomputadoras fue popular entre los 60s y 90s del siglo pasado, pero se puede considerar que se ha extinguido y ya no suele usar esta denominación.</p>
+
+        <h3 class="subsection-title">Workstation o estación de trabajo</h3>
+
+        <p>Una estación de trabajo es un ordenador de gran potencia para ser usado por un sólo usuario. Es parecido a un ordenador personal pero con mejores componentes, que le proporcionan mayor potencia y mayor calidad, y que normalmente se conectan a un ordenador más grande a través de una red, permitiendo a los usuarios compartir ficheros, aplicaciones y hardware, como por ejemplo las impresoras o almacenamiento remoto.</p>
+
+        <p>Las estaciones de trabajo se suelen utilizar para:</p>
+
+        <ul>
+          <li>Aplicaciones de ingeniería.</li>
+          <li>CAD (diseño asistido por ordenador).</li>
+          <li>CAM (manufactura asistida por ordenador).</li>
+          <li>Diseño de publicidad.</li>
+          <li>Programación de software.</li>
+        </ul>
+
+        <h3 class="subsection-title">Ordenador personal (PC) o microordenador.</h3>
+
+        <p>Conocido como PC (del inglés, Personal Computer), es un ordenador de propósito general, de pequeño tamaño, con al menos un procesador, que suele disponer de ratón y teclado para introducir datos, de un monitor para mostrar la información, y de algún dispositivo de almacenamiento en el que instalar el sistema operativo y guardar datos y programas. Además, admite la conexión de otros periféricos con múltiples y variadas funcionalidades.</p>
+
+        <p>Son los ordenadores más accesibles para cualquier tipo de usuario en cuanto a coste y facilidad de uso. En sus inicios solo podían trabajar en modo monousuario, pero con los avances tecnológicos ahora ya pueden ser utilizados en modo multiusuario e incluso como servidores de una red de ordenadores.</p>
+
+        <p>Los PC tuvieron su origen gracias a la creación de los microprocesadores por parte de Intel, y a que IBM los incorporó en unos pequeños ordenadores que con el tiempo se estandarizaron, facilitando que otras compañías también pudieran fabricarlos y comercializarlos a precios asequibles al gran público. Se conoce como ordenador personal a todos los ordenadores IBM PC y a los modelos similares compatibles, también a los ordenadores Macintosh de Apple y a los modelos similares posteriores.</p>
+
+        <aside class="callout callout--more-info">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <h3 class="callout__title">Para saber más</h3>
+          </div>
+          <div class="callout__body">
+            <p>La TOP500 elabora cada seis meses un listado actualizado con los superordenadores más potentes del mundo. Puedes visitar el siguiente enlace para ver cómo son los superordenadores actuales y qué potencia y características tienen.</p>
+            <ul>
+              <li>Top500 superordenadores más potentes del mundo.</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Anexo II.- Principales conectores de la placa base. -->
+      <section class="study-section fade-in-on-scroll" id="anexo-2">
+        <h2 class="section-title">
+          <span>Anexo II.- Principales conectores de la placa base.</span>
+          <a href="#anexo-2" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <aside class="callout callout--recommendation">
+          <div class="callout__header">
+            <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <h3 class="callout__title">Recomendación</h3>
+          </div>
+          <div class="callout__body">
+            <p>Casi todos los fabricantes de placas base comerciales mantienen sitios web con información de todas sus placas base. En estos sitios web se puede encontrar información básica de la placa, sus especificaciones completas, listados de compatibilidad con procesadores y módulos de RAM, descargas de manuales, drivers y actualizaciones de la BIOS, entre otros. Una buena actividad de aprendizaje es descargarse el manual de nuestra placa base desde la sección de soporte de la web oficial del fabricante y estudiar sus especificaciones, componentes y demás.</p>
+          </div>
+        </aside>
+
+        <p>La placa base está compuesta por una gran cantidad de componentes y conectores. Normalmente, junto a cada conector se serigrafía su nombre para identificarlo fácilmente.</p>
+
+        <p>Además, en el manual de la placa base se incluye un diagrama con todos sus conectores.</p>
+
+        <h3 class="subsection-title">Zócalo (o socket) del procesador</h3>
+
+        <p>Según la forma de inserción del procesador, actualmente existen dos tipos de procesadores:</p>
+
+        <ul>
+          <li><strong>Procesadores PGA (Pin Grid Array)</strong>, con zócalos también llamados a veces ZIF (Zero Insertion Force). Estos zócalos tienen un mecanismo que permite introducir las patillas del procesador sin hacer presión para evitar que pueda estropearse. Una palanca que gira hace que se ajusten los contactos. Para su retirada, el movimiento contrario de la palanca hace que el procesador quede suelto y pueda ser retirado sin esfuerzo. La mayoría de procesadores de AMD hasta la familia zen3 son de este tipo.</li>
+          <li><strong>Procesadores LGA (Land Grid Array).</strong> En este caso los pines se encuentran en el propio zócalo mientras que los contactos del procesador son lisos. También hay una palanca que ajusta el procesador al zócalo con ayuda de una especie de marco metálico que lo rodea manteniéndolo inmovilizado. La mayoría de los procesadores de Intel y los zen4 de AMD son de este tipo.</li>
+        </ul>
+
+        <p>Según el número de contactos y su distribución en el conector tendríamos una clasificación bastante amplia de procesadores. La clasificación también depende del fabricante (AMD o Intel) y de sus gamas de modelos. Veamos a continuación los principales zócalos empleados por ambos fabricantes para equipos de escritorio:</p>
+
+        <div class="table-wrapper">
+          <div class="table-scroll-hint"><span class="table-scroll-hint__icon">↔</span> Desliza horizontalmente para ver la tabla completa</div>
+          <table class="minimal-table">
+            <caption>Principales zócalos de procesador para equipos de escritorio</caption>
+            <thead>
+              <tr>
+                <th scope="col">Año</th>
+                <th scope="col">Zócalo</th>
+                <th scope="col">Compañía</th>
+                <th scope="col">Familia de procesadores</th>
+                <th scope="col">Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2004</td>
+                <td>LGA 775</td>
+                <td>Intel</td>
+                <td>Pentium 4, Celeron, Core 2...</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2006</td>
+                <td>AM2</td>
+                <td>AMD</td>
+                <td>Athlon 64, Athlon 64 X2...</td>
+                <td>PGA</td>
+              </tr>
+              <tr>
+                <td>2007</td>
+                <td>AM2+</td>
+                <td>AMD</td>
+                <td>Athlon 64, Athlon 64 X2...</td>
+                <td>PGA</td>
+              </tr>
+              <tr>
+                <td>2008</td>
+                <td>LGA 1366</td>
+                <td>Intel</td>
+                <td>Core i7 (900 series), Xeon...</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2009</td>
+                <td>AM3</td>
+                <td>AMD</td>
+                <td>Phemon II, Athlon II, Sempron, Opteron</td>
+                <td>PGA</td>
+              </tr>
+              <tr>
+                <td>2009</td>
+                <td>LGA 1156</td>
+                <td>Intel</td>
+                <td>Nehalem (1ª gen)</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2011</td>
+                <td>LGA 1155</td>
+                <td>Intel</td>
+                <td>Sandy Bridge (2ª gen), Intel Ivy Bridge (3ª gen)</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2011</td>
+                <td>AM3+</td>
+                <td>AMD</td>
+                <td>FX Vishera, FX Zambezi, Phenom II, Athlon II, Sempron</td>
+                <td>PGA</td>
+              </tr>
+              <tr>
+                <td>2012</td>
+                <td>FM2</td>
+                <td>AMD</td>
+                <td>Trinity</td>
+                <td>PGA</td>
+              </tr>
+              <tr>
+                <td>2013</td>
+                <td>LGA 1150</td>
+                <td>Intel</td>
+                <td>Haswell (4ª gen), Broadwell (5ª gen)</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2014</td>
+                <td>FM2+</td>
+                <td>AMD</td>
+                <td>Kaveri, Godavari</td>
+                <td>PGA</td>
+              </tr>
+              <tr>
+                <td>2015</td>
+                <td>LGA 1151</td>
+                <td>Intel</td>
+                <td>Skylake (6ª gen), Kaby Lake (7ª gen), Coffee Lake (8ª gen), Coffee Lake Refresh (9ª gen)</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2017</td>
+                <td>AM4</td>
+                <td>AMD</td>
+                <td>Zen (Ryzen 1000), Zen+ (Ryzen 2000), Zen2 (Ryzen 3000), Zen3 (Ryzen 5000)</td>
+                <td>PGA</td>
+              </tr>
+              <tr>
+                <td>2020</td>
+                <td>LGA 1200</td>
+                <td>Intel</td>
+                <td>Comet Lake (10ª gen), Rocket Lake (11ª gen)</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2021</td>
+                <td>LGA 1700</td>
+                <td>Intel</td>
+                <td>Alder Lake (12ª gen), Raptor Lake (13ª gen)</td>
+                <td>LGA</td>
+              </tr>
+              <tr>
+                <td>2022</td>
+                <td>AM5</td>
+                <td>AMD</td>
+                <td>Zen4 (Ryzen 7000)</td>
+                <td>LGA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Zócalos o ranuras de memoria</h3>
+
+        <p>Estos conectores son estrechos y alargados, de unos 13,3 centímetros. Tienen unas pestañas en los extremos que sujetan los módulos de memoria al ser insertados, verticalmente, con una ligera presión. Suelen tener algún resalte que obliga a colocar los módulos de memoria con su muesca en la posición correcta, de manera que sea imposible instalar un módulo incompatible. El número de contactos de cada ranura varía en función del tipo de memoria soportada por la placa base que, por supuesto, debe coincidir con el número de contactos del módulo de memoria.</p>
+
+        <p>En la actualidad se usan módulos de memoria tipo DIMM con 5 variantes:</p>
+
+        <ul>
+          <li>DIMM de 168 pines, para memoria SDRAM.</li>
+          <li>DIMM de 184 pines, para memoria DDR.</li>
+          <li>DIMM de 240 pines, para memoria DDR2 o DDR3.</li>
+          <li>DIMM de 288 pines, para memoria DDR4 o DDR5.</li>
+        </ul>
+
+        <p>De los cuales DDR5 y DDR4 son los más recientes y comunes. La posición de las muescas varia en cada modelo para hacerlas incompatibles entre sí y para evitar confusiones. El número de zócalos de memoria puede variar en cada modelo de placa, pero suelen agruparse en bancos de 2 o 4 ranuras de memoria. Si una placa contiene dos tipos distintos de ranuras es porque admite la instalación de dos tipos distintos de memorias, aunque no puedan usarse ambos tipos simultáneamente.</p>
+
+        <h3 class="subsection-title">Ranuras de expansión o slot de expansión</h3>
+
+        <p>Sirven para insertar en ellos tarjetas adaptadoras en las que conectar dispositivos periféricos, como la tarjeta de vídeo para conectar el monitor, o la tarjeta de sonido para conectar los altavoces, etc.</p>
+
+        <p>En las placas actuales encontramos ranuras de tipo PCI-Express (abreviado PCIe) de distintas velocidades, aunque en placas base antiguas todavía es posible encontrar ranuras PCI. Cada una de ellas tiene sus propias características, variando en velocidad de transmisión, en número de conexiones y en tamaño.</p>
+
+        <p>Insertar una tarjeta en su ranura correspondiente es tan simple como ejercer una suave presión vertical para lograr que sus conectores se alojen en la ranura de expansión. A continuación, para evitar movimientos indeseados, la tarjeta se sujeta a la caja mediante un tornillo situado en la placa metálica de la tarjeta, que da al exterior de la caja del ordenador y desde la que vemos la nueva conexión externa proporcionada por la tarjeta.</p>
+
+        <h3 class="subsection-title">Conectores para dispositivos internos</h3>
+
+        <p>Aquí vamos a agrupar los conectores que se incluyen en las placas base para distintos usos:</p>
+
+        <ul>
+          <li><strong>Conectores de alimentación de energía para la placa base.</strong> En ellos se insertan los conectores apropiados que vienen desde la fuente de alimentación. El principal es el ATX de 24 pines (antiguamente tenía 20 pines). Actualmente también es necesario un conector ATX de 12 V para alimentar la CPU, el cual puede ser de 4 contactos o de 8 contactos (4+4).</li>
+          <li><strong>Conectores/ranuras para dispositivos de almacenamiento:</strong>
+            <ul>
+              <li><strong>Ranuras de conexión M.2.</strong> Estas ranuras permiten la conexión de diversas tarjetas de expansión, como tarjetas Wi-Fi, bluetooth o NFC, aunque su principal uso es la conexión de unidades de almacenamiento SSD. El conector M.2 puede dar soporte a los buses PCI-Express 3.0, 4.0 o 5.0 (hasta 4 líneas), SATA y USB. Si se usa el bus PCle se pueden conectar unidades SSD que alcancen velocidades ostensiblemente mayores a las alcanzadas por SSD conectados mediante SATA3.</li>
+              <li><strong>Los conectores SATA</strong>, para conectar discos duros, SSD de tipo SATA y lectores y/o grabadoras de DVD o Blu-ray Disc. Suelen venir por parejas, así habrá 2, 4, 6 o más conectores. Cada conector admite un solo dispositivo.</li>
+              <li><strong>Los conectores IDE</strong>, usados en placas base antiguas para conectar discos duros y dispositivos ópticos de almacenamiento como el DVD. Suelen venir un máximo de dos que permiten conectar hasta cuatro dispositivos. Dos dispositivos por conector.</li>
+              <li><strong>También existen los conectores SCSI</strong>, incluidas sus nuevas versiones serie SAS, para este tipo de dispositivos, pero no suelen utilizarse en equipos domésticos por su elevado precio en comparación con los anteriores.</li>
+            </ul>
+          </li>
+          <li><strong>Conectores para puertos USB adicionales</strong>, en ellos se conectan los cables que prolongan la conexión USB hacia la parte frontal/superior (o en raras ocasiones la trasera) de la caja, o para conectar dispositivos como lectores de tarjetas de memoria.</li>
+          <li><strong>Conectores de audio</strong> para conectar los cables que llevan la conexión hasta los mini-jacks del frontal de la caja.</li>
+          <li><strong>Conector CD_IN y AUX_IN</strong>, son entradas de sonido proveniente del lector de DVD o de alguna tarjeta capturadora de televisión. Están presentes si el controlador de sonido está integrado en la placa base. Son cada vez menos frecuentes.</li>
+          <li><strong>Conectores FAN</strong> para alimentar de energía eléctrica a los ventiladores encargados de la refrigeración. Aunque únicamente se necesitan dos pines, habrá 3 pines para monitorizar la velocidad de giro de los ventiladores, y con un cuarto pin se incluye la opción de controlar su velocidad.</li>
+          <li><strong>Conectores del panel frontal de la caja</strong>, en concreto para los botones de encendido y reset (reinicio) y para los leds indicadores de encendido y uso de dispositivos de almacenamiento. Algunos fabricantes incluyen "conectores puente" que facilitan la tarea de conexión.</li>
+          <li><strong>Conector WOL (Wake-on-LAN)</strong>, si la placa tiene integrado un adaptador de red, por medio de este conector se puede enviar una señal para que arranque el ordenador desde la red, sin tener que pulsar el botón de encendido.</li>
+          <li><strong>Conector de puerto serie</strong>, en él se inserta un cable plano a modo de prolongación que lleva un conector serie de 9 pines a la trasera de la caja.</li>
+          <li><strong>Conector IEEE1394 o Firewire</strong>, en él se inserta un cable de prolongación que lleva un conector de este tipo a la parte trasera de la caja.</li>
+          <li><strong>Conectores o jumpers</strong>, son pines que sobresalen de la placa y pueden unirse con una pequeña capucha metálica recubierta de plástico. Se utilizan para fijar algún parámetro variable de funcionamiento de la placa. Un jumper que casi siempre viene instalado es el que se utiliza para borrar los parámetros configurables de la BIOS almacenados en su memoria CMOS.</li>
+          <li><strong>Conector de infrarrojos</strong> que permite la conexión de un módulo de infrarrojos.</li>
+          <li><strong>Led interno de encendido</strong> de la placa base, para la comprobación visual de su estado.</li>
+          <li><strong>Conector de la pila</strong> que mantiene permanentemente alimentada la memoria CMOS de la BIOS cuando el equipo se encuentra desconectado de la alimentación eléctrica.</li>
+        </ul>
+
+        <h3 class="subsection-title">Conectores del panel trasero (para dispositivos externos)</h3>
+
+        <p>Son los conectores que están soldados directamente a la placa base y que asoman al exterior por la parte trasera de la caja del ordenador.</p>
+
+        <ul>
+          <li><strong>Puertos USB</strong>, suelen venir en parejas, lo normal es que haya cuatro conectores al menos, pero puede haber más. Suelen ser USB Tipo-A, pero se comienzan a incluir puertos USB Tipo-C.</li>
+          <li><strong>Puerto para red Ethernet (LAN) y/o Wi-Fi (WLAN)</strong>, donde conectar una clavija del tipo RJ45, para conectarse a una red local de manera inalámbrica.</li>
+          <li><strong>Puertos de vídeo</strong>, como HDMI, DisplayPort, DVI o VGA. Se incluyen para poder dar salida a los gráficos integrados (iGPU) de la CPU.</li>
+          <li><strong>Conectores de audio</strong>, normalmente hay tres conectores tipo mini-jack, para micrófono, altavoz y entrada de línea.</li>
+          <li><strong>Puertos PS/2</strong> de color morado para el teclado y verde para el ratón. Cada vez menos frecuentes.</li>
+          <li><strong>Puerto IEEE 1394 o Firewire</strong>, utilizado sobre todo para audio y vídeo digital.</li>
+          <li><strong>Puerto serie RS232</strong>, para comunicaciones con dispositivos de baja velocidad.</li>
+          <li><strong>Puerto paralelo</strong> para conexión de impresoras y escáneres. Prácticamente desaparecido.</li>
+          <li><strong>eSATA o SATA externo</strong>, para conectar dispositivos de almacenamiento masivo como discos duros externos.</li>
+        </ul>
+
+        <h3 class="subsection-title">BIOS/UEFI</h3>
+
+        <p>Un componente imprescindible en cualquier placa base es el chip de la BIOS, que puede ir alojado en un zócalo propio o soldado directamente a la placa base. Su nombre viene de las siglas en inglés de Basic Input/Output System, es un firmware instalado en la placa base que chequea en el arranque todos los dispositivos hardware conectados y ayuda a cargar el sistema operativo. En la actualidad este componente realmente se llama UEFI, pero se sigue usando el nombre BIOS por costumbre. También proporciona una interfaz mediante la cual se pueden modificar algunos de los valores de funcionamiento de la placa base que se registran en la CMOS.</p>
+
+        <h3 class="subsection-title">Chipset</h3>
+
+        <p>Todos estos componentes tienen conexión directa o indirecta con el chipset, el cual ya estudiamos en el punto 1.3.1 de esta unidad. En el chipset clásico, el northbridge se encargaba de controlar funciones como las comunicaciones entre el procesador, la memoria, el sistema gráfico. El southbridge, por su parte, llevaba el control de los puertos internos y externos de la placa base. En el esquema de chipset actual, la CPU se comunica directamente con la memoria y con la tarjeta gráfica, y el chipset queda como un único chip que se comunica con el resto de dispositivos que no gestiona directamente la CPU.</p>
+      </section>
+
+      <!-- Anexo III.- Periféricos de entrada/salida. -->
+      <section class="study-section fade-in-on-scroll" id="anexo-3">
+        <h2 class="section-title">
+          <span>Anexo III.- Periféricos de entrada/salida.</span>
+          <a href="#anexo-3" class="anchor-link" title="Enlace permanente">#</a>
+        </h2>
+
+        <p>Basándose en lo que hacen con la información que manejan, los vamos a clasificar en dos tipos:</p>
+
+        <ul>
+          <li>Los dispositivos que no almacenan la información, que a su vez podemos subdividirlos en dos:
+            <ul>
+              <li>Los que sólo sirven para mostrar y recibir información, como la pantalla táctil.</li>
+              <li>Los que sirven para comunicarse con otros ordenadores.</li>
+            </ul>
+          </li>
+          <li>Los que se utilizan para el almacenamiento masivo y permanente de la información; como SSD, discos duros, unidades de CD/DVD/BD, memorias USB, etc.</li>
+        </ul>
+
+        <h3 class="subsection-title">Periféricos de entrada/salida para mostrar y captar información</h3>
+
+        <h4 class="sub-subsection-title">Pantalla táctil, sensible o touchscreen.</h4>
+
+        <p>Una pantalla que, de por sí, es un dispositivo de salida, se convierte a su vez en dispositivo de entrada si incorpora algún mecanismo que le permita capturar información cuando algún elemento hace contacto sobre su superficie. Como un dispositivo apuntador o un dedo de la mano. Deben trabajar conjuntamente con algún software que asocie las pulsaciones con órdenes concretas que el ordenador pueda ejecutar. Para detectar el punto de contacto existen varias tecnologías. Estas son algunas de ellas:</p>
+
+        <ul>
+          <li><strong>Pantallas capacitivas.</strong> Consiste en un aislante, como el cristal, recubierto de una capa transparente de un material conductor. Como el cuerpo humano también conduce la electricidad, al tocarla se distorsiona el campo electrostático de la pantalla, lo cual puede ser detectado. Es el método usado en portátiles, smartphones y tabletas.</li>
+          <li><strong>Pantallas resistivas.</strong> Se sitúa sobre la pantalla una cuadricula eléctrica en dos planos, de modo que al ejercer presión un filamento horizontal entra en contacto con otro vertical detectándose así el área presionada. Por su alta resistencia a las condiciones externas, como humedad y suciedad, este método es usado con frecuencia en cajeros automáticos y otras pantallas táctiles situadas en lugares públicos.</li>
+        </ul>
+
+        <h3 class="subsection-title">Periféricos de entrada/salida para envío y recepción de información</h3>
+
+        <h4 class="sub-subsection-title">Tarjeta de red.</h4>
+
+        <p>Hoy día es extraño que un ordenador no disponga de adaptador/tarjeta de red, ya sea cableado (Ethernet), inalámbrico (Wi-Fi) o ambos simultáneamente. Esto permite a los ordenadores trabajar en red local y conectarse a Internet, usualmente a través de una conexión de fibra óptica, o de cable tipo DOCSIS o mediante ADSL donde la fibra no está disponible.</p>
+
+        <h4 class="sub-subsection-title">Módem.</h4>
+
+        <p>Se consideran dispositivos de entrada porque reciben datos desde el exterior, desde otro ordenador y de salida cuando envían información a otro ordenador. El Módem sirve para conectar un ordenador a otro a través de la red de la línea telefónica básica. Los ordenadores han de convertir sus datos binarios en la señal sonora de telefonía. Para ello se convierte cada 1 en una frecuencia y cada 0 en otra. El ordenador receptor debe descodificar esta señal y reconvertirla de nuevo en código binario. Estos módems han quedado obsoletos en favor de los dispositivos que transmiten utilizando tecnología de fibra óptica, DOCSIS o ADSL. Existen los llamados "módems USB", o Internet móvil, que transmiten con tecnologías de telefonía móvil como 3G o 4G.</p>
+
+        <h3 class="subsection-title">Periféricos de entrada/salida para almacenamiento masivo y permanente de la información</h3>
+
+        <p>Los dispositivos de almacenamiento son todos aquellos que pueden almacenar la información de forma permanente sin necesidad de electricidad para mantenerla, y se les llama masivos porque pueden almacenar grandes cantidades de información. Se trata de las llamadas memorias secundarias o unidades de almacenamiento, que se utilizan para guardar datos y programas de forma permanente.</p>
+
+        <p>Un soporte de información es cualquier medio físico destinado a registrar información de forma magnética, óptica o mediante cualquier otro método, siempre de forma permanente. A veces estos tienen la facultad de ser intercambiables, ya que pueden ser utilizados en cualquier otra unidad compatible.</p>
+
+        <p>Los soportes de la información se clasifican según el modo de acceso a la información en:</p>
+
+        <ul>
+          <li><strong>Secuenciales.</strong> Son las cintas DAT o cualquier otro dispositivo de cinta en el que hay que recorrer todos los datos por orden hasta llegar al que se desea acceder. Se utilizan para backups o copias de seguridad.</li>
+          <li><strong>Directos o aleatorios.</strong> Son aquellos en los que el acceso a la información se hace de forma inmediata sin tener que pasar por otra información anterior. Son los SSD, discos duros, DVD, etc.</li>
+        </ul>
+
+        <h3 class="subsection-title">Interfaces de conexión para dispositivos de almacenamiento</h3>
+
+        <p>Interfaces para conexiones internas. Son las utilizadas por los dispositivos que se alojan dentro del ordenador:</p>
+
+        <ul>
+          <li><strong>NVMe.</strong> Es la interfaz de comunicación utilizada por los SSD en formato de tarjeta M.2 que usan el bus PCI-Express. Esta interfaz se diseñó para aprovechar al máximo las capacidades de los SSD, y permite alcanzar velocidades de transferencia muy altas utilizando el bus de comunicaciones PCI-Express. Un SSD NVMe que use PCIe 5.0 x4 (cuatro líneas de PCIe 5.0) puede superar los 10 GB/s en transferencias secuenciales.</li>
+          <li><strong>SATA.</strong> Utiliza un bus serie para la transmisión de datos, siendo mas rápido y eficiente que el antiguo bus paralelo IDE. Existen tres versiones: SATA 1, 2 y 3 con velocidades de transferencia de hasta 150, 300 y 600 MB/s respectivamente. Esta interfaz es la más común para discos duros HDD y para unidades ópticas de CD/DVD/BD, y también se usa para SSD con carcasa de 2'5 pulgadas.</li>
+          <li><strong>ATA o PATA (Parallel ATA)</strong>, más conocido como IDE y sus variaciones. Es la versión originaria a partir de la que luego se desarrolló SATA. Ya no se incluye en equipos actuales. La transferencia era en paralelo, con cables gruesos.</li>
+          <li><strong>SCSI:</strong> Una interfaz de la época de IDE preparada para discos de gran capacidad de almacenamiento y de gran velocidad de rotación que se utilizaba en servidores a nivel profesional. No era común en ordenadores domésticos, y hoy en día prácticamente no existe.</li>
+        </ul>
+
+        <p>Interfaces para conexiones externas. Son las utilizadas por dispositivos externos que se conectan ocasionalmente al ordenador:</p>
+
+        <ul>
+          <li><strong>USB.</strong> Como indica su nombre, es un bus en serie universal. Esto quiere decir que está pensado para conectar multitud de dispositivos a través de él. Dependiendo de la versión, puede ofrecer distintas velocidades máximas de transferencia:
+            <ul>
+              <li>USB 1.x (12 Mbps) - Hasta 1'2 MB/s.</li>
+              <li>USB 2.0 (480 Mbps) - Hasta 48 MB/s.</li>
+              <li>USB 3.0-3.1 gen1 - 3.2 gen1x1 (5 Gbps) - Hasta 0'5 GB/s.</li>
+              <li>USB 3.1 gen2 - 3.2 gen2x1 - gen1x2 - USB4 gen2x1 (10 Gbps) - Hasta 1'2 GB/s.</li>
+              <li>USB 3.2 gen2x2 - USB4 gen2x2 - gen3x1 (20 Gbps) - Hasta 2'4 GB/s.</li>
+              <li>USB4 gen3x2 - gen4x1 (40 Gbps) - Hasta 4'8 GB/s.</li>
+              <li>USB4 gen4x2 (80 Gbps) - Hasta 9'6 GB/s.</li>
+              <li>USB4 gen4 Asimétrico (120 Gbps) - Hasta 14'4 GB/s.</li>
+            </ul>
+          </li>
+          <li>Mediante conexión de red cableada o Wi-Fi, utilizando protocolos y sistemas de ficheros específicamente diseñados para ello.</li>
+          <li>En el pasado tuvieron cierta aceptación otras interfaces como FireWire, SATA externo (eSATA), o SCSI y SAS externos.</li>
+        </ul>
+
+        <h3 class="subsection-title">Unidades de estado sólido (SSD).</h3>
+
+        <p>Los SSD o unidades de estado sólido son dispositivos de almacenamiento basados en memoria flash, como las memorias USB y las tarjetas de memoria. Los SSD son dispositivos con tasa de transferencia y velocidad de acceso a datos mucho más rápidas que los discos duros (HDD) mecánicos tradicionales. Existen dos formatos principales de SSD:</p>
+
+        <ul>
+          <li><strong>De 2'5 pulgadas, con interfaz SATA.</strong> Por la limitación de la interfaz SATA III, pueden alcanzar como máximo velocidades secuenciales cercanas a 600 MB/s. Utilizan los mismos conectores SATA de alimentación y de datos que los HDD, pero son mucho más rápidos.</li>
+          <li><strong>En tarjetas M.2, con interfaz SATA o NVMe mediante PCIe.</strong> Cuando utilizan la interfaz SATA tienen el mismo rendimiento que los SSD de 2'5 pulgadas que hemos visto anteriormente, pero cuando utilizan la interfaz NVMe mediante el bus PCI-Express, pueden llegar a velocidades muy superiores.</li>
+        </ul>
+
+        <h3 class="subsection-title">El disco duro.</h3>
+
+        <p>El disco duro o HDD (del inglés Hard Disk Drive) es un dispositivo de almacenamiento que emplea un sistema de grabación magnética para almacenar datos digitales. Está compuesto por uno o más discos rígidos, de aluminio o de material vitrocerámico, que se recubren de una fina capa de material magnetizable, encerrados en una caja sellada para evitar la entrada de impurezas que puedan perjudicar su funcionamiento. La información se registra en ellos mediante variaciones en el campo magnético.</p>
+
+        <p>Los discos rígidos, también llamados platos, están unidos por un eje a un motor que los hace girar simultáneamente a gran velocidad. Según modelos son comunes velocidades de giro de los discos de 5400 revoluciones por minuto o de 7200 revoluciones por minuto. Entre los platos se colocan unos brazos metálicos en cuyos extremos se sitúan los cabezales, hay un cabezal con dos cabezas para cada cara del disco: una de lectura y otra de escritura que son las que graban y leen la información utilizando para ello pulsos magnéticos.</p>
+
+        <p>La estructura lógica que utilizan los discos duros para almacenar la información se les fija de fábrica. A cada disco se le aplica una estructura a base de pistas, cilindros y sectores, todos ellos numerados de forma que queda dividido en un determinado número de sectores físicos del mismo tamaño. En la actualidad la estructura de los discos duros es algo más compleja ya que, por la diferencia entre la circunferencia exterior e interior, se almacenan más sectores en las pistas exteriores con respecto a las interiores.</p>
+
+        <h3 class="subsection-title">Memorias USB.</h3>
+
+        <p>Las memorias USB o "pendrives" están basadas en memoria flash, igual que los SSD, pero tienen características distintas. Estas son pequeñas memorias, diseñadas para transportar físicamente archivos entre equipos de manera cómoda. Se componen básicamente de un chip de memoria flash, una controladora que gestiona su uso y un interfaz USB para conectarse al ordenador. Su capacidad y rendimiento han aumentado mucho desde su aparición en el año 2000.</p>
+
+        <h3 class="subsection-title">Unidades de discos ópticos (CD/DVD/BD).</h3>
+
+        <p>Son unidades lectoras o lectoras/grabadoras de discos ópticos. Los discos que utilizan son CD, DVD y BD, todos ellos soportes extraíbles que pueden transportarse de un equipo a otro, siendo por tanto un medio ideal para la distribución de software. Estas unidades tuvieron gran importancia desde los 90 hasta hace relativamente poco.</p>
+
+        <p>Estas unidades utilizan la tecnología óptica, el láser, para leer la información grabada en los discos, que son intercambiables. Los discos son rígidos de 8 o 12 centímetros de diámetro. Para leer el disco se utiliza un emisor de luz que envía un fino rayo láser hacia la superficie del disco con una determinada amplitud de onda. El reflejo es capturado por un fotorreceptor que puede recibir o no la luz reflejada, interpretando ceros o unos. El láser utilizado es distinto en cada tipo de disco, siendo más preciso y "fino" en el Blu-ray, y menos en el Compact Disc.</p>
+
+        <!-- Tabla 1: Capacidad Discos Ópticos -->
+        <div class="table-wrapper">
+          <div class="table-scroll-hint"><span class="table-scroll-hint__icon">↔</span> Desliza horizontalmente para ver la tabla completa</div>
+          <table class="minimal-table">
+            <caption>Capacidad según formato y caras en discos ópticos</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tipo</th>
+                <th scope="col">CD</th>
+                <th scope="col">DVD</th>
+                <th scope="col">BD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1 cara, 1 capa</td>
+                <td>700 MB</td>
+                <td>4'7 GB</td>
+                <td>25 GB</td>
+              </tr>
+              <tr>
+                <td>1 cara, 2 capas</td>
+                <td></td>
+                <td>8.54 GB</td>
+                <td>50 GB</td>
+              </tr>
+              <tr>
+                <td>2 caras, 2 capas</td>
+                <td></td>
+                <td>9.40 GB</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>2 caras, 4 capas</td>
+                <td></td>
+                <td>17.08 GB</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>BDXL (4 capas)</td>
+                <td></td>
+                <td></td>
+                <td>100 GB / 128 GB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tabla 2: Tipos de Grabación -->
+        <div class="table-wrapper">
+          <div class="table-scroll-hint"><span class="table-scroll-hint__icon">↔</span> Desliza horizontalmente para ver la tabla completa</div>
+          <table class="minimal-table">
+            <caption>Variantes según capacidad de reescritura</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tipo</th>
+                <th scope="col">CD</th>
+                <th scope="col">DVD</th>
+                <th scope="col">BD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Solo lectura</td>
+                <td>CD-ROM</td>
+                <td>DVD-ROM</td>
+                <td>BD-ROM</td>
+              </tr>
+              <tr>
+                <td>Grabables una vez</td>
+                <td>CD-R</td>
+                <td>DVD-R, DVD+R</td>
+                <td>BD-R</td>
+              </tr>
+              <tr>
+                <td>Grabables múltiples veces</td>
+                <td>CD-RW</td>
+                <td>DVD-RW, DVD+RW</td>
+                <td>BD-RE</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tabla 3: Velocidades Discos Ópticos -->
+        <div class="table-wrapper">
+          <div class="table-scroll-hint"><span class="table-scroll-hint__icon">↔</span> Desliza horizontalmente para ver la tabla completa</div>
+          <table class="minimal-table">
+            <caption>Velocidades de transferencia en discos ópticos</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tipo</th>
+                <th scope="col">CD</th>
+                <th scope="col">DVD</th>
+                <th scope="col">BD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Velocidad x1</td>
+                <td>150 KB/s</td>
+                <td>1'32 MB/s</td>
+                <td>4'5 MB/s</td>
+              </tr>
+              <tr>
+                <td>Velocidad típica</td>
+                <td>x52 ~7'62 MB/s</td>
+                <td>x16 ~21'14 MB/s</td>
+                <td>x12 ~54 MB/s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-title">Tarjetas de memoria flash, externas.</h3>
+
+        <p>Utilizan el mismo tipo de memoria flash que los SSD y las memorias USB. Esta memoria viene encapsulada en pequeñas tarjetas de plástico cuya capacidad y velocidad de almacenamiento depende de los chips de memoria que incorpore. En sus inicios existían multitud de formatos debido a que los fabricantes creaban sus propios diseños. En la actualidad prácticamente el único formato que se sigue usando es SD (Secure Digital).</p>
+
+        <p>Los formatos más habituales eran:</p>
+
+        <ul>
+          <li><strong>Secure Digital (SD)</strong>, prácticamente el único que se sigue usando en la actualidad. Tiene varios formatos según capacidad: SD, SDHC, SDXC y SDUC.</li>
+          <li>CompactFlash (CF).</li>
+          <li>SmartMedia Card (SMC).</li>
+          <li>Memory Stick (MS) y Memory Stick PRO.</li>
+          <li>Multimedia Card (MMC).</li>
+          <li>xD-Picture Card (xD).</li>
+          <li>Tarjetas mini y micro. Versiones reducidas, en tamaño, que no en capacidad, de las anteriores, como las microSD.</li>
+        </ul>
+
+        <h3 class="subsection-title">Lectores de cintas magnéticas.</h3>
+
+        <p>Las cintas magnéticas para el almacenamiento de datos vienen usándose desde la segunda generación de ordenadores. Desde entonces han ido evolucionando en su formato y composición. Las unidades lectoras deben tener en su interior los mecanismos que permitan mover la cinta por delante de su cabeza de lectura y escritura, para poder registrar o leer en ella la información de forma magnética. Su principal característica es que se trata de un soporte de acceso secuencial. Esto quiere decir que para obtener un dato cualquiera hay que empezar a leer la cinta desde el principio. Su principal ventaja es su gran capacidad, siendo hoy día el medio más económico para hacer copias de seguridad de grandes volúmenes de información.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Botón flotante Volver arriba -->
+  <button type="button" class="btn-back-to-top" id="backToTop" title="Volver al inicio de la página" aria-label="Volver arriba">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Modal del Buscador Interno -->
+  <div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Buscador interno de contenidos">
+    <div class="search-dialog">
+      <div class="search-dialog__header">
+        <svg class="search-dialog__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="search" class="search-input" id="searchInput" placeholder="Buscar concepto, componente o término..." autocomplete="off" spellcheck="false">
+        <button type="button" class="btn-close-search" id="searchClose" aria-label="Cerrar búsqueda">✕</button>
+      </div>
+      <div class="search-results" id="searchResults">
+        <div class="search-empty">Escribe cualquier concepto para buscar...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie de página institucional profesional (Multi-columna) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-columns-grid">
+        <!-- Columna 1: Marca y Acreditación -->
+        <div class="footer-col__brand">
+          <div class="footer-brand-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--azul-principal)" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span>DAW StudyHub</span>
+          </div>
+          <p class="footer-brand-desc">
+            Plataforma académica integral para el ciclo formativo de Grado Superior en Desarrollo de Aplicaciones Web. Transcripción curricular fidedigna, esquemas técnicos vectoriales en alta definición y autoevaluaciones interactivas.
+          </p>
+          <div class="footer-badges-row">
+            <span class="footer-badge">1.º DAW</span>
+            <span class="footer-badge">Sistemas &amp; BBDD</span>
+            <span class="footer-badge">100% Literal</span>
+            <span class="footer-badge">Curso 2024-2025</span>
+          </div>
+        </div>
+
+        <!-- Columna 2: Temario del Módulo -->
+        <div class="footer-col">
+          <h3 class="footer-col__title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            <span>Temario Oficial</span>
+          </h3>
+          <ul class="footer-nav-list">
+            <li><a href="tema1.html" class="footer-nav-link">Sistemas: Tema 1 (Hardware)</a></li>
+            <li><a href="tema2.html" class="footer-nav-link">Sistemas: Tema 2 (Redes)</a></li>
+            <li><a href="bbdd-tema1.html" class="footer-nav-link">Bases de Datos: Tema 1 (Modelo E-R)</a></li>
+            <li><a href="index.html#directorio-asignaturas" class="footer-nav-link">Directorio de Asignaturas</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Herramientas y Exámenes -->
+        <div class="footer-col">
+          <h3 class="footer-col__title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            <span>Herramientas de Estudio</span>
+          </h3>
+          <ul class="footer-nav-list">
+            <li><a href="tema1.html#anexo1" class="footer-nav-link">Guía Técnica de Compra PC</a></li>
+            <li><a href="tema2.html#sec-6" class="footer-nav-link">Solucionario Oficial de Redes</a></li>
+            <li><a href="index.html" class="footer-nav-link">Portal Principal de Asignaturas</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Barra inferior con copyright y botón scroll top -->
+      <div class="footer-bottom-bar">
+        <span>&copy; 2024-2025 DAW StudyHub · Departamento de Informática. Todos los derechos reservados conforme a la programación docente oficial.</span>
+        <div class="footer-bottom-links">
+          <button type="button" class="footer-scroll-top-btn" id="footerScrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Volver arriba">
+            <span>Volver arriba</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script interactivo vanilla -->
+  <script src="js/main.js"></script>
+  <!-- Modal visor de imagen a pantalla completa (Lightbox minimalista) -->
+  <div class="image-modal" id="imageModal" aria-hidden="true" role="dialog" aria-label="Visor de imagen ampliada">
+    <div class="image-modal__backdrop" id="imageModalBackdrop"></div>
+    <div class="image-modal__dialog">
+      <button type="button" class="image-modal__close" id="imageModalClose" aria-label="Cerrar visor">✕</button>
+      <div class="image-modal__img-box">
+        <img src="" alt="" id="imageModalImg" class="image-modal__img">
+      </div>
+      <p class="image-modal__caption" id="imageModalCaption"></p>
+    </div>
+  </div>
+
+</body>
+</html>
